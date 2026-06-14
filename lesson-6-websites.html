@@ -7,36 +7,52 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     :root { --grad-a: #f7924f; --grad-b: #e05a1a; }
-    .file-tree {
-      background: #1e2235;
-      color: #a8d8a8;
-      border-radius: 10px;
-      padding: 1rem 1.3rem;
-      font-family: 'Courier New', monospace;
-      font-size: .87rem;
-      line-height: 2;
-      margin: .75rem 0;
-    }
-    .file-tree .folder { color: #87ceeb; }
-    .file-tree .file   { color: #f0e68c; margin-left: 1.2rem; }
-    .timeline {
-      border-left: 3px solid var(--border);
-      padding-left: 1.5rem;
+    .possibility-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: .75rem;
       margin: 1rem 0;
     }
-    .timeline-item { position: relative; margin-bottom: 1.25rem; }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -1.85rem;
-      top: .3rem;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--brand);
-      border: 2px solid var(--bg);
+    .possibility-card {
+      background: #f8f9ff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      font-size: .88rem;
+      font-weight: 600;
+      color: #3b4160;
     }
-    .timeline-item h3 { font-size: .95rem; font-weight: 700; margin-bottom: .2rem; }
-    .timeline-item p  { font-size: .87rem; color: var(--muted); margin: 0; }
+    .possibility-card .p-icon { font-size: 1.6rem; display: block; margin-bottom: .4rem; }
+    .prompt-card {
+      background: #f8f9ff;
+      border: 1px solid #dde2ff;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin: .75rem 0;
+    }
+    .prompt-card .pc-label {
+      font-size:.7rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+      color:var(--brand); margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:center;
+    }
+    .prompt-card code {
+      font-size:.86rem; color:#1a2060; font-family:'Courier New',monospace;
+      line-height:1.6; display:block; white-space:pre-wrap;
+    }
+    .copy-small { font-size:.72rem; font-weight:700; color:var(--brand); background:#eef1ff; border:none; border-radius:6px; padding:.2rem .55rem; cursor:pointer; }
+    .share-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      margin: .75rem 0;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .share-card .s-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .share-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: .2rem; }
+    .share-card p { font-size: .86rem; color: var(--muted); margin: 0; }
 
     /* ---- WIZARD STEP SYSTEM ---- */
     .lesson-step { display: none; }
@@ -94,8 +110,8 @@
 
 <section class="lesson-hero">
   <div class="lesson-num">Lesson 6 of 6</div>
-  <h1>🌐 Building Websites with AI Help</h1>
-  <p>No coding experience needed. See how AI can write the code for you — and how you can direct it like a project manager.</p>
+  <h1>🌐 AI Can Build You a Website</h1>
+  <p>No coding, no tech skills, no experience needed. You describe it — AI builds it.</p>
 </section>
 
 <div class="container">
@@ -125,35 +141,25 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- STEP 1: You Can Build a Website + How Websites Work         -->
+    <!-- STEP 1: The Big Idea                                        -->
     <!-- ============================================================ -->
     <div class="lesson-step active" id="step-1">
       <p class="step-label">Step 1 of 5 — The Big Idea</p>
 
       <div class="lesson-section">
-        <h2>🤯 Wait — I Can Build a Website?</h2>
-        <p>Yes! And you don't need to learn any code to do it. Here's the key idea:</p>
-        <p>A website is built from files written in a language called <strong>HTML, CSS, and JavaScript</strong>. You don't need to understand these — AI understands them perfectly. Your job is to describe what you want in plain English, and AI writes the code for you.</p>
-        <p>Think of it like being an architect. The architect doesn't swing a hammer — they describe what the building should look like and a builder brings it to life. <strong>You are the architect. AI is the builder.</strong></p>
+        <h2>🤯 AI Can Build You a Website — Really</h2>
+        <p>When most teachers hear "build a website," they picture months of learning, expensive software, and headaches. With AI, it's completely different.</p>
+
         <div class="callout info">
-          <strong>📌 What kinds of sites can you make?</strong> Review sites with multiple choice questions, flashcard games, class portals, vocabulary quizzes, study guides, interactive stories — the same types of sites real teachers are building for their classes right now!
-        </div>
-      </div>
-
-      <div class="lesson-section">
-        <h2>🏗️ How a Website Actually Works (Simplified)</h2>
-        <p>A website is really just a folder of files on a computer. The three types of files you'll hear about:</p>
-
-        <div class="file-tree">
-          <span class="folder">📁 my-website/</span><br>
-          <span class="file">📄 index.html &nbsp;← The structure (the walls and rooms)</span><br>
-          <span class="file">🎨 style.css &nbsp;&nbsp;← The design (paint, furniture, colors)</span><br>
-          <span class="file">⚙️ script.js &nbsp;&nbsp;← The behavior (lights, doors, buttons)</span>
+          <strong>📌 Here's all you need to know:</strong> You describe what you want in plain English. AI writes all the behind-the-scenes code. You get a working website — without ever seeing or touching a single line of code.
         </div>
 
-        <p>When you open a website in your browser (Chrome, Safari, etc.), the browser reads these files and displays them as a beautiful page. That's it — no mystery!</p>
+        <p>Think of it like being an architect. An architect doesn't swing a hammer or lay bricks — they describe what the building should look like, and a builder brings it to life. <strong>You are the architect. AI is the builder.</strong></p>
+
+        <p>The same AI tools you've been using throughout this course — ChatGPT, Claude, Gemini — can build complete, working websites. All you have to do is describe what you want.</p>
+
         <div class="callout tip">
-          <strong>✅ The good news:</strong> You never have to write or read any of these files yourself. You describe what you want to AI, it writes the files, and you open them in your browser to see the result.
+          <strong>✅ You already know how to do this.</strong> Every skill from this course — writing clear prompts, being specific, asking for revisions — applies here. You're already prepared.
         </div>
       </div>
 
@@ -163,44 +169,30 @@
     </div><!-- /step-1 -->
 
     <!-- ============================================================ -->
-    <!-- STEP 2: The Process                                         -->
+    <!-- STEP 2: What Teachers Are Building                          -->
     <!-- ============================================================ -->
     <div class="lesson-step" id="step-2">
-      <p class="step-label">Step 2 of 5 — The Process</p>
+      <p class="step-label">Step 2 of 5 — What Teachers Are Building</p>
 
       <div class="lesson-section">
-        <h2>🔄 The Website-Building Process with AI</h2>
-        <p>Here is the exact step-by-step process used to create sites like the ones in this hub:</p>
+        <h2>🏫 What Kinds of Sites Can Teachers Make?</h2>
+        <p>Real teachers are using AI right now to build sites like these — without any coding knowledge:</p>
 
-        <div class="timeline">
-          <div class="timeline-item">
-            <h3>1. Decide what your site needs to do</h3>
-            <p>Is it a quiz? A review game? A class portal? A vocabulary activity? Be specific about the purpose before you start.</p>
-          </div>
-          <div class="timeline-item">
-            <h3>2. Describe it to AI in detail</h3>
-            <p>Open Claude or ChatGPT and describe your site like you're explaining it to a web developer. Include what it should look like, what students should do on it, and what content it should include.</p>
-          </div>
-          <div class="timeline-item">
-            <h3>3. AI writes the code</h3>
-            <p>AI will produce blocks of HTML, CSS, and JavaScript code. It usually explains what each part does too.</p>
-          </div>
-          <div class="timeline-item">
-            <h3>4. Save the code as a file</h3>
-            <p>Copy the HTML code, open Notepad (Windows) or TextEdit (Mac), paste it, and save the file as <strong>index.html</strong>.</p>
-          </div>
-          <div class="timeline-item">
-            <h3>5. Open it in your browser</h3>
-            <p>Double-click the saved file. It opens in your browser and works like a real website — right on your computer!</p>
-          </div>
-          <div class="timeline-item">
-            <h3>6. Ask AI to make changes</h3>
-            <p>Don't like the color? Want to add a question? Just tell AI what to change. Keep going until it's exactly what you want.</p>
-          </div>
+        <div class="possibility-grid">
+          <div class="possibility-card"><span class="p-icon">📝</span>Review Quiz Sites</div>
+          <div class="possibility-card"><span class="p-icon">🃏</span>Flashcard Games</div>
+          <div class="possibility-card"><span class="p-icon">🏠</span>Class Portals</div>
+          <div class="possibility-card"><span class="p-icon">📖</span>Vocabulary Activities</div>
+          <div class="possibility-card"><span class="p-icon">🗺️</span>Study Guides</div>
+          <div class="possibility-card"><span class="p-icon">🎮</span>Learning Games</div>
+          <div class="possibility-card"><span class="p-icon">📅</span>Weekly Schedules</div>
+          <div class="possibility-card"><span class="p-icon">🔗</span>Resource Link Pages</div>
         </div>
 
-        <div class="callout tip">
-          <strong>✅ There's no limit.</strong> You can go back and forth with AI 20 times, refining the site until it's perfect. Each message is just plain English — no code knowledge required.
+        <p>Every site in this hub — the review games, the quizzes, the class portal — was built by describing it to AI in plain English. No coding happened. Just conversation.</p>
+
+        <div class="callout info">
+          <strong>📌 The best part:</strong> Once AI builds the first version, you can keep refining it. "Make it more colorful." "Add three more questions." "Change the title." Each change is just a sentence. AI updates the site immediately.
         </div>
       </div>
 
@@ -211,72 +203,38 @@
     </div><!-- /step-2 -->
 
     <!-- ============================================================ -->
-    <!-- STEP 3: Real Prompts                                        -->
+    <!-- STEP 3: How to Ask for a Website                            -->
     <!-- ============================================================ -->
     <div class="lesson-step" id="step-3">
-      <p class="step-label">Step 3 of 5 — Real Prompts</p>
+      <p class="step-label">Step 3 of 5 — How to Ask</p>
 
       <div class="lesson-section">
-        <h2>💬 Real Prompts That Build Real Sites</h2>
-        <p>These are the kinds of detailed prompts that produce complete, working websites. The more detail you provide, the better the result.</p>
+        <h2>💬 How to Ask AI to Build a Website</h2>
+        <p>The process is simpler than you think. Three things to include in your request:</p>
 
-        <h3>Example 1 — Multiple Choice Review Site</h3>
-        <div class="example-box">
-          <div class="ex-label">Prompt to use</div>
-          <pre>Build a single-page HTML/CSS/JavaScript quiz website for 4th grade students reviewing the water cycle.
+        <ol class="steps">
+          <li><strong>What type of site</strong> — a quiz, a flashcard game, a class homepage, etc.</li>
+          <li><strong>Who it's for</strong> — your grade level and subject</li>
+          <li><strong>What it should include</strong> — the content, questions, links, colors, or style you want</li>
+        </ol>
 
-Include:
-- A title at the top: "Water Cycle Review"
-- 8 multiple choice questions about evaporation, condensation, precipitation, and collection
-- 4 answer choices per question
-- Immediate feedback when a student clicks an answer (green = correct, red = wrong)
-- A score tracker at the bottom
-- A "Try Again" button at the end
-- Colorful, fun design appropriate for 4th graders
-
-Put all the code in a single HTML file.</pre>
+        <div class="callout tip">
+          <strong>✅ One important phrase to always include:</strong> End your request with <em>"Put everything in one HTML file."</em> This keeps it simple and makes it easy to open and share.
         </div>
 
-        <h3>Example 2 — Vocabulary Flashcard Game</h3>
-        <div class="example-box">
-          <div class="ex-label">Prompt to use</div>
-          <pre>Create a flashcard website for 5th grade students studying math vocabulary.
-
-Include these 10 words and definitions:
-- Numerator: the top number in a fraction
-- Denominator: the bottom number in a fraction
-- Equivalent: equal in value
-[...add your own words]
-
-The site should:
-- Show one card at a time with the word on the front
-- Let students click to flip the card and see the definition
-- Have Next and Previous buttons to navigate cards
-- Show a progress tracker (e.g., "Card 3 of 10")
-- Use a clean, modern design with the school colors blue and gold
-
-Put everything in one HTML file.</pre>
+        <h3>A simple formula that works every time:</h3>
+        <div class="callout info">
+          <strong>"Build me a [type of site] for [grade] students about [topic]. Include [list what you want]. Put everything in one HTML file."</strong>
         </div>
 
-        <h3>Example 3 — Class Portal / Homepage</h3>
-        <div class="example-box">
-          <div class="ex-label">Prompt to use</div>
-          <pre>Build a class portal homepage for Mr. Smith's 3rd Grade class.
+        <p>That's it. You don't need to say anything technical. AI figures out the rest.</p>
 
-The page should include:
-- A header with "Mr. Smith's 3rd Grade Class" and a welcome message
-- A weekly schedule section showing Monday–Friday subjects
-- A "This Week's Assignments" section with 3 placeholder assignments
-- Links to 4 educational websites (Khan Academy, etc.)
-- A fun quote of the week section
-- Bright, friendly colors — use yellow, green, and white
-
-Make it look professional and fun for 8-year-olds. Single HTML file.</pre>
-        </div>
-
-        <div class="callout warn">
-          <strong>⚠️ Important:</strong> Always ask for "a single HTML file" at the end of your prompt. This keeps everything in one place and makes it much easier to save and open.
-        </div>
+        <h3>After AI builds it:</h3>
+        <ol class="steps">
+          <li>AI gives you the finished site — either a file to download or a preview to view.</li>
+          <li>Open it in your browser and see how it looks.</li>
+          <li>If anything needs changing, just say so in plain English. Keep refining until it's perfect.</li>
+        </ol>
       </div>
 
       <div class="step-nav">
@@ -286,51 +244,92 @@ Make it look professional and fun for 8-year-olds. Single HTML file.</pre>
     </div><!-- /step-3 -->
 
     <!-- ============================================================ -->
-    <!-- STEP 4: Saving, Sharing & Troubleshooting                   -->
+    <!-- STEP 4: Real Example Prompts + Sharing                      -->
     <!-- ============================================================ -->
     <div class="lesson-step" id="step-4">
-      <p class="step-label">Step 4 of 5 — Saving, Sharing &amp; Fixing</p>
+      <p class="step-label">Step 4 of 5 — Real Prompts &amp; Sharing</p>
 
       <div class="lesson-section">
-        <h2>💾 How to Save and Share Your Website</h2>
+        <h2>📋 Copy These Prompts and Make Them Your Own</h2>
+        <p>Just replace the parts in [brackets] with your own content and paste into ChatGPT, Claude, or Gemini.</p>
 
-        <h3>Saving the file (Windows)</h3>
-        <ol class="steps">
-          <li>Open Notepad (search for it in the Start menu).</li>
-          <li>Copy all the code from AI and paste it into Notepad.</li>
-          <li>Click File → Save As. Name the file <strong>index.html</strong> (include the .html part).</li>
-          <li>Change "Save as type" to <strong>All Files</strong>, then click Save.</li>
-          <li>Find the saved file and double-click it — it opens in your browser!</li>
-        </ol>
+        <div class="prompt-card">
+          <div class="pc-label">Quiz Review Site <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+          <code>Build a single-page quiz website for [GRADE] students reviewing [TOPIC].
 
-        <h3>Saving the file (Mac)</h3>
-        <ol class="steps">
-          <li>Open TextEdit. Go to Format → Make Plain Text.</li>
-          <li>Copy all the code from AI and paste it in.</li>
-          <li>Click File → Save. Name it <strong>index.html</strong> and save to your Desktop.</li>
-          <li>Double-click the file to open it in your browser.</li>
-        </ol>
+Include:
+- Title: "[YOUR TITLE]"
+- 8 multiple choice questions about [TOPIC]
+- 4 answer choices per question
+- Green highlight for correct answers, red for wrong
+- Score tracker at the bottom
+- "Try Again" button at the end
+- Colorful, fun design for [GRADE] students
 
-        <h3>Sharing with students</h3>
-        <ul>
-          <li><strong>Google Drive:</strong> Upload the HTML file to Drive, set sharing to "Anyone with link," and share the link with students.</li>
-          <li><strong>GitHub Pages:</strong> Free website hosting — ask AI to walk you through the steps!</li>
-          <li><strong>Display on projector:</strong> For whole-class use, just open it on your computer and project it.</li>
-        </ul>
+Put everything in one HTML file.</code>
+        </div>
+
+        <div class="prompt-card">
+          <div class="pc-label">Vocabulary Flashcard Game <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+          <code>Create a flashcard website for [GRADE] students studying [SUBJECT] vocabulary.
+
+Include these words and definitions:
+- [WORD 1]: [DEFINITION]
+- [WORD 2]: [DEFINITION]
+- [add more words]
+
+The site should:
+- Show one card at a time
+- Let students click to flip and see the definition
+- Have Next and Previous buttons
+- Show a progress tracker (Card 3 of 10)
+- Use a clean, friendly design
+
+Put everything in one HTML file.</code>
+        </div>
+
+        <div class="prompt-card">
+          <div class="pc-label">Class Portal / Homepage <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+          <code>Build a class homepage for [YOUR NAME]'s [GRADE] class.
+
+Include:
+- A welcome header with the class name
+- A weekly schedule showing Monday–Friday subjects
+- A "This Week's Assignments" section
+- Links to [list your favorite educational sites]
+- A motivational quote section
+- Bright, friendly colors — [YOUR COLOR PREFERENCES]
+
+Put everything in one HTML file.</code>
+        </div>
       </div>
 
       <div class="lesson-section">
-        <h2>🔧 What to Do When Something Looks Wrong</h2>
-        <p>Sometimes the AI's first attempt won't look quite right. Here's how to fix it without frustration:</p>
-        <ul>
-          <li><strong>"The colors don't look right"</strong> → Tell AI: "Change the background color to light blue and the button color to dark green."</li>
-          <li><strong>"The quiz doesn't track the score"</strong> → Tell AI: "Add a score counter that increases by 1 for each correct answer and shows the total at the end."</li>
-          <li><strong>"It looks broken on my phone"</strong> → Tell AI: "Make this website responsive so it looks good on phones and tablets too."</li>
-          <li><strong>"I want to add more questions"</strong> → Tell AI: "Add these 3 questions to the quiz: [paste your questions]."</li>
-          <li><strong>"Something is missing"</strong> → Describe exactly what you expected to see. AI will fix it.</li>
-        </ul>
-        <div class="callout tip">
-          <strong>✅ The golden rule:</strong> If it's not right, just say so in plain English. You can have 20 back-and-forth messages with AI and it will keep improving the site. There's no limit!
+        <h2>🔗 Sharing Your Site With Students</h2>
+        <p>Once AI builds your site, here are the easiest ways to get it in front of students:</p>
+
+        <div class="share-card">
+          <div class="s-icon">📁</div>
+          <div>
+            <h3>Google Drive (easiest)</h3>
+            <p>Upload the file to Google Drive, click "Share," set it to "Anyone with the link can view," and paste the link in Google Classroom. Students click — it opens instantly.</p>
+          </div>
+        </div>
+
+        <div class="share-card">
+          <div class="s-icon">📺</div>
+          <div>
+            <h3>Projector (no sharing needed)</h3>
+            <p>Open the site on your computer and project it on the board. Perfect for whole-class review activities.</p>
+          </div>
+        </div>
+
+        <div class="share-card">
+          <div class="s-icon">🌐</div>
+          <div>
+            <h3>Put it online (permanent link)</h3>
+            <p>Free tools like GitHub Pages let you publish your site so it has its own web address. Ask AI: <em>"How do I put this on GitHub Pages?"</em> — it will walk you through every step.</p>
+          </div>
         </div>
       </div>
 
@@ -347,24 +346,27 @@ Make it look professional and fun for 8-year-olds. Single HTML file.</pre>
       <p class="step-label">Step 5 of 5 — Try It</p>
 
       <div class="lesson-section">
-        <h2>✏️ Your First Website — Try It Now</h2>
-        <p>Use this starter prompt to build your very first quiz website. Customize it with your own topic and questions:</p>
+        <h2>✏️ Try It Now</h2>
         <div class="try-it">
-          <div class="try-label">🧪 Starter Prompt — Copy &amp; Customize</div>
-          <p>Replace the parts in [brackets] with your own content, then paste into Claude or ChatGPT.</p>
-          <textarea id="website-prompt" rows="10" style="width:100%;font-family:'Courier New',monospace;font-size:.84rem;padding:.75rem;border-radius:8px;border:1px solid var(--border);resize:vertical;">Build a single-page HTML quiz website for [GRADE] students about [TOPIC].
+          <div class="try-label">🧪 Your First Website — In Under 5 Minutes</div>
+          <p>Replace the [brackets] with your own content and paste this into ChatGPT, Claude, or Gemini:</p>
+          <textarea id="website-prompt" rows="10" style="width:100%;font-family:'Courier New',monospace;font-size:.84rem;padding:.75rem;border-radius:8px;border:1px solid var(--border);resize:vertical;color:#1a2060;">Build a quiz website for [GRADE] students about [TOPIC].
 
 Include:
 - Title: "[YOUR TITLE]"
 - 5 multiple choice questions about [TOPIC]
 - 4 answer choices each
-- Green highlight for correct answers, red for wrong
+- Green for correct answers, red for wrong
 - Score tracker
 - Retry button at the end
 - Colorful, student-friendly design
 
 Put everything in one HTML file.</textarea>
           <button class="copy-btn" onclick="copyTextarea()">📋 Copy This Prompt</button>
+        </div>
+
+        <div class="callout tip" style="margin-top:1rem;">
+          <strong>✅ What to do with the result:</strong> When AI gives you the finished site, download the file or copy the code, save it as a file ending in <strong>.html</strong>, and double-click it to open in your browser. Share it with students via Google Drive or project it in class.
         </div>
       </div>
 
@@ -377,10 +379,10 @@ Put everything in one HTML file.</textarea>
           <li><strong>Use screenshots</strong> to show AI exactly what format you want.</li>
           <li><strong>Generate custom images and visuals</strong> for any topic or grade level.</li>
           <li><strong>Save and print</strong> everything AI creates as Word docs, PDFs, or HTML files.</li>
-          <li><strong>Build interactive websites</strong> for your students — no coding required.</li>
+          <li><strong>Ask AI to build interactive websites</strong> for your students — no coding required.</li>
         </ul>
         <div class="callout tip">
-          <strong>✅ What's next?</strong> The best way to keep improving is to use AI every single week. The more you use it, the faster and more confident you'll get. Start with one thing you need for next week — a quiz, a reading passage, a lesson plan — and let AI help you build it.
+          <strong>✅ What's next?</strong> The best way to keep improving is to use AI every single week. Start with one thing you need for next week — a quiz, a reading passage, a lesson plan — and let AI help you build it. The more you use it, the faster and more natural it becomes.
         </div>
         <p style="text-align:center;margin-top:1.25rem;">
           <a href="index.html" style="display:inline-block;background:var(--green);color:#fff;font-weight:700;font-size:.95rem;padding:.75rem 2rem;border-radius:30px;text-decoration:none;box-shadow:0 4px 16px rgba(46,204,113,.3);">🏠 Back to the Hub →</a>
@@ -411,6 +413,15 @@ function goToStep(n) {
   });
   const top = document.getElementById('lesson-steps').getBoundingClientRect().top + window.scrollY - 80;
   window.scrollTo({ top, behavior: 'smooth' });
+}
+
+function copyCard(btn) {
+  const card = btn.closest('.prompt-card');
+  const text = card.querySelector('code').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
 }
 
 function copyTextarea() {
