@@ -9,21 +9,34 @@
     :root { --grad-a: #f7924f; --grad-b: #e05a1a; }
     .possibility-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: .75rem;
       margin: 1rem 0;
     }
     .possibility-card {
-      background: #f8f9ff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
+      border-radius: 14px;
+      padding: 1.2rem 1rem;
       text-align: center;
-      font-size: .88rem;
-      font-weight: 600;
-      color: #3b4160;
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,.12);
+      transition: transform .15s;
     }
-    .possibility-card .p-icon { font-size: 1.6rem; display: block; margin-bottom: .4rem; }
+    .possibility-card:hover { transform: translateY(-3px); }
+    .possibility-card .p-icon { font-size: 2.2rem; display: block; }
+    .pc-1 { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+    .pc-2 { background: linear-gradient(135deg, #e17055, #fd79a8); }
+    .pc-3 { background: linear-gradient(135deg, #00b894, #00cec9); }
+    .pc-4 { background: linear-gradient(135deg, #fdcb6e, #e67e22); }
+    .pc-5 { background: linear-gradient(135deg, #0984e3, #74b9ff); }
+    .pc-6 { background: linear-gradient(135deg, #d63031, #ff7675); }
+    .pc-7 { background: linear-gradient(135deg, #6ab04c, #badc58); color: #1a2060; }
+    .pc-8 { background: linear-gradient(135deg, #e84393, #a29bfe); }
     .prompt-card {
       background: #f8f9ff;
       border: 1px solid #dde2ff;
@@ -179,14 +192,14 @@
         <p>Real teachers are using AI right now to build sites like these — without any coding knowledge:</p>
 
         <div class="possibility-grid">
-          <div class="possibility-card"><span class="p-icon">📝</span>Review Quiz Sites</div>
-          <div class="possibility-card"><span class="p-icon">🃏</span>Flashcard Games</div>
-          <div class="possibility-card"><span class="p-icon">🏠</span>Class Portals</div>
-          <div class="possibility-card"><span class="p-icon">📖</span>Vocabulary Activities</div>
-          <div class="possibility-card"><span class="p-icon">🗺️</span>Study Guides</div>
-          <div class="possibility-card"><span class="p-icon">🎮</span>Learning Games</div>
-          <div class="possibility-card"><span class="p-icon">📅</span>Weekly Schedules</div>
-          <div class="possibility-card"><span class="p-icon">🔗</span>Resource Link Pages</div>
+          <div class="possibility-card pc-1"><span class="p-icon">📝</span>Review Quiz Sites</div>
+          <div class="possibility-card pc-2"><span class="p-icon">🃏</span>Flashcard Games</div>
+          <div class="possibility-card pc-3"><span class="p-icon">🏠</span>Class Portals</div>
+          <div class="possibility-card pc-4"><span class="p-icon">📖</span>Vocabulary Activities</div>
+          <div class="possibility-card pc-5"><span class="p-icon">🗺️</span>Study Guides</div>
+          <div class="possibility-card pc-6"><span class="p-icon">🎮</span>Learning Games</div>
+          <div class="possibility-card pc-7"><span class="p-icon">📅</span>Weekly Schedules</div>
+          <div class="possibility-card pc-8"><span class="p-icon">🔗</span>Resource Link Pages</div>
         </div>
 
         <p>Every site in this hub — the review games, the quizzes, the class portal — was built by describing it to AI in plain English. No coding happened. Just conversation.</p>
