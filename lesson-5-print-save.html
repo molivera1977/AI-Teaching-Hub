@@ -150,13 +150,52 @@
         </div>
         <p>The other methods (copy-paste, saving images, printing from HTML) are backup options for when you need them. But most teachers find they use Method 1 almost every time.</p>
 
-        <h3>What you'll learn in this lesson:</h3>
-        <ul>
-          <li><strong>Method 1</strong> — Ask AI to create the file directly (Word, PDF, Google Doc)</li>
-          <li><strong>Method 2</strong> — Print directly from an HTML file (the secret method teachers love)</li>
-          <li><strong>Method 3</strong> — Save AI-generated images to your computer</li>
-          <li>A quick guide to pick the right method for your situation</li>
-        </ul>
+        <h3>Which AI tool creates which file type?</h3>
+        <p>Not every AI tool handles every file type equally. Here's the honest breakdown before we dive in:</p>
+
+        <div style="overflow-x:auto;margin:1rem 0;">
+          <table style="width:100%;border-collapse:collapse;font-size:.88rem;">
+            <thead>
+              <tr style="background:var(--brand);color:#fff;">
+                <th style="padding:.6rem 1rem;text-align:left;border-radius:8px 0 0 0;">Tool</th>
+                <th style="padding:.6rem 1rem;text-align:center;">Google Doc</th>
+                <th style="padding:.6rem 1rem;text-align:center;">Word Doc</th>
+                <th style="padding:.6rem 1rem;text-align:center;">PDF</th>
+                <th style="padding:.6rem 1rem;text-align:center;border-radius:0 8px 0 0;">HTML</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#f4fff8;border-bottom:1px solid var(--border);">
+                <td style="padding:.6rem 1rem;font-weight:700;">ChatGPT</td>
+                <td style="padding:.6rem 1rem;text-align:center;">❌</td>
+                <td style="padding:.6rem 1rem;text-align:center;">✅ Reliable</td>
+                <td style="padding:.6rem 1rem;text-align:center;">✅ Reliable</td>
+                <td style="padding:.6rem 1rem;text-align:center;">✅</td>
+              </tr>
+              <tr style="background:#f8f9ff;border-bottom:1px solid var(--border);">
+                <td style="padding:.6rem 1rem;font-weight:700;">Google Gemini</td>
+                <td style="padding:.6rem 1rem;text-align:center;">✅ Best</td>
+                <td style="padding:.6rem 1rem;text-align:center;">⚠️ Hit or miss</td>
+                <td style="padding:.6rem 1rem;text-align:center;">⚠️ Hit or miss</td>
+                <td style="padding:.6rem 1rem;text-align:center;">✅</td>
+              </tr>
+              <tr style="background:#f4fff8;border-bottom:1px solid var(--border);">
+                <td style="padding:.6rem 1rem;font-weight:700;">Claude</td>
+                <td style="padding:.6rem 1rem;text-align:center;">❌</td>
+                <td style="padding:.6rem 1rem;text-align:center;">✅ Reliable</td>
+                <td style="padding:.6rem 1rem;text-align:center;">✅ Reliable</td>
+                <td style="padding:.6rem 1rem;text-align:center;">✅</td>
+              </tr>
+              <tr style="background:#fff7ed;">
+                <td style="padding:.6rem 1rem;font-weight:700;">Perplexity</td>
+                <td style="padding:.6rem 1rem;text-align:center;">❌</td>
+                <td style="padding:.6rem 1rem;text-align:center;">⚠️ Content only</td>
+                <td style="padding:.6rem 1rem;text-align:center;">⚠️ Content only</td>
+                <td style="padding:.6rem 1rem;text-align:center;">⚠️</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="callout tip">
           <strong>✅ You're closer than you think.</strong> If you've used ChatGPT, Gemini, or Claude even once, you already know the hardest part. Getting the output onto paper is the easy part — and this lesson shows you the fastest path.
@@ -198,18 +237,18 @@
         </div>
 
         <div class="method-card good">
-          <div class="who">✅ Great option — Google Gemini</div>
-          <h3>🔵 Ask Gemini for a Word doc, Google Doc, PDF, or HTML file</h3>
-          <p>Go to <strong>gemini.google.com</strong>, describe what you need, and ask for the file in whatever format works best for you. Gemini handles all four well.</p>
+          <div class="who">✅ Great option — Google Gemini (best for Google Docs)</div>
+          <h3>🔵 Ask Gemini to create a Google Doc or HTML file</h3>
+          <p>Gemini's superpower is Google Docs — it can push a document directly into your Google Drive with one click, already formatted and ready to print. If you live in Google Workspace at school, this is the smoothest workflow you'll find.</p>
           <div class="prompt-card" style="background:#fff;">
             <div class="pc-label">Ask for a Google Doc <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
             <code>Please create this as a Google Doc I can open and print. Format it with a title, a Name and Date line, numbered questions with writing space, and an answer key at the bottom.</code>
           </div>
           <div class="prompt-card" style="background:#fff;">
-            <div class="pc-label">Ask for a PDF <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
-            <code>Please create a downloadable PDF of this quiz. Format it with a title at the top, a Name and Date line, numbered questions with space to write answers, and an answer key at the end.</code>
+            <div class="pc-label">Ask for an HTML file <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+            <code>Please create this as a printable HTML file — clean layout, title at the top, Name and Date line, numbered questions with writing space, and an answer key at the end.</code>
           </div>
-          <p style="font-size:.85rem;color:#2c3780;">Gemini will give you a download link or attachment in the chat. Click it, open the file, and print.</p>
+          <p style="font-size:.85rem;color:#2c3780;">Gemini will create the Google Doc in your Drive — just open it and print. Note: Gemini is hit or miss with Word docs and PDFs, so stick to Google Docs or HTML for the most reliable results.</p>
         </div>
 
         <div class="method-card good">
@@ -229,6 +268,10 @@
             <code>Please create this as a printable HTML file — clean layout, title at the top, Name and Date line, numbered questions with writing space, and an answer key at the end.</code>
           </div>
           <p style="font-size:.85rem;color:#2c3780;">Claude will give you the file right in the chat. Click the link or attachment to download it, then open and print.</p>
+        </div>
+
+        <div class="callout warn">
+          <strong>🔍 What about Perplexity?</strong> Perplexity is a fantastic research and image generation tool (see Lesson 4!), but it works differently when it comes to file creation. If you ask Perplexity to create a Word doc or PDF, it will write the <em>content</em> for you — but it doesn't generate an actual downloadable file. You'd still have to copy the text into Word or Google Docs yourself. For saving and printing, stick with ChatGPT, Gemini, or Claude.
         </div>
       </div>
 
