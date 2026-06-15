@@ -251,11 +251,11 @@
     <!-- STEP 2: How to Take a Screenshot                            -->
     <!-- ============================================================ -->
     <div class="lesson-step" id="step-2">
-      <p class="step-label">Step 2 of 5 — Taking a Screenshot</p>
+      <p class="step-label">Step 2 of 5 — Snip &amp; Paste</p>
 
       <div class="lesson-section">
-        <h2>📷 How to Take a Screenshot or Snip</h2>
-        <p>A "screenshot" or "snip" is just a picture of whatever is on your screen right now. You don't need to install anything — every computer already has this built in. Select your computer type below and follow the steps one at a time:</p>
+        <h2>✂️ Snip &amp; Paste — The Quick Way</h2>
+        <p>This is the fastest method. You take a snip, it copies to your clipboard automatically — no file is saved to your computer. Then you switch to AI and paste it in. Start to finish in under 30 seconds. Select your computer type below:</p>
 
         <div class="os-tabs">
           <button class="os-tab active" onclick="showOS('windows', this)">🪟 I have a Windows computer</button>
@@ -441,10 +441,10 @@
           <div class="step-visual">
             <div class="sv-num">4</div>
             <div class="sv-body">
-              <strong>Let go — you'll hear a camera click and it's saved automatically!</strong>
-              <p class="sv-note">The moment you release the mouse button, you'll hear a camera shutter sound (if your volume is on) and a thumbnail preview will appear in the bottom-right corner of your screen for a few seconds. The image is saved to your Desktop as a file, AND it's also already copied to your clipboard.</p>
+              <strong>Let go — you'll hear a camera click and it's on your clipboard!</strong>
+              <p class="sv-note">The moment you release the mouse button, you'll hear a camera shutter sound (if your volume is on) and a thumbnail preview will appear in the bottom-right corner of your screen for a few seconds. The snip is automatically copied to your clipboard — you can paste it into AI right away. (Mac also saves a file to your Desktop, but you don't need to touch it for this step — that's covered in the next step.)</p>
               <div class="callout tip" style="margin-top:.6rem;margin-bottom:0;">
-                <strong>✅ You can paste it immediately</strong> — no need to find the Desktop file. Just go straight to Claude, ChatGPT, or Copilot and paste.
+                <strong>✅ Ready to paste immediately</strong> — just switch to Claude, ChatGPT, or Copilot and paste.
               </div>
             </div>
           </div>
@@ -470,296 +470,99 @@
     </div><!-- /step-2 -->
 
     <!-- ============================================================ -->
-    <!-- STEP 3: How to Give a Screenshot to AI                      -->
+    <!-- STEP 3: Snip & Save                                         -->
     <!-- ============================================================ -->
     <div class="lesson-step" id="step-3">
-      <p class="step-label">Step 3 of 5 — Sharing With AI</p>
+      <p class="step-label">Step 3 of 5 — Snip &amp; Save</p>
 
       <div class="lesson-section">
-        <h2>📤 How to Give a Screenshot to AI</h2>
-        <p><strong>The easiest way: Paste.</strong> Once you take a screenshot it's already copied — just switch to Claude or ChatGPT, click inside the chat box, right-click, and choose Paste. That's it. The Drag &amp; Drop and Paperclip tabs below are alternative options if you prefer them.</p>
+        <h2>💾 Snip &amp; Save — When You Want to Keep the File</h2>
 
-        <div class="os-tabs" style="flex-wrap:wrap;">
-          <button class="os-tab active" onclick="showMethod('paste', this)">⚡ Paste — Fastest</button>
-          <button class="os-tab" onclick="showMethod('drag', this)">🖱️ Drag &amp; Drop</button>
-          <button class="os-tab" onclick="showMethod('clip', this)">📎 Paperclip Button</button>
+        <div class="callout info">
+          <strong>📌 Paste vs. Save — which should you use?</strong>
+          <ul style="margin:.5rem 0 0;padding-left:1.2rem;font-size:.88rem;line-height:1.9;">
+            <li><strong>Just paste it</strong> — when you need it once, right now. Quick question, quick answer. No file needed.</li>
+            <li><strong>Save the file</strong> — when you want to use the same image more than once, share it with a colleague, or upload it to AI on a different day.</li>
+          </ul>
         </div>
 
-        <!-- ===== PASTE ===== -->
-        <div id="method-paste" class="method-content">
-          <div class="callout tip" style="margin-top:.25rem;margin-bottom:.85rem;">
-            <strong>⚡ This is the fastest method.</strong> Your snip is already copied to your clipboard the moment you take it — you just switch to the browser and paste. No saving files, no hunting through folders.
+        <p style="margin-top:1rem;">This step shows you how to find your saved snip and upload it to AI using the paperclip button. Select your computer type:</p>
+
+        <div class="os-tabs">
+          <button class="os-tab active" onclick="showOS3('windows', this)">🪟 I have a Windows computer</button>
+          <button class="os-tab" onclick="showOS3('mac', this)">🍎 I have a Mac</button>
+        </div>
+
+        <!-- ===== WINDOWS ===== -->
+        <div id="os3-windows" class="os-content">
+          <div class="callout warn" style="margin-bottom:.85rem;">
+            <strong>⚠️ On Windows, Win+Shift+S does NOT save a file automatically</strong> — it only copies to your clipboard. To get a saved file, you need one extra step after snipping.
           </div>
 
           <div class="step-visual">
             <div class="sv-num">1</div>
             <div class="sv-body">
-              <strong>Take your snip — it auto-copies the moment you let go.</strong>
-              <div class="kbd-combo">
-                <div class="kbd-key" style="font-size:.8rem;">⊞ Win</div><div class="kbd-plus">+</div><div class="kbd-key">Shift</div><div class="kbd-plus">+</div><div class="kbd-key">S</div>
-                <span style="color:var(--muted);font-size:.85rem;align-self:center;margin:0 .4rem;">Windows</span>
-              </div>
-              <div class="kbd-combo" style="margin-top:.3rem;">
-                <div class="kbd-key" style="font-size:.8rem;">⌘ Cmd</div><div class="kbd-plus">+</div><div class="kbd-key">Shift</div><div class="kbd-plus">+</div><div class="kbd-key">4</div>
-                <span style="color:var(--muted);font-size:.85rem;align-self:center;margin:0 .4rem;">Mac</span>
-              </div>
-              <p class="sv-note">Pressing those keys doesn't take the screenshot — it opens the snipping tool, which lets you draw a box around whatever you want to capture. As soon as you let go of the mouse, the snip is automatically on your clipboard. You don't need to do anything else — just switch to your browser.</p>
+              <strong>Take your snip as usual (Win + Shift + S), then look for a small notification in the bottom-right corner of your screen.</strong>
+              <p class="sv-note">As soon as you finish your snip, a small preview thumbnail pops up in the bottom-right corner. Click on it before it disappears — this opens your snip in the Snipping Tool app. If you missed it, search "Snipping Tool" in your Start menu to open it.</p>
             </div>
           </div>
 
           <div class="step-visual">
             <div class="sv-num">2</div>
             <div class="sv-body">
-              <strong>Open Claude, ChatGPT, or Copilot in your browser and click in the chat box.</strong>
-              <div class="screen-demo">
-                <svg viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-                  <rect width="400" height="190" fill="#f0f2ff"/>
-                  <!-- url bar -->
-                  <rect x="8" y="8" width="384" height="22" rx="5" fill="white" stroke="#d0d4ee" stroke-width="1"/>
-                  <text x="200" y="23" font-size="10" fill="#6b7280" font-family="sans-serif" text-anchor="middle">claude.ai</text>
-                  <!-- chat area -->
-                  <rect x="8" y="36" width="384" height="108" rx="4" fill="white"/>
-                  <text x="200" y="90" font-size="11" fill="#c5c9e0" font-family="sans-serif" text-anchor="middle">Previous conversation here…</text>
-                  <!-- input box HIGHLIGHTED -->
-                  <rect x="8" y="150" width="384" height="34" rx="8" fill="white" stroke="#4f6ef7" stroke-width="2.5"/>
-                  <text x="26" y="172" font-size="10" fill="#9ca3af" font-family="sans-serif">Click here and type your message…</text>
-                  <!-- cursor blink -->
-                  <rect x="22" y="158" width="2" height="16" rx="1" fill="#4f6ef7"/>
-                  <!-- icons right side -->
-                  <text x="348" y="173" font-size="14" font-family="sans-serif">📎</text>
-                  <rect x="368" y="155" width="22" height="22" rx="5" fill="#4f6ef7"/>
-                  <text x="379" y="170" font-size="12" fill="white" font-family="sans-serif" text-anchor="middle">↑</text>
-                  <!-- label -->
-                  <rect x="100" y="120" width="200" height="22" rx="5" fill="rgba(79,110,247,0.12)" stroke="#c5c9ff" stroke-width="1"/>
-                  <text x="200" y="135" font-size="10" fill="#3b4160" font-family="sans-serif" text-anchor="middle" font-weight="600">← Click anywhere in this box</text>
-                </svg>
-              </div>
-              <p class="sv-note">Open claude.ai or chatgpt.com in your web browser (Chrome, Safari, Edge, Firefox — any of them). Click once anywhere inside the chat input box at the bottom. You'll see the cursor appear inside it.</p>
+              <strong>In the Snipping Tool window, click the Save button (or press Ctrl + S).</strong>
+              <p class="sv-note">A "Save As" window will appear. Save the file to your Desktop — it's the easiest place to find it again. You can name it something you'll recognize, like "worksheet question," or just leave the default name.</p>
             </div>
           </div>
 
           <div class="step-visual">
             <div class="sv-num">3</div>
             <div class="sv-body">
-              <strong>Right-click inside the box and choose Paste — your screenshot appears instantly!</strong>
-              <p style="font-size:.88rem;color:#3b4160;margin:.4rem 0 0;">Right-click anywhere inside the typing box at the bottom. A small menu will appear — click <strong>Paste</strong>. That's it. (You can also press Ctrl+V on Windows or Cmd+V on Mac if you prefer.)</p>
-              <div class="screen-demo" style="margin-top:.6rem;">
-                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-                  <rect width="400" height="200" fill="#f0f2ff"/>
-                  <rect x="8" y="8" width="384" height="22" rx="5" fill="white" stroke="#d0d4ee" stroke-width="1"/>
-                  <text x="200" y="23" font-size="10" fill="#6b7280" font-family="sans-serif" text-anchor="middle">claude.ai</text>
-                  <rect x="8" y="36" width="384" height="120" rx="4" fill="white"/>
-                  <!-- image thumbnail in chat -->
-                  <rect x="20" y="46" width="90" height="68" rx="6" fill="#e0e4ff" stroke="#a0a8e8" stroke-width="1.5"/>
-                  <text x="65" y="76" font-size="20" font-family="sans-serif" text-anchor="middle">🖼️</text>
-                  <text x="65" y="102" font-size="8" fill="#4f6ef7" font-family="sans-serif" text-anchor="middle" font-weight="700">screenshot.png</text>
-                  <!-- green check badge -->
-                  <circle cx="103" cy="46" r="10" fill="#2ecc71"/>
-                  <text x="103" y="51" font-size="11" fill="white" font-family="sans-serif" text-anchor="middle">✓</text>
-                  <!-- label -->
-                  <text x="200" y="130" font-size="10" fill="#2ecc71" font-family="sans-serif" text-anchor="middle" font-weight="700">Image attached! Now type what you want AI to do.</text>
-                  <!-- input box -->
-                  <rect x="8" y="162" width="384" height="32" rx="8" fill="white" stroke="#c5c9ff" stroke-width="1.5"/>
-                  <text x="26" y="182" font-size="10" fill="#9ca3af" font-family="sans-serif">Type your prompt here, then press Enter…</text>
-                  <rect x="370" y="167" width="22" height="22" rx="5" fill="#4f6ef7"/>
-                  <text x="381" y="182" font-size="12" fill="white" font-family="sans-serif" text-anchor="middle">↑</text>
-                </svg>
-              </div>
-              <p class="sv-note">Your screenshot thumbnail appears right in the chat. Now just type what you want AI to do with it, then press Enter to send!</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== DRAG & DROP ===== -->
-        <div id="method-drag" class="method-content" style="display:none;">
-          <p style="font-size:.88rem;color:var(--muted);margin:.25rem 0 .85rem;">This works well if your screenshot was saved as a file on your Desktop or in your Downloads folder.</p>
-
-          <div class="step-visual">
-            <div class="sv-num">1</div>
-            <div class="sv-body">
-              <strong>Open Claude, ChatGPT, or Copilot in your browser.</strong>
-              <p class="sv-note">Go to claude.ai or chatgpt.com — and make sure you can see both the browser window AND your Desktop (or wherever your screenshot file is saved) at the same time. You may need to resize the browser window so it doesn't take up the full screen.</p>
-            </div>
-          </div>
-
-          <div class="step-visual">
-            <div class="sv-num">2</div>
-            <div class="sv-body">
-              <strong>Find your screenshot file — it's usually on your Desktop.</strong>
-              <div class="screen-demo">
-                <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-                  <rect width="400" height="160" fill="#e8eeff"/>
-                  <!-- desktop background -->
-                  <text x="200" y="80" font-size="11" fill="#c5c9e0" font-family="sans-serif" text-anchor="middle">Desktop</text>
-                  <!-- file icon -->
-                  <rect x="155" y="40" width="90" height="80" rx="8" fill="white" stroke="#c5c9ff" stroke-width="2"/>
-                  <text x="200" y="88" font-size="28" font-family="sans-serif" text-anchor="middle">🖼️</text>
-                  <text x="200" y="112" font-size="9" fill="#3b4160" font-family="sans-serif" text-anchor="middle" font-weight="600">Screenshot 2024</text>
-                  <text x="200" y="124" font-size="9" fill="#3b4160" font-family="sans-serif" text-anchor="middle">.png</text>
-                  <!-- glow to indicate selection -->
-                  <rect x="151" y="36" width="98" height="88" rx="10" fill="none" stroke="#4f6ef7" stroke-width="2.5" stroke-dasharray="5,3"/>
-                </svg>
-              </div>
-              <p class="sv-note">On <strong>Windows</strong>: your screenshot might be in the Pictures folder or on your Desktop. On <strong>Mac</strong>: screenshots save directly to your Desktop by default — look for a file named "Screenshot [date and time].png".</p>
-            </div>
-          </div>
-
-          <div class="step-visual">
-            <div class="sv-num">3</div>
-            <div class="sv-body">
-              <strong>Click on the file, hold the mouse button down, and drag it into the browser window.</strong>
-              <div class="screen-demo">
-                <svg viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-                  <rect width="400" height="190" fill="#e8eeff"/>
-                  <!-- left: desktop area -->
-                  <rect x="0" y="0" width="155" height="190" fill="#dde2f8"/>
-                  <text x="77" y="20" font-size="9" fill="#a0a8e0" font-family="sans-serif" text-anchor="middle">DESKTOP</text>
-                  <!-- file icon being dragged -->
-                  <rect x="40" y="70" width="70" height="65" rx="6" fill="white" stroke="#4f6ef7" stroke-width="2" opacity="0.7"/>
-                  <text x="75" y="108" font-size="22" font-family="sans-serif" text-anchor="middle" opacity="0.7">🖼️</text>
-                  <text x="75" y="127" font-size="8" fill="#4f6ef7" font-family="sans-serif" text-anchor="middle" opacity="0.7">screenshot.png</text>
-                  <!-- drag arrow -->
-                  <line x1="118" y1="103" x2="182" y2="103" stroke="#4f6ef7" stroke-width="2.5" marker-end="url(#arr)" stroke-dasharray="6,3"/>
-                  <defs>
-                    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                      <path d="M0,0 L0,6 L8,3 z" fill="#4f6ef7"/>
-                    </marker>
-                  </defs>
-                  <!-- right: browser/chat area -->
-                  <rect x="155" y="0" width="245" height="190" fill="#f0f2ff"/>
-                  <rect x="163" y="8" width="229" height="18" rx="4" fill="white" stroke="#d0d4ee" stroke-width="1"/>
-                  <text x="277" y="20" font-size="9" fill="#6b7280" font-family="sans-serif" text-anchor="middle">claude.ai</text>
-                  <!-- chat drop zone highlighted -->
-                  <rect x="163" y="32" width="229" height="130" rx="6" fill="rgba(79,110,247,0.08)" stroke="#4f6ef7" stroke-width="2" stroke-dasharray="6,3"/>
-                  <text x="277" y="92" font-size="11" fill="#4f6ef7" font-family="sans-serif" text-anchor="middle" font-weight="700">Drop anywhere</text>
-                  <text x="277" y="108" font-size="11" fill="#4f6ef7" font-family="sans-serif" text-anchor="middle" font-weight="700">in the chat</text>
-                  <text x="277" y="124" font-size="18" font-family="sans-serif" text-anchor="middle">⬇️</text>
-                </svg>
-              </div>
-              <p class="sv-note">Click the file icon, keep holding the mouse button, move your mouse over to the browser window, and then drop it anywhere in the chat area. You'll see the chat area light up with a blue border when you're hovering over it — that means it's ready to accept the file.</p>
+              <strong>Open Claude, ChatGPT, or Copilot and click the 📎 paperclip icon inside the chat box.</strong>
+              <p class="sv-note">Look at the bottom of the chat input box — you'll see a small paperclip icon (📎). Click it once. A file browser window will open.</p>
             </div>
           </div>
 
           <div class="step-visual">
             <div class="sv-num">4</div>
             <div class="sv-body">
-              <strong>Release the mouse — the image appears in the chat!</strong>
-              <p class="sv-note">When you let go, the image uploads and a thumbnail appears in the chat window. You'll see a small preview of your screenshot right there in the conversation.</p>
-            </div>
-          </div>
-
-          <div class="step-visual">
-            <div class="sv-num">5</div>
-            <div class="sv-body">
-              <strong>Type your prompt below the image and press Enter.</strong>
-              <p class="sv-note">Click in the text box (if it's not already active), type what you want AI to do — for example: <em>"Write 10 questions in the exact same format as this one."</em> — then press Enter to send.</p>
+              <strong>In the file browser, click "Desktop" on the left, then double-click your saved snip.</strong>
+              <p class="sv-note">Your screenshot file will appear in the files list. Double-click it — a thumbnail will appear in the chat box, showing the image is attached and ready. Now type your prompt and press Enter.</p>
             </div>
           </div>
         </div>
 
-        <!-- ===== PAPERCLIP ===== -->
-        <div id="method-clip" class="method-content" style="display:none;">
-          <p style="font-size:.88rem;color:var(--muted);margin:.25rem 0 .85rem;">This method is good when your screenshot is already saved as a file and you prefer clicking over dragging.</p>
+        <!-- ===== MAC ===== -->
+        <div id="os3-mac" class="os-content" style="display:none;">
+          <div class="callout tip" style="margin-bottom:.85rem;">
+            <strong>✅ On Mac, your snip is already saved automatically.</strong> Every time you take a snip with Cmd+Shift+4, Mac saves it as a file on your Desktop instantly — no extra steps needed.
+          </div>
 
           <div class="step-visual">
             <div class="sv-num">1</div>
             <div class="sv-body">
-              <strong>Open Claude, ChatGPT, or Copilot in your browser.</strong>
-              <p class="sv-note">Go to claude.ai or chatgpt.com — you'll see the chat window with a text box at the bottom for typing your messages.</p>
+              <strong>Look on your Desktop for the file — it's named "Screenshot [date and time].png."</strong>
+              <p class="sv-note">The most recent snip will always have today's date and the latest time in the name. If your Desktop is cluttered, you can also find it in Finder — it shows up near the top when sorted by Date Modified.</p>
             </div>
           </div>
 
           <div class="step-visual">
             <div class="sv-num">2</div>
             <div class="sv-body">
-              <strong>Look for the 📎 paperclip (or photo) icon inside the chat box and click it.</strong>
-              <div class="screen-demo">
-                <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-                  <rect width="400" height="120" fill="#f0f2ff"/>
-                  <rect x="8" y="8" width="384" height="22" rx="5" fill="white" stroke="#d0d4ee" stroke-width="1"/>
-                  <text x="200" y="23" font-size="10" fill="#6b7280" font-family="sans-serif" text-anchor="middle">claude.ai</text>
-                  <rect x="8" y="36" width="384" height="76" rx="4" fill="white"/>
-                  <text x="200" y="65" font-size="11" fill="#d0d4ee" font-family="sans-serif" text-anchor="middle">Chat area…</text>
-                  <!-- input box -->
-                  <rect x="16" y="78" width="368" height="28" rx="7" fill="white" stroke="#c5c9ff" stroke-width="1.5"/>
-                  <text x="34" y="96" font-size="10" fill="#9ca3af" font-family="sans-serif">Type a message…</text>
-                  <!-- paperclip icon HIGHLIGHTED -->
-                  <circle cx="335" cy="92" r="14" fill="rgba(247,146,79,0.15)" stroke="var(--accent)" stroke-width="2"/>
-                  <text x="335" y="98" font-size="15" font-family="sans-serif" text-anchor="middle">📎</text>
-                  <!-- arrow pointing to it -->
-                  <line x1="335" y1="60" x2="335" y2="74" stroke="var(--accent)" stroke-width="2" marker-end="url(#arr2)"/>
-                  <defs>
-                    <marker id="arr2" markerWidth="8" markerHeight="8" refX="4" refY="3" orient="auto">
-                      <path d="M0,0 L8,3 L0,6 z" fill="var(--accent)"/>
-                    </marker>
-                  </defs>
-                  <rect x="283" y="42" width="104" height="18" rx="4" fill="rgba(247,146,79,0.15)" stroke="var(--accent)" stroke-width="1"/>
-                  <text x="335" y="55" font-size="9" fill="#7a3d00" font-family="sans-serif" text-anchor="middle" font-weight="700">Click this icon!</text>
-                  <!-- send button -->
-                  <rect x="356" y="83" width="22" height="22" rx="5" fill="#4f6ef7"/>
-                  <text x="367" y="98" font-size="12" fill="white" font-family="sans-serif" text-anchor="middle">↑</text>
-                </svg>
-              </div>
-              <p class="sv-note">Look at the bottom-left or bottom-right of the chat input box. You'll see a small <strong>📎 paperclip icon</strong> (Claude) or a photo/image icon (ChatGPT). Click it once.</p>
+              <strong>Open Claude, ChatGPT, or Copilot and click the 📎 paperclip icon inside the chat box.</strong>
+              <p class="sv-note">Look at the bottom of the chat input box — you'll see a small paperclip icon (📎). Click it once. A file browser window will open.</p>
             </div>
           </div>
 
           <div class="step-visual">
             <div class="sv-num">3</div>
             <div class="sv-body">
-              <strong>A file browser window opens — navigate to your screenshot.</strong>
-              <div class="screen-demo">
-                <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-                  <rect width="400" height="180" fill="#e8eeff"/>
-                  <!-- file picker window -->
-                  <rect x="30" y="10" width="340" height="160" rx="8" fill="white" stroke="#c5c9ff" stroke-width="1.5" filter="url(#shadow)"/>
-                  <defs>
-                    <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(79,110,247,0.15)"/></filter>
-                  </defs>
-                  <!-- title bar -->
-                  <rect x="30" y="10" width="340" height="28" rx="8" fill="#eef1ff"/>
-                  <rect x="30" y="28" width="340" height="10" fill="#eef1ff"/>
-                  <text x="200" y="29" font-size="11" fill="#3b4160" font-family="sans-serif" text-anchor="middle" font-weight="700">Open File</text>
-                  <!-- sidebar -->
-                  <rect x="30" y="38" width="80" height="132" fill="#f8f9ff" rx="0"/>
-                  <text x="70" y="60" font-size="9" fill="#6b7280" font-family="sans-serif" text-anchor="middle">Desktop</text>
-                  <text x="70" y="78" font-size="9" fill="#6b7280" font-family="sans-serif" text-anchor="middle">Downloads</text>
-                  <text x="70" y="96" font-size="9" fill="#6b7280" font-family="sans-serif" text-anchor="middle">Documents</text>
-                  <!-- files area -->
-                  <rect x="110" y="38" width="260" height="100" fill="white"/>
-                  <!-- file icons -->
-                  <rect x="120" y="48" width="55" height="50" rx="5" fill="#eef1ff" stroke="#4f6ef7" stroke-width="2"/>
-                  <text x="147" y="76" font-size="20" font-family="sans-serif" text-anchor="middle">🖼️</text>
-                  <text x="147" y="92" font-size="7" fill="#4f6ef7" font-family="sans-serif" text-anchor="middle" font-weight="700">Screenshot</text>
-                  <rect x="185" y="48" width="55" height="50" rx="5" fill="#f8f9ff" stroke="#d0d4ee" stroke-width="1"/>
-                  <text x="212" y="76" font-size="20" font-family="sans-serif" text-anchor="middle">📄</text>
-                  <text x="212" y="92" font-size="7" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">Document</text>
-                  <rect x="250" y="48" width="55" height="50" rx="5" fill="#f8f9ff" stroke="#d0d4ee" stroke-width="1"/>
-                  <text x="277" y="76" font-size="20" font-family="sans-serif" text-anchor="middle">📄</text>
-                  <text x="277" y="92" font-size="7" fill="#9ca3af" font-family="sans-serif" text-anchor="middle">Document</text>
-                  <!-- open button -->
-                  <rect x="270" y="146" width="90" height="24" rx="5" fill="#4f6ef7"/>
-                  <text x="315" y="162" font-size="11" fill="white" font-family="sans-serif" text-anchor="middle" font-weight="700">Open</text>
-                  <rect x="170" y="146" width="90" height="24" rx="5" fill="#eef1ff" stroke="#c5c9ff" stroke-width="1"/>
-                  <text x="215" y="162" font-size="11" fill="#6b7280" font-family="sans-serif" text-anchor="middle">Cancel</text>
-                </svg>
-              </div>
-              <p class="sv-note">A window pops up showing your computer's files. Look for your screenshot — it's usually on the Desktop. Click it once to select it (it'll highlight in blue), then click the "Open" button.</p>
-            </div>
-          </div>
-
-          <div class="step-visual">
-            <div class="sv-num">4</div>
-            <div class="sv-body">
-              <strong>The image appears in the chat — now type your prompt and press Enter.</strong>
-              <p class="sv-note">Your screenshot uploads and a thumbnail appears in the chat. Click in the text box, type what you want AI to do with it, and press Enter to send.</p>
+              <strong>In the file browser, click "Desktop" on the left, then double-click your screenshot file.</strong>
+              <p class="sv-note">Your screenshot file will appear in the files list. Double-click it — a thumbnail will appear in the chat box, showing the image is attached and ready. Now type your prompt and press Enter.</p>
             </div>
           </div>
         </div>
 
-        <div class="callout info" style="margin-top:1rem;">
-          <strong>📌 Which method is best?</strong> For most teachers, Paste (⚡) becomes the go-to once you get used to it — it's the fastest because there's no saving or hunting for files. But all three methods work perfectly fine.
-        </div>
       </div>
 
       <div class="step-nav">
@@ -986,9 +789,16 @@ function showMethod(method, btn) {
 }
 
 function showOS(os, btn) {
-  document.querySelectorAll('.os-content').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.os-tab').forEach(el => el.classList.remove('active'));
+  btn.closest('.lesson-section').querySelectorAll('.os-content').forEach(el => el.style.display = 'none');
+  btn.closest('.os-tabs').querySelectorAll('.os-tab').forEach(el => el.classList.remove('active'));
   document.getElementById('os-' + os).style.display = 'block';
+  btn.classList.add('active');
+}
+
+function showOS3(os, btn) {
+  btn.closest('.lesson-section').querySelectorAll('.os-content').forEach(el => el.style.display = 'none');
+  btn.closest('.os-tabs').querySelectorAll('.os-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('os3-' + os).style.display = 'block';
   btn.classList.add('active');
 }
 
