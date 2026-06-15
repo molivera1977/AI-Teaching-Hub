@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Here — Computer Basics | AI for Educators</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root { --grad-a: #0d7a8a; --grad-b: #1a9e55; }
+
+    /* ---- WIZARD STEP SYSTEM ---- */
+    .lesson-step { display: none; }
+    .lesson-step.active { display: block; }
+    .step-bar {
+      display: flex; align-items: center; justify-content: center;
+      gap: .5rem; padding: 1rem 0 .5rem;
+    }
+    .step-pip {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--border); transition: background .2s;
+    }
+    .step-pip.done   { background: var(--green); }
+    .step-pip.active { background: var(--brand); }
+    .step-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 1.5rem; flex-wrap: wrap; gap: .75rem;
+    }
+    .step-nav-solo { justify-content: flex-end; }
+    .btn-next {
+      background: var(--brand); color: #fff; font-weight: 700;
+      font-size: .95rem; padding: .7rem 1.8rem; border-radius: 30px;
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(79,110,247,.3); transition: transform .15s;
+    }
+    .btn-next:hover { transform: translateY(-2px); }
+    .btn-back {
+      background: none; color: var(--muted); font-weight: 600;
+      font-size: .9rem; padding: .6rem 1rem; border-radius: 30px;
+      border: 1px solid var(--border); cursor: pointer; transition: color .15s;
+    }
+    .btn-back:hover { color: var(--brand); border-color: var(--brand); }
+    .step-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-align: center; margin-bottom: .25rem;
+    }
+
+    /* ---- KEY VISUALS ---- */
+    .kbd-key {
+      display: inline-block;
+      background: linear-gradient(to bottom, #f8f9ff, #eef1ff);
+      border: 2px solid #c5c9ff; border-bottom: 4px solid #a0a8e8;
+      border-radius: 8px; padding: .35rem .8rem;
+      font-size: .95rem; font-weight: 800; color: var(--brand);
+      font-family: monospace; min-width: 42px; text-align: center;
+    }
+    .kbd-plus { font-size: 1.1rem; font-weight: 700; color: var(--muted); margin: 0 .25rem; }
+    .kbd-row  { display: flex; align-items: center; gap: .35rem; flex-wrap: wrap; margin: .5rem 0; }
+
+    /* ---- METHOD BOXES ---- */
+    .method-box {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+      margin: .75rem 0;
+    }
+    .method-box.method-a { border-color: #a0a8e8; background: #f8f9ff; }
+    .method-box.method-b { border-color: #b8e8ca; background: #f4fff8; }
+    .method-label {
+      font-size: .72rem; font-weight: 800; letter-spacing: .08em;
+      text-transform: uppercase; margin-bottom: .6rem;
+    }
+    .method-a .method-label { color: var(--brand); }
+    .method-b .method-label { color: #1a7a47; }
+
+    /* ---- PRACTICE BOX ---- */
+    .practice-area {
+      background: #fffbeb;
+      border: 2px solid #fbbf24;
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      margin: 1rem 0;
+    }
+    .practice-area h3 { font-size: 1rem; color: #7a4f00; margin-bottom: .5rem; }
+    .practice-text {
+      background: #fff;
+      border: 1px solid #fbbf24;
+      border-radius: 8px;
+      padding: .75rem 1rem;
+      font-size: .92rem;
+      color: #3b4160;
+      line-height: 1.6;
+      margin-bottom: .75rem;
+      user-select: text;
+    }
+    .practice-input {
+      width: 100%;
+      min-height: 80px;
+      border: 2px solid #fbbf24;
+      border-radius: 8px;
+      padding: .75rem 1rem;
+      font-size: .92rem;
+      font-family: inherit;
+      color: #3b4160;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .practice-input:focus { outline: none; border-color: var(--brand); }
+    .practice-check {
+      background: var(--brand); color: #fff; font-weight: 700;
+      border: none; border-radius: 20px; padding: .55rem 1.4rem;
+      cursor: pointer; margin-top: .6rem; font-size: .9rem;
+    }
+    .practice-result { margin-top: .6rem; font-weight: 700; font-size: .9rem; display: none; }
+    .practice-result.success { color: #1a7a47; }
+    .practice-result.fail    { color: #c0392b; }
+
+    /* ---- VOCAB GRID ---- */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+      margin: 1rem 0;
+    }
+    @media(max-width:540px) { .vocab-grid { grid-template-columns: 1fr; } }
+    .vocab-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .9rem 1.1rem;
+    }
+    .vocab-word {
+      font-size: .95rem; font-weight: 800; color: var(--brand);
+      margin-bottom: .25rem;
+    }
+    .vocab-def { font-size: .85rem; color: #3b4160; line-height: 1.5; margin: 0; }
+
+    /* ---- STEP VISUAL ---- */
+    .step-visual {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin: .75rem 0; padding: 1rem 1.2rem;
+      background: #f8f9ff; border-radius: 12px; border: 1px solid #e0e4ff;
+    }
+    .sv-num {
+      background: var(--brand); color: #fff; font-weight: 800;
+      font-size: 1rem; min-width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sv-body { flex: 1; font-size: .88rem; color: #3b4160; }
+    .sv-body strong { display: block; margin-bottom: .3rem; font-size: .92rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">🤖 AI for Educators</a>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.parentElement.classList.toggle('nav-open')">☰</button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="lesson-0-basics.html" class="active">Start Here</a></li>
+    <li><a href="lesson-1-prompting.html">Lesson 1</a></li>
+    <li><a href="lesson-2-assignments.html">Lesson 2</a></li>
+    <li><a href="lesson-3-screenshots.html">Lesson 3</a></li>
+    <li><a href="lesson-4-images.html">Lesson 4</a></li>
+    <li><a href="lesson-5-print-save.html">Lesson 5</a></li>
+    <li><a href="lesson-6-websites.html">Lesson 6</a></li>
+  </ul>
+</nav>
+
+<section class="lesson-hero">
+  <div class="lesson-num">Before You Begin</div>
+  <h1>🖥️ Computer Basics for This Course</h1>
+  <p>A quick, friendly tour of the skills and words you'll use throughout every lesson. No experience required.</p>
+</section>
+
+<div class="container" id="lesson-steps">
+
+  <div class="lesson-nav">
+    <a href="index.html">← Home</a>
+    <div class="progress-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <a href="lesson-1-prompting.html">Lesson 1 →</a>
+  </div>
+
+  <div class="step-bar">
+    <div class="step-pip active" id="pip-1"></div>
+    <div class="step-pip" id="pip-2"></div>
+    <div class="step-pip" id="pip-3"></div>
+    <div class="step-pip" id="pip-4"></div>
+    <div class="step-pip" id="pip-5"></div>
+  </div>
+
+  <!-- ===== STEP 1: Browser & Tabs ===== -->
+  <div class="lesson-step active" id="step-1">
+    <div class="step-label">Step 1 of 5 — Your Browser &amp; Tabs</div>
+
+    <div class="callout" style="background:#f0fdf4;border:2px solid #22c55e;border-radius:10px;padding:.85rem 1.1rem;margin-bottom:1rem;">
+      <strong>👋 Welcome!</strong> This short lesson covers the basic computer skills you'll use throughout this course. Even if some of it is already familiar to you, it's worth a quick read — everyone picks up a useful trick or two. Go at your own pace.
+    </div>
+
+    <div class="lesson-section">
+      <h2>🌐 What Is a Browser?</h2>
+      <p>The program you are using right now to read this page is called a <strong>web browser</strong> — or just "browser." It's the window that lets you visit websites on the internet.</p>
+      <p>The most common browsers are:</p>
+      <ul>
+        <li><strong>Google Chrome</strong> — the most popular, works on Windows and Mac</li>
+        <li><strong>Microsoft Edge</strong> — comes pre-installed on most Windows computers</li>
+        <li><strong>Safari</strong> — comes pre-installed on all Mac computers and iPhones</li>
+        <li><strong>Firefox</strong> — another popular option</li>
+      </ul>
+      <div class="callout info">
+        <strong>📌 It doesn't matter which browser you use.</strong> All the AI tools in this course work in any of them. If you're not sure which one you have, look at the icon you clicked to get here — that's your browser.
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <h2>📋 The Address Bar</h2>
+      <p>At the very top of your browser window is a long white box. That's the <strong>address bar</strong> — it shows the web address (called a <strong>URL</strong>) of the page you're on. You type web addresses there to go somewhere new.</p>
+      <p>For example: to open Claude, you'd click in that box, type <strong>claude.ai</strong>, and press Enter.</p>
+    </div>
+
+    <div class="lesson-section">
+      <h2>➕ Opening a New Tab</h2>
+      <p>A <strong>tab</strong> is like a separate page open inside your browser — you can have many at once without opening a whole new window. You'll open new tabs constantly in this course.</p>
+
+      <div class="step-visual">
+        <div class="sv-num">1</div>
+        <div class="sv-body">
+          <strong>Look at the very top of your browser — you'll see your open tabs.</strong>
+          They look like small rectangles with the page title inside. The one you're on right now is highlighted.
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="sv-num">2</div>
+        <div class="sv-body">
+          <strong>To open a new tab, click the <span style="font-size:1.1rem;">＋</span> button next to your last tab.</strong>
+          A new blank tab opens. Or use the keyboard shortcut: <span class="kbd-key">Ctrl</span> <span class="kbd-plus">+</span> <span class="kbd-key">T</span> on Windows, or <span class="kbd-key">⌘ Cmd</span> <span class="kbd-plus">+</span> <span class="kbd-key">T</span> on Mac.
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="sv-num">3</div>
+        <div class="sv-body">
+          <strong>To switch between tabs, just click on any tab at the top.</strong>
+          You can come back to this lesson anytime by clicking its tab.
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>✅ Try it now:</strong> Open a new tab (Ctrl+T or Cmd+T), then click back on this tab. You just did what every lesson will ask you to do!
+      </div>
+    </div>
+
+    <div class="step-nav step-nav-solo">
+      <button class="btn-next" onclick="goToStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP 2: Mouse Basics ===== -->
+  <div class="lesson-step" id="step-2">
+    <div class="step-label">Step 2 of 5 — Clicking &amp; Scrolling</div>
+
+    <div class="lesson-section">
+      <h2>🖱️ Left Click vs. Right Click</h2>
+      <p>Your mouse (or trackpad) has two sides. They do different things:</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;">
+        <div style="background:#f8f9ff;border:2px solid #a0a8e8;border-radius:12px;padding:1rem 1.2rem;">
+          <p style="font-weight:800;color:var(--brand);margin-bottom:.4rem;">Left Click 👆</p>
+          <p style="font-size:.86rem;color:#3b4160;margin:0;">The button you use for almost everything — opening links, selecting text, pressing buttons. When someone says "click," they mean left click.</p>
+        </div>
+        <div style="background:#f4fff8;border:2px solid #b8e8ca;border-radius:12px;padding:1rem 1.2rem;">
+          <p style="font-weight:800;color:#1a7a47;margin-bottom:.4rem;">Right Click 🖱️</p>
+          <p style="font-size:.86rem;color:#3b4160;margin:0;">Opens a small menu with extra options — like Copy, Paste, Save image as, and more. You'll use this a lot in this course.</p>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <strong>📌 On a Mac trackpad:</strong> Right-click = tap with two fingers at the same time, or hold Ctrl and tap. On a Mac mouse with only one button: hold the Control key and click.
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <h2>📜 Scrolling</h2>
+      <p><strong>Scrolling</strong> means moving up and down a page to see more content. There's more on this page than fits on your screen at once — scrolling lets you see it all.</p>
+      <ul>
+        <li><strong>Mouse wheel:</strong> Roll the little wheel between your mouse buttons up or down.</li>
+        <li><strong>Trackpad:</strong> Slide two fingers up or down.</li>
+        <li><strong>Keyboard:</strong> Press the <strong>down arrow</strong> key, or the <strong>Page Down</strong> key to jump further.</li>
+        <li><strong>Scrollbar:</strong> Look for a thin bar on the very right edge of your browser window — click and drag it down.</li>
+      </ul>
+    </div>
+
+    <div class="lesson-section">
+      <h2>🖥️ Clicking Inside a Text Box</h2>
+      <p>Throughout this course you'll need to click inside boxes where you type — like the chat box in Claude or ChatGPT. This is called <strong>placing your cursor</strong>.</p>
+      <p>When you click inside a text box, you'll see a thin blinking line appear. That line is your cursor — it shows where your typing will appear. If you don't see the blinking line, click once more inside the box.</p>
+      <div class="callout tip">
+        <strong>✅ Try it:</strong> Click inside the box below. See the blinking line appear?
+        <input type="text" placeholder="Click here — your cursor will appear inside this box" style="width:100%;margin-top:.5rem;padding:.55rem .75rem;border-radius:8px;border:2px solid var(--brand);font-family:inherit;font-size:.9rem;box-sizing:border-box;">
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="goToStep(1)">← Back</button>
+      <button class="btn-next" onclick="goToStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP 3: Copy & Paste Practice ===== -->
+  <div class="lesson-step" id="step-3">
+    <div class="step-label">Step 3 of 5 — Copy &amp; Paste</div>
+
+    <div class="lesson-section">
+      <h2>📋 What Is Copy &amp; Paste?</h2>
+      <p>Copying and pasting is one of the most useful skills on a computer. It lets you take text (or an image) from one place and put an exact copy of it somewhere else — without retyping anything.</p>
+      <p>Think of it like this: <strong>Copy</strong> is like using a photocopier. <strong>Paste</strong> is like putting that copy down somewhere new. The original stays exactly where it was.</p>
+    </div>
+
+    <div class="lesson-section">
+      <h2>Step 1 — Highlight the Text</h2>
+      <p>Before you can copy anything, you have to tell your computer <em>which</em> text you want. You do this by highlighting it — it turns blue when selected.</p>
+
+      <div class="method-box method-a">
+        <div class="method-label">Option A — Keyboard shortcut (fastest)</div>
+        <p style="font-size:.88rem;margin-bottom:.4rem;">Click anywhere inside the text, then press:</p>
+        <div class="kbd-row">
+          <span class="kbd-key">Ctrl</span><span class="kbd-plus">+</span><span class="kbd-key">A</span>
+          <span style="color:var(--muted);font-size:.84rem;">on Windows</span>
+          <span style="color:var(--muted);margin:0 .3rem;">·</span>
+          <span class="kbd-key">⌘ Cmd</span><span class="kbd-plus">+</span><span class="kbd-key">A</span>
+          <span style="color:var(--muted);font-size:.84rem;">on Mac</span>
+        </div>
+        <p style="font-size:.84rem;color:var(--muted);margin:0;">This selects everything in the document all at once.</p>
+      </div>
+
+      <div class="method-box method-b">
+        <div class="method-label">Option B — Click and drag (more visual)</div>
+        <p style="font-size:.88rem;color:#3b4160;margin:0;">Click at the very beginning of the text you want. Hold the mouse button down and slowly drag your mouse to the end of the text. Let go. Everything you dragged over will turn blue — that means it's selected.</p>
+      </div>
+
+      <p style="font-size:.88rem;color:var(--muted);margin-top:.5rem;"><strong>How you'll know it worked:</strong> The text turns blue (highlighted). If nothing turns blue, click once inside the text area and try again.</p>
+    </div>
+
+    <div class="lesson-section">
+      <h2>Step 2 — Copy It</h2>
+      <p>While the text is highlighted (blue), copy it:</p>
+
+      <div class="method-box method-a">
+        <div class="method-label">Option A — Keyboard shortcut</div>
+        <div class="kbd-row">
+          <span class="kbd-key">Ctrl</span><span class="kbd-plus">+</span><span class="kbd-key">C</span>
+          <span style="color:var(--muted);font-size:.84rem;">on Windows</span>
+          <span style="color:var(--muted);margin:0 .3rem;">·</span>
+          <span class="kbd-key">⌘ Cmd</span><span class="kbd-plus">+</span><span class="kbd-key">C</span>
+          <span style="color:var(--muted);font-size:.84rem;">on Mac</span>
+        </div>
+      </div>
+
+      <div class="method-box method-b">
+        <div class="method-label">Option B — Right-click</div>
+        <p style="font-size:.88rem;color:#3b4160;margin:0;">While the text is highlighted, press the <strong>right button</strong> on your mouse. A small menu appears on screen. Click the word <strong>"Copy"</strong> in that menu.</p>
+      </div>
+
+      <p style="font-size:.88rem;color:var(--muted);"><strong>Nothing visible will happen — that is completely normal.</strong> Your text is now invisibly held by your computer. It's ready to place somewhere new.</p>
+    </div>
+
+    <div class="lesson-section">
+      <h2>Step 3 — Paste It</h2>
+      <p>Click inside the place where you want the text to appear (like a chat box). Then paste:</p>
+
+      <div class="method-box method-a">
+        <div class="method-label">Option A — Keyboard shortcut</div>
+        <div class="kbd-row">
+          <span class="kbd-key">Ctrl</span><span class="kbd-plus">+</span><span class="kbd-key">V</span>
+          <span style="color:var(--muted);font-size:.84rem;">on Windows</span>
+          <span style="color:var(--muted);margin:0 .3rem;">·</span>
+          <span class="kbd-key">⌘ Cmd</span><span class="kbd-plus">+</span><span class="kbd-key">V</span>
+          <span style="color:var(--muted);font-size:.84rem;">on Mac</span>
+        </div>
+      </div>
+
+      <div class="method-box method-b">
+        <div class="method-label">Option B — Right-click</div>
+        <p style="font-size:.88rem;color:#3b4160;margin:0;">Left-click inside the destination box so your cursor is there. Then right-click and choose <strong>"Paste"</strong> from the menu.</p>
+      </div>
+
+      <p style="font-size:.88rem;color:var(--muted);"><strong>How you'll know it worked:</strong> The text appears wherever your cursor was. The same text is now in two places — the original stayed where it was, and a copy appeared in the new spot.</p>
+    </div>
+
+    <div class="lesson-section">
+      <h2>🧪 Practice — Try It Right Now</h2>
+      <div class="practice-area">
+        <h3>Practice Exercise</h3>
+        <p style="font-size:.88rem;color:#7a4f00;margin-bottom:.5rem;">1. Highlight the sentence below and copy it (use either method above).</p>
+        <div class="practice-text" id="practice-source">AI is a powerful tool that can save teachers hours of work every week.</div>
+        <p style="font-size:.88rem;color:#7a4f00;margin-bottom:.4rem;">2. Click inside the box below and paste it.</p>
+        <textarea class="practice-input" id="practice-target" placeholder="Click here, then paste (Ctrl+V or right-click → Paste)"></textarea>
+        <br>
+        <button class="practice-check" onclick="checkPractice()">✅ Check My Answer</button>
+        <p class="practice-result success" id="result-success">🎉 Perfect! You just copied and pasted. You're ready for the course.</p>
+        <p class="practice-result fail" id="result-fail">Almost there — make sure you copied the sentence from the box above and pasted it here. Try again!</p>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="goToStep(2)">← Back</button>
+      <button class="btn-next" onclick="goToStep(4)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP 4: Finding Downloads ===== -->
+  <div class="lesson-step" id="step-4">
+    <div class="step-label">Step 4 of 5 — Finding Your Downloads</div>
+
+    <div class="lesson-section">
+      <h2>📥 What Happens When You Download Something?</h2>
+      <p>When you click a download button or link on a website, your computer saves that file for you automatically. Many teachers don't realize the file is just sitting quietly in a folder called <strong>Downloads</strong> — waiting to be found.</p>
+
+      <div class="callout info">
+        <strong>📌 Nothing got lost.</strong> If you've ever downloaded something and then couldn't find it — it's almost certainly in your Downloads folder. Here's how to find it.
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <h2>🪟 Finding Downloads on Windows</h2>
+
+      <div class="step-visual">
+        <div class="sv-num">1</div>
+        <div class="sv-body">
+          <strong>Look at the bottom of your screen — find the folder icon in your taskbar.</strong>
+          It looks like a yellow folder. Click it. This opens <strong>File Explorer</strong> — your computer's file manager.
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="sv-num">2</div>
+        <div class="sv-body">
+          <strong>Look at the left side of the window — click "Downloads."</strong>
+          You'll see a list of folders on the left. "Downloads" is usually near the top, under "Quick Access."
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="sv-num">3</div>
+        <div class="sv-body">
+          <strong>Your downloaded files are listed here, newest at the top.</strong>
+          Double-click any file to open it. Word docs open in Word, PDFs open in your browser or Adobe Reader, and HTML files open in your browser.
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>✅ Shortcut:</strong> After downloading something, look at the bottom of your browser — a small bar usually appears showing the file you just downloaded. You can click it directly from there without having to find the folder.
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <h2>🍎 Finding Downloads on Mac</h2>
+
+      <div class="step-visual">
+        <div class="sv-num">1</div>
+        <div class="sv-body">
+          <strong>Look at the bottom of your screen — find the Finder icon in your Dock.</strong>
+          It looks like a blue-and-white smiley face. Click it.
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="sv-num">2</div>
+        <div class="sv-body">
+          <strong>Look at the left sidebar — click "Downloads."</strong>
+          A list of your downloaded files appears. Newest files are at the top.
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="sv-num">3</div>
+        <div class="sv-body">
+          <strong>Double-click any file to open it.</strong>
+          Word docs open in Word or Pages, PDFs open in Preview, and HTML files open in Safari or Chrome.
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>✅ Shortcut:</strong> After downloading something in Safari or Chrome on a Mac, look for a small arrow icon (⬇) near the top-right of your browser. Click it to see your recent downloads and open them directly.
+      </div>
+    </div>
+
+    <div class="lesson-section">
+      <h2>📂 What Do File Names Mean?</h2>
+      <p>Files have a name and then a short ending (called an <strong>extension</strong>) that tells your computer what kind of file it is. Here are the ones you'll see in this course:</p>
+      <ul style="font-size:.9rem;line-height:2.2;">
+        <li><strong>.docx</strong> — a Microsoft Word document (opens in Word)</li>
+        <li><strong>.pdf</strong> — a PDF file (opens in your browser or Adobe Reader — can't be easily edited, great for printing)</li>
+        <li><strong>.html</strong> — a web page file (double-click it and it opens in your browser like a website)</li>
+        <li><strong>.png / .jpg</strong> — image files (photos, illustrations — open by double-clicking)</li>
+      </ul>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="goToStep(3)">← Back</button>
+      <button class="btn-next" onclick="goToStep(5)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ===== STEP 5: Vocabulary ===== -->
+  <div class="lesson-step" id="step-5">
+    <div class="step-label">Step 5 of 5 — Key Vocabulary</div>
+
+    <div class="lesson-section">
+      <h2>📖 Words You'll See in This Course</h2>
+      <p>These are the tech words that come up again and again. You don't need to memorize them — just know you can come back here anytime one appears and you're not sure what it means.</p>
+
+      <div class="vocab-grid">
+
+        <div class="vocab-card">
+          <div class="vocab-word">Browser</div>
+          <p class="vocab-def">The program you use to visit websites — Chrome, Safari, Edge, or Firefox. You're inside one right now.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Tab</div>
+          <p class="vocab-def">A separate page open inside your browser. You can have many tabs open at once — click them at the top of the browser to switch between them.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">URL / Web address / Link</div>
+          <p class="vocab-def">The address of a website, like <em>claude.ai</em> or <em>chatgpt.com</em>. You type it in the address bar at the top of your browser, or click it when it's underlined.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Prompt</div>
+          <p class="vocab-def">What you type to an AI. It's just your question or instruction, written in plain English. "Write a quiz about volcanoes for 5th graders" is a prompt.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Chat box</div>
+          <p class="vocab-def">The box at the bottom of Claude or ChatGPT where you type your message. Click inside it, type your prompt, and press Enter to send.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Clipboard</div>
+          <p class="vocab-def">An invisible holding area on your computer. When you copy something (Ctrl+C), it goes to the clipboard and waits there until you paste it somewhere.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Highlight / Select</div>
+          <p class="vocab-def">When text turns blue after you click and drag over it (or press Ctrl+A), that means it's highlighted — your computer knows that's the text you want to work with.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Download</div>
+          <p class="vocab-def">Saving a file from the internet onto your computer. When you click a "Download" button, the file saves automatically to your Downloads folder.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Upload</div>
+          <p class="vocab-def">Sending a file from your computer to a website. When you attach a file to a chat, you're uploading it.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Attach / Paperclip</div>
+          <p class="vocab-def">The 📎 paperclip icon in Claude or ChatGPT lets you attach a file from your computer — a Word doc, PDF, or image — so AI can read it.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Account / Log in / Sign in</div>
+          <p class="vocab-def">Most AI tools ask you to create a free account (your email + a password). "Log in" and "sign in" mean the same thing — entering your email and password to get into your account.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">File / Folder</div>
+          <p class="vocab-def">A file is a single document (like a quiz or a photo). A folder is a container that holds files — like a digital filing cabinet drawer.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Scroll</div>
+          <p class="vocab-def">Moving up or down a page to see more content. Roll your mouse wheel, slide two fingers on a trackpad, or drag the thin bar on the right edge of the window.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Screenshot / Snip</div>
+          <p class="vocab-def">A photo of whatever is on your screen at that moment. You can take one with a keyboard shortcut and then share it with AI. Lesson 3 covers this in detail.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">HTML file</div>
+          <p class="vocab-def">A web page file that lives on your computer. Double-click it and it opens in your browser like a website — great for quizzes and worksheets that look clean when printed.</p>
+        </div>
+
+        <div class="vocab-card">
+          <div class="vocab-word">Extension (file)</div>
+          <p class="vocab-def">The short ending of a file name — like .pdf, .docx, or .html — that tells your computer what kind of file it is and which program to use to open it.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="callout" style="background:#f0fdf4;border:2px solid #22c55e;border-radius:10px;padding:.85rem 1.1rem;margin-top:1rem;">
+      <strong>✅ You're ready!</strong> You now have the foundation for everything in this course. Bookmark this page — you can come back anytime a word or skill feels unfamiliar. Now head to Lesson 1 to start working with AI.
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="goToStep(4)">← Back</button>
+      <a href="lesson-1-prompting.html" class="btn-next" style="text-decoration:none;">Start Lesson 1 →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Made with ❤️ for educators &nbsp;·&nbsp; AI for Educators Teaching Hub
+</footer>
+
+<script>
+function goToStep(n) {
+  document.querySelectorAll('.lesson-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  document.querySelectorAll('.step-pip').forEach((p, i) => {
+    p.classList.remove('active', 'done');
+    if (i + 1 < n) p.classList.add('done');
+    else if (i + 1 === n) p.classList.add('active');
+  });
+  const top = document.getElementById('lesson-steps').getBoundingClientRect().top + window.scrollY - 80;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+function checkPractice() {
+  const source = document.getElementById('practice-source').textContent.trim();
+  const target = document.getElementById('practice-target').value.trim();
+  const success = document.getElementById('result-success');
+  const fail    = document.getElementById('result-fail');
+  success.style.display = 'none';
+  fail.style.display    = 'none';
+  if (target === source) {
+    success.style.display = 'block';
+  } else {
+    fail.style.display = 'block';
+  }
+}
+</script>
+
+</body>
+</html>
