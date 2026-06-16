@@ -396,11 +396,11 @@ nav {
 .steps { counter-reset: step; list-style: none; padding: 0; margin: 1rem 0; }
 .steps li {
   counter-increment: step;
-  display: flex;
-  gap: .9rem;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 2.4rem;
+  margin-bottom: 1.1rem;
   font-size: .94rem;
+  line-height: 1.65;
   color: #3b4160;
 }
 .steps li::before {
@@ -409,14 +409,15 @@ nav {
   color: #fff;
   font-weight: 700;
   font-size: .78rem;
-  min-width: 26px;
+  width: 26px;
   height: 26px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  margin-top: .05rem;
+  position: absolute;
+  left: 0;
+  top: .1rem;
 }
 
 /* ---- PROGRESS BAR ---- */
