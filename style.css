@@ -45,12 +45,23 @@ nav {
 .nav-logo {
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  font-size: 1.15rem;
-  color: var(--brand);
+  font-size: 1.05rem;
+  color: var(--text);
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: .4rem;
+  gap: .55rem;
+}
+.logo-mark {
+  background: linear-gradient(135deg, #4f6ef7 0%, #7b5ea7 100%);
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+  padding: .28rem .6rem;
+  border-radius: 8px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 .nav-links {
   display: flex;
