@@ -334,10 +334,17 @@ nav {
   margin-bottom: .4rem;
 }
 .example-box pre, .example-box code {
-  font-family: 'Courier New', monospace;
-  font-size: .88rem;
+  font-family: inherit;
+  font-size: .95rem;
   white-space: pre-wrap;
   color: #1a2060;
+}
+.ph {
+  background: #eef1ff;
+  color: var(--brand);
+  border-radius: 4px;
+  padding: .05em .35em;
+  font-weight: 700;
 }
 
 /* ---- TRY IT BOX ---- */

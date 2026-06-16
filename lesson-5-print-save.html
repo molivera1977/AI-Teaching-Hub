@@ -19,8 +19,8 @@
       color:var(--brand); margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:center;
     }
     .prompt-card code {
-      font-size:.86rem; color:#1a2060; font-family:'Courier New',monospace;
-      line-height:1.6; display:block; white-space:pre-wrap;
+      font-size:.95rem; color:#1a2060; font-family:inherit;
+      line-height:1.7; display:block; white-space:pre-wrap;
     }
     .copy-small { font-size:.72rem; font-weight:700; color:var(--brand); background:#eef1ff; border:none; border-radius:6px; padding:.2rem .55rem; cursor:pointer; }
     kbd {
@@ -553,6 +553,9 @@ function copyCard(btn) {
     setTimeout(() => btn.textContent = 'Copy', 2000);
   });
 }
+document.querySelectorAll('.prompt-card code').forEach(el => {
+  el.innerHTML = el.innerHTML.replace(/\[([^\]]+)\]/g, '<span class="ph">[$1]</span>');
+});
 </script>
 
 </body>

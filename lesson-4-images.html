@@ -50,7 +50,7 @@
       margin: .75rem 0;
     }
     .prompt-card .pc-label { font-size:.7rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--brand); margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:center; }
-    .prompt-card code { font-size:.86rem; color:#1a2060; font-family:'Courier New',monospace; line-height:1.5; display:block; }
+    .prompt-card code { font-size:.95rem; color:#1a2060; font-family:inherit; line-height:1.6; display:block; }
     .copy-small { font-size:.72rem; font-weight:700; color:var(--brand); background:#eef1ff; border:none; border-radius:6px; padding:.2rem .55rem; cursor:pointer; }
 
     /* ---- WIZARD STEP SYSTEM ---- */
@@ -425,6 +425,9 @@ function copyCard(btn) {
     setTimeout(() => btn.textContent = 'Copy', 2000);
   });
 }
+document.querySelectorAll('.prompt-card code').forEach(el => {
+  el.innerHTML = el.innerHTML.replace(/\[([^\]]+)\]/g, '<span class="ph">[$1]</span>');
+});
 </script>
 
 </body>
