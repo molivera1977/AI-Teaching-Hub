@@ -311,9 +311,9 @@ nav {
   line-height: 1.6;
   border-left: 4px solid;
 }
-.callout.tip,
-.callout.info,
-.callout.warn  { background: #f5f6fa; border-color: #c5c9e0; color: #3b4160; }
+.callout.info  { background: #eef1ff; border-color: #4f6ef7; color: #1a2060; }
+.callout.tip   { background: #f0fdf4; border-color: #22c55e; color: #14532d; }
+.callout.warn  { background: #fffbeb; border-color: #f59e0b; color: #78350f; }
 .callout strong { display: block; margin-bottom: .25rem; }
 
 /* ---- EXAMPLE BOX ---- */
