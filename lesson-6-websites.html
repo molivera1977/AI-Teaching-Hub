@@ -24,19 +24,42 @@
       flex-direction: column;
       align-items: center;
       gap: .5rem;
-      box-shadow: 0 4px 14px rgba(0,0,0,.12);
+      box-shadow: 0 4px 14px rgba(0,0,0,.2);
       transition: transform .15s;
+      background-size: cover;
+      background-position: center top;
+      position: relative;
+      overflow: hidden;
+      min-height: 130px;
+      justify-content: flex-end;
     }
+    .possibility-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+    }
+    .possibility-card .p-icon,
+    .possibility-card span:not(.p-icon) { position: relative; z-index: 1; }
+    .possibility-card > *:not(.p-icon) { position: relative; z-index: 1; }
     .possibility-card:hover { transform: translateY(-3px); }
-    .possibility-card .p-icon { font-size: 2.2rem; display: block; }
-    .pc-1 { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
-    .pc-2 { background: linear-gradient(135deg, #e17055, #fd79a8); }
-    .pc-3 { background: linear-gradient(135deg, #00b894, #00cec9); }
-    .pc-4 { background: linear-gradient(135deg, #fdcb6e, #e67e22); }
-    .pc-5 { background: linear-gradient(135deg, #0984e3, #74b9ff); }
-    .pc-6 { background: linear-gradient(135deg, #d63031, #ff7675); }
-    .pc-7 { background: linear-gradient(135deg, #6ab04c, #badc58); color: #1a2060; }
-    .pc-8 { background: linear-gradient(135deg, #e84393, #a29bfe); }
+    .possibility-card .p-icon { font-size: 2rem; display: block; }
+    .pc-1 { background-image: url('images/site-quiz.png'); }
+    .pc-1::before { background: linear-gradient(to top, rgba(108,92,231,.92) 40%, rgba(108,92,231,.55)); }
+    .pc-2 { background-image: url('images/site-flashcard.png'); }
+    .pc-2::before { background: linear-gradient(to top, rgba(225,112,85,.92) 40%, rgba(225,112,85,.55)); }
+    .pc-3 { background-image: url('images/site-portal.png'); }
+    .pc-3::before { background: linear-gradient(to top, rgba(0,184,148,.92) 40%, rgba(0,184,148,.55)); }
+    .pc-4 { background-image: url('images/site-vocab.png'); }
+    .pc-4::before { background: linear-gradient(to top, rgba(230,126,34,.92) 40%, rgba(230,126,34,.55)); }
+    .pc-5 { background-image: url('images/site-studyguide.png'); }
+    .pc-5::before { background: linear-gradient(to top, rgba(9,132,227,.92) 40%, rgba(9,132,227,.55)); }
+    .pc-6 { background-image: url('images/site-game.png'); }
+    .pc-6::before { background: linear-gradient(to top, rgba(214,48,49,.92) 40%, rgba(214,48,49,.55)); }
+    .pc-7 { background-image: url('images/site-schedule.png'); }
+    .pc-7::before { background: linear-gradient(to top, rgba(106,176,76,.92) 40%, rgba(106,176,76,.55)); }
+    .pc-8 { background-image: url('images/site-links.png'); }
+    .pc-8::before { background: linear-gradient(to top, rgba(232,67,147,.92) 40%, rgba(232,67,147,.55)); }
     .prompt-card {
       background: #f8f9ff;
       border: 1px solid #dde2ff;
