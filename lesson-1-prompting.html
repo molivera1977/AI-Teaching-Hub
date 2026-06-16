@@ -316,6 +316,10 @@
 </footer>
 
 <script>
+document.querySelectorAll('.example-box code').forEach(el => {
+  el.innerHTML = el.innerHTML.replace(/\[([^\]]+)\]/g, '<span class="ph">[$1]</span>');
+});
+
 function goToStep(n) {
   document.querySelectorAll('.lesson-step').forEach(s => s.classList.remove('active'));
   document.getElementById('step-' + n).classList.add('active');
