@@ -341,15 +341,32 @@ for (let i = 0; i < 60; i++) {
   window.mrAiKeyDown=function(e){
     if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();mrAiSend();}
   };
-  window.mrAiSend=function(){
+  window.mrAiSend=async function(){
     var inp=document.getElementById('mrAiInput');
     var msgs=document.getElementById('mrAiMessages');
+    var btn=document.getElementById('mrAiSendBtn');
     var q=(inp.value||'').trim();
     if(!q)return;
     mrAddBubble(q,'mr-ai-user');
-    inp.value='';
-    mrAddBubble('Mr. AI is taking a quick break and will be back soon. In the meantime, feel free to revisit any lesson or try one of the AI tools from the course!','mr-ai-assistant');
-    msgs.scrollTop=msgs.scrollHeight;
+    inp.value='';btn.disabled=true;
+    var t=mrAddBubble('Mr. AI is thinking...','mr-ai-thinking');
+    try{
+      var r=await fetch('https://mr-ai-proxy.molivera1977.workers.dev',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({messages:mrHistory.concat([{role:'user',content:q}])})
+      });
+      var d=await r.json();
+      t.remove();
+      if(d.content&&d.content[0]){
+        var a=d.content[0].text;
+        mrHistory.push({role:'user',content:q});
+        mrHistory.push({role:'assistant',content:a});
+        if(mrHistory.length>20)mrHistory=mrHistory.slice(-20);
+        mrAddBubble(a,'mr-ai-assistant');
+      }else{mrAddBubble('Sorry, I had a little trouble with that. Please try asking again.','mr-ai-assistant');}
+    }catch(e){t.remove();mrAddBubble('Oops! It looks like I lost my connection. Please check your internet and try again.','mr-ai-assistant');}
+    btn.disabled=false;msgs.scrollTop=msgs.scrollHeight;
   };
   function mrAddBubble(txt,cls){
     var msgs=document.getElementById('mrAiMessages');
