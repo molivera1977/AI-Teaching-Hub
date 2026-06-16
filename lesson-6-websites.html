@@ -15,51 +15,37 @@
     }
     .possibility-card {
       border-radius: 14px;
-      padding: 1.2rem 1rem;
       text-align: center;
       font-size: .9rem;
       font-weight: 700;
       color: #fff;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: .5rem;
-      box-shadow: 0 4px 14px rgba(0,0,0,.2);
+      box-shadow: 0 4px 14px rgba(0,0,0,.15);
       transition: transform .15s;
-      background-size: cover;
-      background-position: center top;
-      position: relative;
       overflow: hidden;
-      min-height: 130px;
-      justify-content: flex-end;
     }
-    .possibility-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 14px;
-    }
-    .possibility-card .p-icon,
-    .possibility-card span:not(.p-icon) { position: relative; z-index: 1; }
-    .possibility-card > *:not(.p-icon) { position: relative; z-index: 1; }
     .possibility-card:hover { transform: translateY(-3px); }
-    .possibility-card .p-icon { font-size: 2rem; display: block; }
-    .pc-1 { background-image: url('images/site-quiz.png'); }
-    .pc-1::before { background: linear-gradient(to top, rgba(108,92,231,.92) 40%, rgba(108,92,231,.55)); }
-    .pc-2 { background-image: url('images/site-flashcard.png'); }
-    .pc-2::before { background: linear-gradient(to top, rgba(225,112,85,.92) 40%, rgba(225,112,85,.55)); }
-    .pc-3 { background-image: url('images/site-portal.png'); }
-    .pc-3::before { background: linear-gradient(to top, rgba(0,184,148,.92) 40%, rgba(0,184,148,.55)); }
-    .pc-4 { background-image: url('images/site-vocab.png'); }
-    .pc-4::before { background: linear-gradient(to top, rgba(230,126,34,.92) 40%, rgba(230,126,34,.55)); }
-    .pc-5 { background-image: url('images/site-studyguide.png'); }
-    .pc-5::before { background: linear-gradient(to top, rgba(9,132,227,.92) 40%, rgba(9,132,227,.55)); }
-    .pc-6 { background-image: url('images/site-game.png'); }
-    .pc-6::before { background: linear-gradient(to top, rgba(214,48,49,.92) 40%, rgba(214,48,49,.55)); }
-    .pc-7 { background-image: url('images/site-schedule.png'); }
-    .pc-7::before { background: linear-gradient(to top, rgba(106,176,76,.92) 40%, rgba(106,176,76,.55)); }
-    .pc-8 { background-image: url('images/site-links.png'); }
-    .pc-8::before { background: linear-gradient(to top, rgba(232,67,147,.92) 40%, rgba(232,67,147,.55)); }
+    .possibility-card .pc-img {
+      width: 100%; height: 120px;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+    .possibility-card .pc-label-bar {
+      padding: .55rem .75rem;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      display: flex; align-items: center; justify-content: center; gap: .4rem;
+    }
+    .pc-1 .pc-label-bar { background: #6c5ce7; }
+    .pc-2 .pc-label-bar { background: #e17055; }
+    .pc-3 .pc-label-bar { background: #00b894; }
+    .pc-4 .pc-label-bar { background: #e67e22; }
+    .pc-5 .pc-label-bar { background: #0984e3; }
+    .pc-6 .pc-label-bar { background: #d63031; }
+    .pc-7 .pc-label-bar { background: #6ab04c; }
+    .pc-8 .pc-label-bar { background: #e84393; }
     .prompt-card {
       background: #f8f9ff;
       border: 1px solid #dde2ff;
@@ -225,14 +211,14 @@
         <p>Real teachers are using AI right now to build sites like these — without any coding knowledge:</p>
 
         <div class="possibility-grid">
-          <div class="possibility-card pc-1"><span class="p-icon">📝</span>Review Quiz Sites</div>
-          <div class="possibility-card pc-2"><span class="p-icon">🃏</span>Flashcard Games</div>
-          <div class="possibility-card pc-3"><span class="p-icon">🏠</span>Class Portals</div>
-          <div class="possibility-card pc-4"><span class="p-icon">📖</span>Vocabulary Activities</div>
-          <div class="possibility-card pc-5"><span class="p-icon">🗺️</span>Study Guides</div>
-          <div class="possibility-card pc-6"><span class="p-icon">🎮</span>Learning Games</div>
-          <div class="possibility-card pc-7"><span class="p-icon">📅</span>Weekly Schedules</div>
-          <div class="possibility-card pc-8"><span class="p-icon">🔗</span>Resource Link Pages</div>
+          <div class="possibility-card pc-1"><img class="pc-img" src="images/site-quiz.png" alt="Reading Challenge site"><div class="pc-label-bar">📝 Review Quiz Sites</div></div>
+          <div class="possibility-card pc-2"><img class="pc-img" src="images/site-flashcard.png" alt="Answer Architects site"><div class="pc-label-bar">🃏 Flashcard Games</div></div>
+          <div class="possibility-card pc-3"><img class="pc-img" src="images/site-portal.png" alt="Class Portal"><div class="pc-label-bar">🏠 Class Portals</div></div>
+          <div class="possibility-card pc-4"><img class="pc-img" src="images/site-vocab.png" alt="Vocabulary site"><div class="pc-label-bar">📖 Vocabulary Activities</div></div>
+          <div class="possibility-card pc-5"><img class="pc-img" src="images/site-studyguide.png" alt="Study guide site"><div class="pc-label-bar">🗺️ Study Guides</div></div>
+          <div class="possibility-card pc-6"><img class="pc-img" src="images/site-game.png" alt="Math Monsters game"><div class="pc-label-bar">🎮 Learning Games</div></div>
+          <div class="possibility-card pc-7"><img class="pc-img" src="images/site-schedule.png" alt="Messenger site"><div class="pc-label-bar">📅 Weekly Schedules</div></div>
+          <div class="possibility-card pc-8"><img class="pc-img" src="images/site-links.png" alt="General Knowledge Hub"><div class="pc-label-bar">🔗 Resource Link Pages</div></div>
         </div>
 
         <p>Every site in this hub — the review games, the quizzes, the class portal — was built by describing it to AI in plain English. No coding happened. Just conversation.</p>
