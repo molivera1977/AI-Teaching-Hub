@@ -272,9 +272,28 @@
     <h2>🤝 Meet the AI Tools We Use in This Course</h2>
     <p>Below are the most popular AI services available today. Any of them will work great for the lessons in this course — pick the one that fits your school setup.</p>
 
-    <div class="callout" style="background:#fefce8;border:2px solid #f59e0b;border-radius:10px;padding:.85rem 1.1rem;margin:.5rem 0 .75rem;">
-      <strong>🖥️ New to computers, or feeling a little nervous?</strong> That is completely okay — and you are not alone. Before you pick a tool, spend 10 minutes with our <a href="lesson-0-basics.html" style="color:var(--brand);font-weight:700;">Start Here lesson</a>. It covers the basics — what a browser is, how to type a web address, what "sign in" means — so the steps below will feel familiar when you come back. <em>Already comfortable with computers? Keep reading.</em>
+    <!-- Fork in the road -->
+    <p style="font-weight:700;color:var(--text);font-size:1rem;margin:1rem 0 .6rem;text-align:center;">Before we go further — which describes you best?</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;">
+
+      <!-- Beginner path -->
+      <div style="background:#fefce8;border:2px solid #f59e0b;border-radius:14px;padding:1.4rem 1.2rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.75rem;">
+        <div style="font-size:2rem;">🖥️</div>
+        <div style="font-weight:800;font-size:1rem;color:#78350f;line-height:1.3;">I'm pretty new to computers and could use a gentler start.</div>
+        <p style="font-size:.82rem;color:#92400e;margin:0;line-height:1.45;">No problem at all. Take 10 minutes with our Start Here lesson — it covers the basics so everything else clicks.</p>
+        <a href="lesson-0-basics.html" style="display:inline-block;background:#f59e0b;color:#fff;font-weight:800;font-size:.88rem;border-radius:30px;padding:.55rem 1.2rem;text-decoration:none;margin-top:auto;">Take me to the basics →</a>
+      </div>
+
+      <!-- Ready path -->
+      <div style="background:#f0fdf4;border:2px solid #22c55e;border-radius:14px;padding:1.4rem 1.2rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.75rem;">
+        <div style="font-size:2rem;">✅</div>
+        <div style="font-weight:800;font-size:1rem;color:#14532d;line-height:1.3;">I'm comfortable with computers and ready to jump in.</div>
+        <p style="font-size:.82rem;color:#166534;margin:0;line-height:1.45;">Great — you're in the right place. Keep reading to pick your AI tool and get started.</p>
+        <button onclick="document.getElementById('tools-list').scrollIntoView({behavior:'smooth'})" style="background:#22c55e;color:#fff;font-weight:800;font-size:.88rem;border-radius:30px;padding:.55rem 1.2rem;border:none;cursor:pointer;margin-top:auto;">I'm ready — show me the tools →</button>
+      </div>
+
     </div>
+    <div id="tools-list"></div>
 
     <div class="callout" style="background:#f0fdf4;border:2px solid #22c55e;border-radius:10px;padding:.85rem 1.1rem;margin:.5rem 0 1rem;">
       <strong>🟢 Not sure which one to pick?</strong> Start with <a href="https://claude.ai" target="_blank" style="color:var(--brand);font-weight:700;">Claude (claude.ai)</a> or <a href="https://chatgpt.com" target="_blank" style="color:var(--brand);font-weight:700;">ChatGPT (chatgpt.com)</a> — both are free and work in any web browser (the program you use to visit websites — Chrome, Safari, or Edge are the most common ones). Either one works perfectly for everything in this course. You can always explore the others later.
