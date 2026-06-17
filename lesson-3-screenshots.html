@@ -237,14 +237,52 @@
       <div class="lesson-section">
         <h2>👁️ What Can AI Actually See in a Screenshot?</h2>
         <p>When you upload or paste an image into Claude, ChatGPT, Gemini, or Copilot, the AI reads every detail — layout, text, formatting, structure, and style. Here's what it can pick up on:</p>
-        <ul>
-          <li>The exact <strong>format</strong> of questions (multiple choice, fill-in-the-blank, matching, short answer, etc.)</li>
-          <li>The <strong>reading level and vocabulary</strong> of a passage</li>
-          <li>The <strong>design and layout</strong> of a worksheet (column structure, font size, spacing)</li>
-          <li>The <strong>number of answer choices</strong> and how they're labeled (A, B, C, D vs. 1, 2, 3, 4)</li>
-          <li>Whether questions use <strong>bold keywords</strong>, <strong>underlining</strong>, or specific <strong>phrasing styles</strong></li>
-          <li>Rubric structures, table formats, graphic organizer layouts</li>
-        </ul>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin:1rem 0 1.25rem;">
+          <div style="background:#eef1ff;border-radius:12px;padding:.9rem 1rem;display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1.5rem;flex-shrink:0;">📋</span>
+            <div>
+              <div style="font-weight:800;color:#3730a3;font-size:.88rem;margin-bottom:.2rem;">Question Format</div>
+              <div style="font-size:.82rem;color:#4338ca;line-height:1.4;">Multiple choice, fill-in-the-blank, matching, short answer, and more</div>
+            </div>
+          </div>
+          <div style="background:#fdf4ff;border-radius:12px;padding:.9rem 1rem;display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1.5rem;flex-shrink:0;">📖</span>
+            <div>
+              <div style="font-weight:800;color:#6b21a8;font-size:.88rem;margin-bottom:.2rem;">Reading Level</div>
+              <div style="font-size:.82rem;color:#7e22ce;line-height:1.4;">Vocabulary difficulty and grade-level language of a passage</div>
+            </div>
+          </div>
+          <div style="background:#fff7ed;border-radius:12px;padding:.9rem 1rem;display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1.5rem;flex-shrink:0;">🖼️</span>
+            <div>
+              <div style="font-weight:800;color:#9a3412;font-size:.88rem;margin-bottom:.2rem;">Design & Layout</div>
+              <div style="font-size:.82rem;color:#c2410c;line-height:1.4;">Column structure, font size, spacing, and overall page design</div>
+            </div>
+          </div>
+          <div style="background:#f0fdf4;border-radius:12px;padding:.9rem 1rem;display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1.5rem;flex-shrink:0;">🔢</span>
+            <div>
+              <div style="font-weight:800;color:#14532d;font-size:.88rem;margin-bottom:.2rem;">Answer Choices</div>
+              <div style="font-size:.82rem;color:#166534;line-height:1.4;">How many options and how they're labeled — A/B/C/D or 1/2/3/4</div>
+            </div>
+          </div>
+          <div style="background:#eff6ff;border-radius:12px;padding:.9rem 1rem;display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1.5rem;flex-shrink:0;">✏️</span>
+            <div>
+              <div style="font-weight:800;color:#1e40af;font-size:.88rem;margin-bottom:.2rem;">Text Styling</div>
+              <div style="font-size:.82rem;color:#1d4ed8;line-height:1.4;">Bold keywords, underlining, italics, and specific phrasing styles</div>
+            </div>
+          </div>
+          <div style="background:#fef9c3;border-radius:12px;padding:.9rem 1rem;display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1.5rem;flex-shrink:0;">📊</span>
+            <div>
+              <div style="font-weight:800;color:#854d0e;font-size:.88rem;margin-bottom:.2rem;">Tables & Rubrics</div>
+              <div style="font-size:.82rem;color:#a16207;line-height:1.4;">Rubric structures, table formats, and graphic organizer layouts</div>
+            </div>
+          </div>
+        </div>
+
         <div class="callout tip">
           <strong>✅ Think of it this way:</strong> A screenshot is worth a thousand words of prompting. If you have an example of what you want, showing it is always faster and more accurate than describing it.
         </div>
