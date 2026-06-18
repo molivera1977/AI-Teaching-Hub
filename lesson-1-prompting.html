@@ -141,36 +141,52 @@
       <h2>⚡ The Parts of a Good Prompt</h2>
       <p>A strong prompt usually has some or all of these parts. You don't need all of them every time, but the more context you give, the better the result.</p>
 
-      <h3>1. Your Role (who you are)</h3>
-      <p>Tell the AI a bit about yourself. This helps it match the right tone and level.</p>
-      <div class="example-box">
-        <div class="ex-label">Example</div>
-        <code>I am a 4th grade teacher…</code>
-      </div>
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin:1.25rem 0;">
 
-      <h3>2. The Task (what you want)</h3>
-      <p>Be direct. Use action words like <em>write, create, list, summarize, explain, rewrite</em>.</p>
-      <div class="example-box">
-        <div class="ex-label">Example</div>
-        <code>…create a short reading passage…</code>
-      </div>
+        <!-- Part 1 -->
+        <div style="background:#eef1ff;border-radius:16px;padding:1.1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+          <div style="background:#6366f1;color:#fff;font-weight:900;font-size:1rem;border-radius:50%;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">1</div>
+          <div style="flex:1;">
+            <div style="font-weight:800;color:#3730a3;font-size:.95rem;margin-bottom:.2rem;">Your Role <span style="font-weight:500;color:#6366f1;font-size:.82rem;">(who you are)</span></div>
+            <div style="font-size:.85rem;color:#4338ca;margin-bottom:.6rem;">Tell the AI a bit about yourself — it helps match the right tone and level.</div>
+            <div style="background:#fff;border-radius:10px;padding:.55rem .85rem;font-size:.85rem;color:#3730a3;font-style:italic;border:1.5px solid #c7d2fe;">"I am a 4th grade teacher…"</div>
+          </div>
+        </div>
 
-      <h3>3. The Details (specifics that matter)</h3>
-      <p>Grade level, subject, length, format, tone — anything that shapes the output.</p>
-      <div class="example-box">
-        <div class="ex-label">Example</div>
-        <code>…about the water cycle, written at a 4th grade reading level, about 150 words long.</code>
-      </div>
+        <!-- Part 2 -->
+        <div style="background:#fff7ed;border-radius:16px;padding:1.1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+          <div style="background:#f97316;color:#fff;font-weight:900;font-size:1rem;border-radius:50%;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">2</div>
+          <div style="flex:1;">
+            <div style="font-weight:800;color:#9a3412;font-size:.95rem;margin-bottom:.2rem;">The Task <span style="font-weight:500;color:#f97316;font-size:.82rem;">(what you want)</span></div>
+            <div style="font-size:.85rem;color:#c2410c;margin-bottom:.6rem;">Be direct. Use action words like <em>write, create, list, summarize, explain, rewrite</em>.</div>
+            <div style="background:#fff;border-radius:10px;padding:.55rem .85rem;font-size:.85rem;color:#9a3412;font-style:italic;border:1.5px solid #fed7aa;">"…create a short reading passage…"</div>
+          </div>
+        </div>
 
-      <h3>4. The Audience (who is this for?)</h3>
-      <p>Mentioning your students helps AI adjust vocabulary and complexity.</p>
-      <div class="example-box">
-        <div class="ex-label">Example</div>
-        <code>…My students are 9–10 years old and this is their first introduction to the topic.</code>
+        <!-- Part 3 -->
+        <div style="background:#f0fdf4;border-radius:16px;padding:1.1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+          <div style="background:#22c55e;color:#fff;font-weight:900;font-size:1rem;border-radius:50%;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">3</div>
+          <div style="flex:1;">
+            <div style="font-weight:800;color:#14532d;font-size:.95rem;margin-bottom:.2rem;">The Details <span style="font-weight:500;color:#22c55e;font-size:.82rem;">(specifics that matter)</span></div>
+            <div style="font-size:.85rem;color:#166534;margin-bottom:.6rem;">Grade level, subject, length, format, tone — anything that shapes the output.</div>
+            <div style="background:#fff;border-radius:10px;padding:.55rem .85rem;font-size:.85rem;color:#14532d;font-style:italic;border:1.5px solid #bbf7d0;">"…about the water cycle, written at a 4th grade reading level, about 150 words long."</div>
+          </div>
+        </div>
+
+        <!-- Part 4 -->
+        <div style="background:#fdf4ff;border-radius:16px;padding:1.1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+          <div style="background:#a855f7;color:#fff;font-weight:900;font-size:1rem;border-radius:50%;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">4</div>
+          <div style="flex:1;">
+            <div style="font-weight:800;color:#6b21a8;font-size:.95rem;margin-bottom:.2rem;">The Audience <span style="font-weight:500;color:#a855f7;font-size:.82rem;">(who is this for?)</span></div>
+            <div style="font-size:.85rem;color:#7e22ce;margin-bottom:.6rem;">Mentioning your students helps AI adjust vocabulary and complexity.</div>
+            <div style="background:#fff;border-radius:10px;padding:.55rem .85rem;font-size:.85rem;color:#6b21a8;font-style:italic;border:1.5px solid #e9d5ff;">"…My students are 9–10 years old and this is their first introduction to the topic."</div>
+          </div>
+        </div>
+
       </div>
 
       <div class="callout tip">
-        <strong>✅ Full example prompt (all 4 parts combined):</strong><br><br>
+        <strong>✅ All 4 parts together:</strong><br><br>
         "I am a 4th grade teacher. Create a short reading passage about the water cycle, written at a 4th grade reading level, about 150 words long. My students are 9–10 years old and this is their first introduction to the topic."
       </div>
     </div>
