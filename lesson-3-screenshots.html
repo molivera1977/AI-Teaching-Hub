@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lesson 3 — Screenshots | AI for Educators</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
   <link rel="stylesheet" href="style.css" />
   <script src="font-scale.js"></script>
   <style>
@@ -121,42 +124,6 @@
     .use-case h3 { font-size: .9rem; font-weight: 700; margin-bottom: .2rem; }
     .use-case p  { font-size: .83rem; color: var(--muted); margin: 0; }
 
-    /* ---- WIZARD STEP SYSTEM ---- */
-    .lesson-step { display: none; }
-    .lesson-step.active { display: block; }
-    .step-bar {
-      display: flex; align-items: center; justify-content: center;
-      gap: .5rem; padding: 1rem 0 .5rem;
-    }
-    .step-pip {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--border); transition: background .2s;
-    }
-    .step-pip.done { background: var(--green); }
-    .step-pip.active { background: var(--grad-a, var(--brand)); }
-    .step-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 1.5rem; flex-wrap: wrap; gap: .75rem;
-    }
-    .step-nav-solo { justify-content: flex-end; }
-    .btn-next {
-      background: var(--grad-a, var(--brand)); color: #fff; font-weight: 700;
-      font-size: .95rem; padding: .7rem 1.8rem; border-radius: 30px;
-      border: none; cursor: pointer;
-      box-shadow: 0 4px 16px rgba(79,110,247,.3); transition: transform .15s;
-    }
-    .btn-next:hover { transform: translateY(-2px); }
-    .btn-back {
-      background: #fff; color: var(--grad-a, var(--brand)); font-weight: 700;
-      font-size: .95rem; padding: .7rem 1.8rem; border-radius: 30px;
-      border: 2px solid var(--grad-a, var(--brand)); cursor: pointer; transition: transform .15s;
-    }
-    .btn-back:hover { transform: translateY(-2px); }
-    .step-label {
-      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--muted);
-      text-align: center; margin-bottom: .25rem;
-    }
   </style>
 </head>
 <body>
@@ -364,7 +331,7 @@
                   📄 Also show as printable image ▼
                 </button>
                 <div class="hidden" style="margin-top:.5rem;text-align:center;">
-                  <img src="images/example-fractions-output.png" alt="AI-generated fraction questions printable" style="max-width:100%;border-radius:10px;border:1px solid #bbf7d0;box-shadow:0 2px 10px rgba(0,0,0,.06);">
+                  <img loading="lazy" src="images/example-fractions-output.png" alt="AI-generated fraction questions printable" style="max-width:100%;border-radius:10px;border:1px solid #bbf7d0;box-shadow:0 2px 10px rgba(0,0,0,.06);">
                 </div>
               </div>
 
@@ -456,8 +423,8 @@
         <p>This is the fastest method. You take a snip, it copies to your clipboard automatically — no file is saved to your computer. Then you switch to AI and paste it in. Start to finish in under 30 seconds. Select your computer type below:</p>
 
         <div class="os-tabs">
-          <button class="os-tab active" onclick="showOS('windows', this)">🪟 I have a Windows computer</button>
-          <button class="os-tab" onclick="showOS('mac', this)">🍎 I have a Mac</button>
+          <button class="os-tab active" onclick="showOS('os-', 'windows', this)">🪟 I have a Windows computer</button>
+          <button class="os-tab" onclick="showOS('os-', 'mac', this)">🍎 I have a Mac</button>
         </div>
 
         <!-- ===== WINDOWS ===== -->
@@ -689,8 +656,8 @@
         <p style="margin-top:1rem;">This step shows you how to find your saved snip and upload it to AI using the paperclip button. Select your computer type:</p>
 
         <div class="os-tabs">
-          <button class="os-tab active" onclick="showOS3('windows', this)">🪟 I have a Windows computer</button>
-          <button class="os-tab" onclick="showOS3('mac', this)">🍎 I have a Mac</button>
+          <button class="os-tab active" onclick="showOS('os3-', 'windows', this)">🪟 I have a Windows computer</button>
+          <button class="os-tab" onclick="showOS('os3-', 'mac', this)">🍎 I have a Mac</button>
         </div>
 
         <!-- ===== WINDOWS ===== -->
@@ -980,28 +947,17 @@ function goToStep(n) {
     if (i + 1 < n) p.classList.add('done');
     else if (i + 1 === n) p.classList.add('active');
   });
-  const top = document.getElementById('lesson-steps').getBoundingClientRect().top + window.scrollY - 80;
+  const nav = document.querySelector('nav');
+  const navOffset = nav && window.getComputedStyle(nav).position === 'sticky' ? nav.offsetHeight + 16 : 16;
+  const top = document.getElementById('lesson-steps').getBoundingClientRect().top + window.scrollY - navOffset;
   window.scrollTo({ top, behavior: 'smooth' });
 }
 
-function showMethod(method, btn) {
-  document.querySelectorAll('.method-content').forEach(el => el.style.display = 'none');
-  btn.closest('.lesson-section').querySelectorAll('.os-tab').forEach(el => el.classList.remove('active'));
-  document.getElementById('method-' + method).style.display = 'block';
-  btn.classList.add('active');
-}
 
-function showOS(os, btn) {
+function showOS(prefix, os, btn) {
   btn.closest('.lesson-section').querySelectorAll('.os-content').forEach(el => el.style.display = 'none');
   btn.closest('.os-tabs').querySelectorAll('.os-tab').forEach(el => el.classList.remove('active'));
-  document.getElementById('os-' + os).style.display = 'block';
-  btn.classList.add('active');
-}
-
-function showOS3(os, btn) {
-  btn.closest('.lesson-section').querySelectorAll('.os-content').forEach(el => el.style.display = 'none');
-  btn.closest('.os-tabs').querySelectorAll('.os-tab').forEach(el => el.classList.remove('active'));
-  document.getElementById('os3-' + os).style.display = 'block';
+  document.getElementById(prefix + os).style.display = 'block';
   btn.classList.add('active');
 }
 
@@ -1017,104 +973,6 @@ document.querySelectorAll('.prompt-card code').forEach(el => {
   el.innerHTML = el.innerHTML.replace(/\[([^\]]+)\]/g, '<span class="ph">[$1]</span>');
 });
 </script>
-
-
-<!-- MR. AI WIDGET START -->
-<div class="mr-ai-widget" id="mrAiWidget">
-  <button class="mr-ai-toggle" id="mrAiToggleBtn" onclick="mrAiToggle()">&#129302; Ask Mr. AI</button>
-  <div class="mr-ai-panel" id="mrAiPanel">
-    <div class="mr-ai-header">
-      <span class="mr-ai-avatar">&#129302;</span>
-      <div class="mr-ai-header-text">
-        <div class="mr-ai-name">Mr. AI</div>
-        <div class="mr-ai-subtitle">Your Friendly Course Assistant</div>
-      </div>
-      <button class="mr-ai-close-btn" onclick="mrAiToggle()" aria-label="Close">&#10005;</button>
-    </div>
-    <div class="mr-ai-messages" id="mrAiMessages">
-      <div class="mr-ai-bubble mr-ai-assistant">Hi there! I am Mr. AI, your friendly course helper. Got a question about anything you are learning? Just ask me!</div>
-    </div>
-    <div class="mr-ai-inputbar">
-      <textarea id="mrAiInput" class="mr-ai-textarea" placeholder="Type your question here..." rows="2" onkeydown="mrAiKeyDown(event)"></textarea>
-      <button class="mr-ai-send-btn" id="mrAiSendBtn" onclick="mrAiSend()">Send</button>
-    </div>
-  </div>
-</div>
-<style>
-.mr-ai-widget{position:fixed;bottom:22px;right:22px;z-index:9999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-.mr-ai-toggle{background:linear-gradient(135deg,#4f6ef7,#5ea7e8);color:#fff;border:none;border-radius:50px;padding:.7rem 1.3rem;font-size:.9rem;font-weight:700;box-shadow:0 6px 22px rgba(79,110,247,.38);cursor:pointer;transition:transform .15s,box-shadow .15s;white-space:nowrap}
-.mr-ai-toggle:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,110,247,.45)}
-.mr-ai-panel{display:none;position:absolute;bottom:58px;right:0;width:340px;max-width:calc(100vw - 44px);background:#fff;border:1px solid #dde3f5;border-radius:18px;box-shadow:0 20px 60px rgba(30,40,90,.16);overflow:hidden;flex-direction:column}
-.mr-ai-panel.open{display:flex}
-.mr-ai-header{background:linear-gradient(135deg,#4f6ef7,#5ea7e8);color:#fff;padding:.8rem 1rem;display:flex;align-items:center;gap:.65rem}
-.mr-ai-avatar{font-size:1.5rem;line-height:1;flex-shrink:0}
-.mr-ai-header-text{flex:1;min-width:0}
-.mr-ai-name{font-weight:700;font-size:.9rem}
-.mr-ai-subtitle{font-size:.72rem;opacity:.88}
-.mr-ai-close-btn{background:rgba(255,255,255,.22);border:none;color:#fff;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.mr-ai-messages{padding:.85rem 1rem;max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:.55rem}
-.mr-ai-bubble{padding:.6rem .85rem;border-radius:14px;font-size:.86rem;line-height:1.58;max-width:88%;word-wrap:break-word}
-.mr-ai-assistant{background:#eef1ff;color:#1e2860;border-bottom-left-radius:4px;align-self:flex-start}
-.mr-ai-user{background:#4f6ef7;color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
-.mr-ai-thinking{background:#eef1ff;color:#8892b8;font-style:italic;align-self:flex-start}
-.mr-ai-inputbar{display:flex;gap:.45rem;padding:.7rem .9rem;border-top:1px solid #edf0fa;align-items:flex-end;background:#fafbff}
-.mr-ai-textarea{flex:1;border:1px solid #cdd4ef;border-radius:10px;padding:.5rem .7rem;font:inherit;font-size:.86rem;resize:none;line-height:1.45;outline:none;transition:border-color .15s;background:#fff;color:#1e2860}
-.mr-ai-textarea:focus{border-color:#4f6ef7}
-.mr-ai-send-btn{background:#4f6ef7;color:#fff;border:none;border-radius:10px;padding:.5rem .85rem;font-weight:700;font-size:.83rem;cursor:pointer;white-space:nowrap;transition:background .15s}
-.mr-ai-send-btn:hover:not(:disabled){background:#3a58d6}
-.mr-ai-send-btn:disabled{background:#b0badd;cursor:default}
-@media(max-width:420px){.mr-ai-widget{left:12px;right:12px;bottom:12px}.mr-ai-panel{width:100%}}
-</style>
-<script>
-(function(){
-  var mrSystemPrimer=[
-    {role:'user',content:'Before we start, can you explain who you are and what this course covers?'},
-    {role:'assistant',content:'Of course! I\'m Mr. AI, your assistant for this AI teaching course. I answer questions in plain, friendly language — no tech jargon.\n\nThis course covers four AI tools:\n• Claude — great for writing, planning, and detailed tasks\n• ChatGPT — a great all-around tool for teaching\n• Gemini — great when connected to Google Docs and Google Classroom\n• Microsoft Copilot — great for teachers using Microsoft 365\n\nAll four tools are free (or have free versions) and work in any web browser — nothing to download.\n\nThe course has six lessons:\n• Lesson 1 — Writing Good Prompts (a prompt has four parts: Role, Task, Details, and Audience)\n• Lesson 2 — Creating Classroom Assignments (quizzes, reading passages, rubrics, and differentiation)\n• Lesson 3 — Using Screenshots (AI can read photos of worksheets, tests, and textbook pages)\n• Lesson 4 — Making Images and Visuals with AI\n• Lesson 5 — Save and Print What AI Creates\n• Lesson 6 — AI Can Build You a Website\n\nKey ideas I always use from the course:\n• A great prompt has four parts: Role (who you are), Task (what you want), Details (grade level, subject, format), and Audience (your students).\n• Five prompting strategies: Tell It Who You Are, Give the Full Context, Show an Example, Assign It a Role, and Ask for Options.\n• AI reads screenshots the same way it reads text — it sees the whole image, including worksheets, math problems, and instructions.\n• For copy and paste, I always recommend right-clicking first (not keyboard shortcuts) — that\'s how the course teaches it.\n\nWhenever you ask me something, I answer using the tools and ideas taught in this course. I keep things simple and practical for classroom teachers.'}
-  ];
-  var mrHistory=[];
-  window.mrAiToggle=function(){
-    var p=document.getElementById('mrAiPanel');
-    p.classList.toggle('open');
-    if(p.classList.contains('open'))document.getElementById('mrAiInput').focus();
-  };
-  window.mrAiKeyDown=function(e){
-    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();mrAiSend();}
-  };
-  window.mrAiSend=async function(){
-    var inp=document.getElementById('mrAiInput');
-    var msgs=document.getElementById('mrAiMessages');
-    var btn=document.getElementById('mrAiSendBtn');
-    var q=(inp.value||'').trim();
-    if(!q)return;
-    mrAddBubble(q,'mr-ai-user');
-    inp.value='';btn.disabled=true;
-    var t=mrAddBubble('Mr. AI is thinking...','mr-ai-thinking');
-    try{
-      var r=await fetch('https://mr-ai-proxy.molivera1977.workers.dev',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({messages:mrSystemPrimer.concat(mrHistory).concat([{role:'user',content:q}])})
-      });
-      var d=await r.json();
-      t.remove();
-      if(d.content&&d.content[0]){
-        var a=d.content[0].text;
-        mrHistory.push({role:'user',content:q});
-        mrHistory.push({role:'assistant',content:a});
-        if(mrHistory.length>20)mrHistory=mrHistory.slice(-20);
-        mrAddBubble(a,'mr-ai-assistant');
-      }else{mrAddBubble('Sorry, I had a little trouble with that. Please try asking again.','mr-ai-assistant');}
-    }catch(e){t.remove();mrAddBubble('Oops! It looks like I lost my connection. Please check your internet and try again.','mr-ai-assistant');}
-    btn.disabled=false;msgs.scrollTop=msgs.scrollHeight;
-  };
-  function mrAddBubble(txt,cls){
-    var msgs=document.getElementById('mrAiMessages');
-    var b=document.createElement('div');
-    b.className='mr-ai-bubble '+cls;b.textContent=txt;
-    msgs.appendChild(b);msgs.scrollTop=msgs.scrollHeight;return b;
-  }
-})();
-</script>
-<!-- MR. AI WIDGET END -->
+<script src="mr-ai.js" defer></script>
 </body>
 </html>

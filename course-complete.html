@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Course Complete! | AI for Educators</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
   <link rel="stylesheet" href="style.css" />
   <script src="font-scale.js"></script>
   <style>
@@ -283,104 +286,6 @@ for (let i = 0; i < 60; i++) {
   starsEl.appendChild(s);
 }
 </script>
-
-
-<!-- MR. AI WIDGET START -->
-<div class="mr-ai-widget" id="mrAiWidget">
-  <button class="mr-ai-toggle" id="mrAiToggleBtn" onclick="mrAiToggle()">&#129302; Ask Mr. AI</button>
-  <div class="mr-ai-panel" id="mrAiPanel">
-    <div class="mr-ai-header">
-      <span class="mr-ai-avatar">&#129302;</span>
-      <div class="mr-ai-header-text">
-        <div class="mr-ai-name">Mr. AI</div>
-        <div class="mr-ai-subtitle">Your Friendly Course Assistant</div>
-      </div>
-      <button class="mr-ai-close-btn" onclick="mrAiToggle()" aria-label="Close">&#10005;</button>
-    </div>
-    <div class="mr-ai-messages" id="mrAiMessages">
-      <div class="mr-ai-bubble mr-ai-assistant">Hi there! I am Mr. AI, your friendly course helper. Got a question about anything you are learning? Just ask me!</div>
-    </div>
-    <div class="mr-ai-inputbar">
-      <textarea id="mrAiInput" class="mr-ai-textarea" placeholder="Type your question here..." rows="2" onkeydown="mrAiKeyDown(event)"></textarea>
-      <button class="mr-ai-send-btn" id="mrAiSendBtn" onclick="mrAiSend()">Send</button>
-    </div>
-  </div>
-</div>
-<style>
-.mr-ai-widget{position:fixed;bottom:22px;right:22px;z-index:9999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-.mr-ai-toggle{background:linear-gradient(135deg,#4f6ef7,#5ea7e8);color:#fff;border:none;border-radius:50px;padding:.7rem 1.3rem;font-size:.9rem;font-weight:700;box-shadow:0 6px 22px rgba(79,110,247,.38);cursor:pointer;transition:transform .15s,box-shadow .15s;white-space:nowrap}
-.mr-ai-toggle:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,110,247,.45)}
-.mr-ai-panel{display:none;position:absolute;bottom:58px;right:0;width:340px;max-width:calc(100vw - 44px);background:#fff;border:1px solid #dde3f5;border-radius:18px;box-shadow:0 20px 60px rgba(30,40,90,.16);overflow:hidden;flex-direction:column}
-.mr-ai-panel.open{display:flex}
-.mr-ai-header{background:linear-gradient(135deg,#4f6ef7,#5ea7e8);color:#fff;padding:.8rem 1rem;display:flex;align-items:center;gap:.65rem}
-.mr-ai-avatar{font-size:1.5rem;line-height:1;flex-shrink:0}
-.mr-ai-header-text{flex:1;min-width:0}
-.mr-ai-name{font-weight:700;font-size:.9rem}
-.mr-ai-subtitle{font-size:.72rem;opacity:.88}
-.mr-ai-close-btn{background:rgba(255,255,255,.22);border:none;color:#fff;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.mr-ai-messages{padding:.85rem 1rem;max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:.55rem}
-.mr-ai-bubble{padding:.6rem .85rem;border-radius:14px;font-size:.86rem;line-height:1.58;max-width:88%;word-wrap:break-word}
-.mr-ai-assistant{background:#eef1ff;color:#1e2860;border-bottom-left-radius:4px;align-self:flex-start}
-.mr-ai-user{background:#4f6ef7;color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
-.mr-ai-thinking{background:#eef1ff;color:#8892b8;font-style:italic;align-self:flex-start}
-.mr-ai-inputbar{display:flex;gap:.45rem;padding:.7rem .9rem;border-top:1px solid #edf0fa;align-items:flex-end;background:#fafbff}
-.mr-ai-textarea{flex:1;border:1px solid #cdd4ef;border-radius:10px;padding:.5rem .7rem;font:inherit;font-size:.86rem;resize:none;line-height:1.45;outline:none;transition:border-color .15s;background:#fff;color:#1e2860}
-.mr-ai-textarea:focus{border-color:#4f6ef7}
-.mr-ai-send-btn{background:#4f6ef7;color:#fff;border:none;border-radius:10px;padding:.5rem .85rem;font-weight:700;font-size:.83rem;cursor:pointer;white-space:nowrap;transition:background .15s}
-.mr-ai-send-btn:hover:not(:disabled){background:#3a58d6}
-.mr-ai-send-btn:disabled{background:#b0badd;cursor:default}
-@media(max-width:420px){.mr-ai-widget{left:12px;right:12px;bottom:12px}.mr-ai-panel{width:100%}}
-</style>
-<script>
-(function(){
-  var mrSystemPrimer=[
-    {role:'user',content:'Before we start, can you explain who you are and what this course covers?'},
-    {role:'assistant',content:'Of course! I\'m Mr. AI, your assistant for this AI teaching course. I answer questions in plain, friendly language — no tech jargon.\n\nThis course covers four AI tools:\n• Claude — great for writing, planning, and detailed tasks\n• ChatGPT — a great all-around tool for teaching\n• Gemini — great when connected to Google Docs and Google Classroom\n• Microsoft Copilot — great for teachers using Microsoft 365\n\nAll four tools are free (or have free versions) and work in any web browser — nothing to download.\n\nThe course has six lessons:\n• Lesson 1 — Writing Good Prompts (a prompt has four parts: Role, Task, Details, and Audience)\n• Lesson 2 — Creating Classroom Assignments (quizzes, reading passages, rubrics, and differentiation)\n• Lesson 3 — Using Screenshots (AI can read photos of worksheets, tests, and textbook pages)\n• Lesson 4 — Making Images and Visuals with AI\n• Lesson 5 — Save and Print What AI Creates\n• Lesson 6 — AI Can Build You a Website\n\nKey ideas I always use from the course:\n• A great prompt has four parts: Role (who you are), Task (what you want), Details (grade level, subject, format), and Audience (your students).\n• Five prompting strategies: Tell It Who You Are, Give the Full Context, Show an Example, Assign It a Role, and Ask for Options.\n• AI reads screenshots the same way it reads text — it sees the whole image, including worksheets, math problems, and instructions.\n• For copy and paste, I always recommend right-clicking first (not keyboard shortcuts) — that\'s how the course teaches it.\n\nWhenever you ask me something, I answer using the tools and ideas taught in this course. I keep things simple and practical for classroom teachers.'}
-  ];
-  var mrHistory=[];
-  window.mrAiToggle=function(){
-    var p=document.getElementById('mrAiPanel');
-    p.classList.toggle('open');
-    if(p.classList.contains('open'))document.getElementById('mrAiInput').focus();
-  };
-  window.mrAiKeyDown=function(e){
-    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();mrAiSend();}
-  };
-  window.mrAiSend=async function(){
-    var inp=document.getElementById('mrAiInput');
-    var msgs=document.getElementById('mrAiMessages');
-    var btn=document.getElementById('mrAiSendBtn');
-    var q=(inp.value||'').trim();
-    if(!q)return;
-    mrAddBubble(q,'mr-ai-user');
-    inp.value='';btn.disabled=true;
-    var t=mrAddBubble('Mr. AI is thinking...','mr-ai-thinking');
-    try{
-      var r=await fetch('https://mr-ai-proxy.molivera1977.workers.dev',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({messages:mrSystemPrimer.concat(mrHistory).concat([{role:'user',content:q}])})
-      });
-      var d=await r.json();
-      t.remove();
-      if(d.content&&d.content[0]){
-        var a=d.content[0].text;
-        mrHistory.push({role:'user',content:q});
-        mrHistory.push({role:'assistant',content:a});
-        if(mrHistory.length>20)mrHistory=mrHistory.slice(-20);
-        mrAddBubble(a,'mr-ai-assistant');
-      }else{mrAddBubble('Sorry, I had a little trouble with that. Please try asking again.','mr-ai-assistant');}
-    }catch(e){t.remove();mrAddBubble('Oops! It looks like I lost my connection. Please check your internet and try again.','mr-ai-assistant');}
-    btn.disabled=false;msgs.scrollTop=msgs.scrollHeight;
-  };
-  function mrAddBubble(txt,cls){
-    var msgs=document.getElementById('mrAiMessages');
-    var b=document.createElement('div');
-    b.className='mr-ai-bubble '+cls;b.textContent=txt;
-    msgs.appendChild(b);msgs.scrollTop=msgs.scrollHeight;return b;
-  }
-})();
-</script>
-<!-- MR. AI WIDGET END -->
+<script src="mr-ai.js" defer></script>
 </body>
 </html>

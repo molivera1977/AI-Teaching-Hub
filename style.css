@@ -2,7 +2,7 @@
    AI Teaching Hub — Shared Styles
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+/* Google Fonts are loaded via <link> tags in each HTML <head> */
 
 :root {
   --brand:      #4f6ef7;
@@ -368,7 +368,7 @@ nav {
   font-size: .9rem;
 }
 .example-box .ex-label {
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .07em;
   text-transform: uppercase;
@@ -398,7 +398,7 @@ nav {
   margin: 1.25rem 0;
 }
 .try-it .try-label {
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .07em;
   text-transform: uppercase;
@@ -553,7 +553,7 @@ footer {
   margin: 1.25rem 0;
 }
 .highlight-box .hb-label {
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 800;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -568,7 +568,7 @@ footer {
   color: #fff;
   border-radius: 8px;
   padding: .2rem .65rem;
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 800;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -655,3 +655,86 @@ footer {
   border-color: #e5e7f0;
   cursor: default;
 }
+
+/* ---- UTILITY ---- */
+.hidden { display: none; }
+
+/* ---- RESPONSIVE 3-COLUMN GRID (home page "How simple is it?" section) ---- */
+.grid-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: .75rem;
+  margin-bottom: 1.25rem;
+}
+@media (max-width: 480px) { .grid-3col { grid-template-columns: 1fr; } }
+
+/* ---- ANIMATIONS ---- */
+@keyframes rcBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+
+/* ---- STEP WIZARD SYSTEM (shared across home page and all lesson pages) ---- */
+.home-step   { display: none; }
+.home-step.active  { display: block; }
+#home-steps  { display: none; }
+.lesson-step { display: none; }
+.lesson-step.active { display: block; }
+.step-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: .5rem; padding: 1rem 0 .5rem;
+}
+.step-pip {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--border); transition: background .2s;
+}
+.step-pip.done   { background: var(--green); }
+.step-pip.active { background: var(--grad-a, var(--brand)); }
+.step-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 1.5rem; flex-wrap: wrap; gap: .75rem;
+}
+.step-nav-solo { justify-content: flex-end; }
+.btn-next {
+  background: var(--grad-a, var(--brand)); color: #fff; font-weight: 700;
+  font-size: .95rem; padding: .7rem 1.8rem; border-radius: 30px;
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(79,110,247,.3); transition: transform .15s;
+}
+.btn-next:hover { transform: translateY(-2px); }
+.btn-back {
+  background: #fff; color: var(--grad-a, var(--brand)); font-weight: 700;
+  font-size: .95rem; padding: .7rem 1.8rem; border-radius: 30px;
+  border: 2px solid var(--grad-a, var(--brand)); cursor: pointer; transition: transform .15s;
+}
+.btn-back:hover { transform: translateY(-2px); }
+.step-label {
+  font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted);
+  text-align: center; margin-bottom: .25rem;
+}
+
+/* ---- MR. AI WIDGET ---- */
+.mr-ai-widget { position: fixed; bottom: 22px; right: 22px; z-index: 9999; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.mr-ai-toggle { background: linear-gradient(135deg, #4f6ef7, #5ea7e8); color: #fff; border: none; border-radius: 50px; padding: .7rem 1.3rem; font-size: .9rem; font-weight: 700; box-shadow: 0 6px 22px rgba(79,110,247,.38); cursor: pointer; transition: transform .15s, box-shadow .15s; white-space: nowrap; }
+.mr-ai-toggle:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(79,110,247,.45); }
+.mr-ai-panel { display: none; position: absolute; bottom: 58px; right: 0; width: 340px; max-width: calc(100vw - 44px); background: #fff; border: 1px solid #dde3f5; border-radius: 18px; box-shadow: 0 20px 60px rgba(30,40,90,.16); overflow: hidden; flex-direction: column; }
+.mr-ai-panel.open { display: flex; }
+.mr-ai-header { background: linear-gradient(135deg, #4f6ef7, #5ea7e8); color: #fff; padding: .8rem 1rem; display: flex; align-items: center; gap: .65rem; }
+.mr-ai-avatar { font-size: 1.5rem; line-height: 1; flex-shrink: 0; }
+.mr-ai-header-text { flex: 1; min-width: 0; }
+.mr-ai-name { font-weight: 700; font-size: .9rem; }
+.mr-ai-subtitle { font-size: .75rem; opacity: .88; }
+.mr-ai-close-btn { background: rgba(255,255,255,.22); border: none; color: #fff; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-size: .8rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.mr-ai-messages { padding: .85rem 1rem; max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: .55rem; }
+.mr-ai-bubble { padding: .6rem .85rem; border-radius: 14px; font-size: .86rem; line-height: 1.58; max-width: 88%; word-wrap: break-word; }
+.mr-ai-assistant { background: #eef1ff; color: #1e2860; border-bottom-left-radius: 4px; align-self: flex-start; }
+.mr-ai-user { background: #4f6ef7; color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+.mr-ai-thinking { background: #eef1ff; color: #8892b8; font-style: italic; align-self: flex-start; }
+.mr-ai-inputbar { display: flex; gap: .45rem; padding: .7rem .9rem; border-top: 1px solid #edf0fa; align-items: flex-end; background: #fafbff; }
+.mr-ai-textarea { flex: 1; border: 1px solid #cdd4ef; border-radius: 10px; padding: .5rem .7rem; font: inherit; font-size: .86rem; resize: none; line-height: 1.45; outline: none; transition: border-color .15s; background: #fff; color: #1e2860; }
+.mr-ai-textarea:focus { border-color: #4f6ef7; }
+.mr-ai-send-btn { background: #4f6ef7; color: #fff; border: none; border-radius: 10px; padding: .5rem .85rem; font-weight: 700; font-size: .83rem; cursor: pointer; white-space: nowrap; transition: background .15s; }
+.mr-ai-send-btn:hover:not(:disabled) { background: #3a58d6; }
+.mr-ai-send-btn:disabled { background: #b0badd; cursor: default; }
+@media (max-width: 420px) { .mr-ai-widget { left: 12px; right: 12px; bottom: 12px; } .mr-ai-panel { width: 100%; } }
