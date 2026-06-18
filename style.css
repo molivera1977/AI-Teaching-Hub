@@ -23,6 +23,8 @@
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
+  background-image: linear-gradient(160deg, #e8ecf9 0%, #dde3f5 45%, #e4dff5 100%);
+  background-attachment: fixed;
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
@@ -303,6 +305,7 @@ nav {
   background: var(--card);
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  border-top: 5px solid var(--grad-a, var(--brand));
   box-shadow: var(--shadow);
   padding: 2rem 2rem 1.75rem;
   margin-bottom: 1.5rem;
@@ -311,10 +314,15 @@ nav {
   font-family: 'Nunito', sans-serif;
   font-size: 1.25rem;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin: -2rem -2rem 1.25rem;
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
   gap: .5rem;
+  background: linear-gradient(to right, #f4f6ff, #f9faff);
+  border-bottom: 1px solid var(--border);
+  border-left: 5px solid var(--grad-a, var(--brand));
+  border-radius: calc(var(--radius) - 3px) calc(var(--radius) - 3px) 0 0;
 }
 .lesson-section h3 {
   font-size: 1rem;
@@ -337,11 +345,12 @@ nav {
 /* ---- CALLOUT BOXES ---- */
 .callout {
   border-radius: 10px;
-  padding: 1rem 1.2rem;
+  padding: 1.1rem 1.3rem;
   margin: 1rem 0;
   font-size: .9rem;
   line-height: 1.6;
-  border-left: 4px solid;
+  border-left: 5px solid;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
 }
 .callout.info  { background: #eef1ff; border-color: #4f6ef7; color: #1a2060; }
 .callout.tip   { background: #f0fdf4; border-color: #22c55e; color: #14532d; }
@@ -352,6 +361,7 @@ nav {
 .example-box {
   background: #f8f9ff;
   border: 1px solid #dde2ff;
+  border-left: 4px solid var(--grad-a, var(--brand));
   border-radius: 10px;
   padding: 1rem 1.2rem;
   margin: 1rem 0;
@@ -437,12 +447,12 @@ nav {
 }
 .steps li::before {
   content: counter(step);
-  background: var(--brand);
+  background: var(--grad-a, var(--brand));
   color: #fff;
   font-weight: 700;
   font-size: .78rem;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -450,6 +460,7 @@ nav {
   position: absolute;
   left: 0;
   top: .1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
 }
 
 /* ---- PROGRESS BAR ---- */
@@ -460,16 +471,18 @@ nav {
   background: var(--card);
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  border-left: 5px solid var(--grad-a, var(--brand));
   padding: 1rem 1.4rem;
   margin-bottom: 2rem;
   gap: 1rem;
   flex-wrap: wrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
 }
 .lesson-nav a {
   text-decoration: none;
   font-size: .85rem;
-  font-weight: 600;
-  color: var(--brand);
+  font-weight: 700;
+  color: var(--grad-a, var(--brand));
   display: flex;
   align-items: center;
   gap: .3rem;
@@ -477,14 +490,14 @@ nav {
 .lesson-nav a:hover { text-decoration: underline; }
 .lesson-nav .progress-dots {
   display: flex;
-  gap: .4rem;
+  gap: .5rem;
 }
 .dot {
-  width: 10px; height: 10px;
+  width: 12px; height: 12px;
   border-radius: 50%;
   background: var(--border);
 }
-.dot.active { background: var(--brand); }
+.dot.active { background: var(--grad-a, var(--brand)); box-shadow: 0 0 0 3px rgba(79,110,247,.2); }
 .dot.done   { background: var(--green); }
 
 /* ---- HOME INTRO ---- */
@@ -529,6 +542,69 @@ footer {
   padding: .2rem .7rem;
   font-size: .75rem;
   font-weight: 700;
+}
+
+/* ---- HIGHLIGHT BOX (featured callout with lesson color) ---- */
+.highlight-box {
+  background: linear-gradient(135deg, #f4f6ff, #eef1ff);
+  border: 2px solid var(--grad-a, var(--brand));
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
+}
+.highlight-box .hb-label {
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--grad-a, var(--brand));
+  margin-bottom: .5rem;
+}
+
+/* ---- SECTION CHIP (colored label badge) ---- */
+.section-chip {
+  display: inline-block;
+  background: var(--grad-a, var(--brand));
+  color: #fff;
+  border-radius: 8px;
+  padding: .2rem .65rem;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: .6rem;
+}
+
+/* ---- COLORED STEP INTRO (first p in a section) ---- */
+.section-intro {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  border-left: 4px solid var(--grad-a, var(--brand));
+  padding-left: .9rem;
+  margin-bottom: 1.1rem;
+  line-height: 1.65;
+}
+
+/* ---- TWO-COLUMN CONTENT GRID ---- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+@media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+/* ---- COLORED ICON CIRCLE ---- */
+.icon-circle {
+  width: 2.5rem; height: 2.5rem;
+  border-radius: 50%;
+  background: var(--grad-a, var(--brand));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,.18);
 }
 
 /* scrollbar */

@@ -76,8 +76,8 @@
       padding:.5rem 1.3rem; font-size:.92rem; font-weight:700; color:var(--muted);
       cursor:pointer; transition:all .15s; font-family:inherit;
     }
-    .os-tab.active { background:var(--brand); color:#fff; border-color:var(--brand); }
-    .os-tab:hover:not(.active) { border-color:var(--brand); color:var(--brand); }
+    .os-tab.active { background:var(--grad-a, var(--brand)); color:#fff; border-color:var(--grad-a, var(--brand)); }
+    .os-tab:hover:not(.active) { border-color:var(--grad-a, var(--brand)); color:var(--grad-a, var(--brand)); }
 
     /* ---- STEP VISUAL ---- */
     .step-visual {
@@ -86,7 +86,7 @@
       background:#f8f9ff; border-radius:12px; border:1px solid #e0e4ff;
     }
     .sv-num {
-      background:var(--brand); color:#fff; font-weight:800; font-size:1rem;
+      background:var(--grad-a, var(--brand)); color:#fff; font-weight:800; font-size:1rem;
       min-width:32px; height:32px; border-radius:50%;
       display:flex; align-items:center; justify-content:center; flex-shrink:0;
     }
@@ -133,23 +133,23 @@
       background: var(--border); transition: background .2s;
     }
     .step-pip.done { background: var(--green); }
-    .step-pip.active { background: var(--brand); }
+    .step-pip.active { background: var(--grad-a, var(--brand)); }
     .step-nav {
       display: flex; justify-content: space-between; align-items: center;
       margin-top: 1.5rem; flex-wrap: wrap; gap: .75rem;
     }
     .step-nav-solo { justify-content: flex-end; }
     .btn-next {
-      background: var(--brand); color: #fff; font-weight: 700;
+      background: var(--grad-a, var(--brand)); color: #fff; font-weight: 700;
       font-size: .95rem; padding: .7rem 1.8rem; border-radius: 30px;
       border: none; cursor: pointer;
       box-shadow: 0 4px 16px rgba(79,110,247,.3); transition: transform .15s;
     }
     .btn-next:hover { transform: translateY(-2px); }
     .btn-back {
-      background: #fff; color: var(--brand); font-weight: 700;
+      background: #fff; color: var(--grad-a, var(--brand)); font-weight: 700;
       font-size: .95rem; padding: .7rem 1.8rem; border-radius: 30px;
-      border: 2px solid var(--brand); cursor: pointer; transition: transform .15s;
+      border: 2px solid var(--grad-a, var(--brand)); cursor: pointer; transition: transform .15s;
     }
     .btn-back:hover { transform: translateY(-2px); }
     .step-label {
