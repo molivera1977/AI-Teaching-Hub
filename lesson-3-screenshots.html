@@ -715,6 +715,15 @@
             </div>
           </div>
 
+          <!-- THE SNIP: just question 1 -->
+          <div style="background:#fff;border:2px solid #e2e8f0;border-radius:14px;padding:1rem 1.1rem;margin-top:.75rem;">
+            <div style="font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#64748b;margin-bottom:.5rem;">✂️ Step 2 — The snip (what was actually sent to AI)</div>
+            <div style="text-align:center;">
+              <img src="images/example-snip-tiny.png" alt="Snip of just question 1 from the math test" style="max-width:320px;width:100%;border-radius:10px;border:1px solid #e2e8f0;box-shadow:0 2px 10px rgba(0,0,0,.08);">
+              <div style="font-size:.75rem;color:var(--muted);margin-top:.4rem;">Just question 1 — nothing else. The teacher drew a box around this one question and pasted it into AI.</div>
+            </div>
+          </div>
+
           <!-- AFTER: what AI produced — expandable -->
           <div style="background:#f8fafc;border:2px solid #cbd5e1;border-radius:14px;overflow:hidden;margin-top:.75rem;">
             <button onclick="this.nextElementSibling.classList.toggle('hidden');this.querySelector('.expand-chevron').textContent=this.nextElementSibling.classList.contains('hidden')?'▼':'▲';"
@@ -722,7 +731,7 @@
               <div style="display:flex;flex-direction:column;gap:.25rem;">
                 <div style="display:flex;align-items:center;gap:.5rem;">
                   <span style="font-size:1rem;">✨</span>
-                  <span style="font-size:.8rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#1e40af;">We typed this prompt — tap to see what AI made</span>
+                  <span style="font-size:.8rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#1e40af;">✨ Step 3 — We typed this prompt — tap to see what AI made</span>
                 </div>
                 <div style="font-size:.82rem;color:#475569;padding-left:1.6rem;font-style:italic;">"Make me 5 more questions exactly like question 1."</div>
               </div>
