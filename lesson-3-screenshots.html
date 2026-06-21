@@ -199,147 +199,6 @@
         <h2>🤯 The Secret Superpower: Showing Instead of Telling</h2>
         <p>You already know how to <em>describe</em> what you want in a prompt. But there's an even faster, more accurate method: <strong>show the AI a picture of it.</strong></p>
         <p>Claude, ChatGPT, Copilot, and Gemini can all read and understand images — including screenshots, photos of worksheets, and even pictures of handwritten notes.</p>
-        <div class="callout info">
-          <strong>📌 Real example from your classroom:</strong> Instead of spending three sentences trying to describe a specific question format, you snap a quick screenshot of a math test and type: <em>"Make me 5 more questions exactly like question 1."</em> The AI reads the format, the fractions, the answer choice layout — and generates brand-new questions in seconds.
-        </div>
-
-        <!-- Before/After expandable example -->
-        <div style="margin-top:1rem;">
-
-          <!-- BEFORE: the original test -->
-          <div style="background:#fff;border:2px solid #e2e8f0;border-radius:14px;padding:1rem 1.1rem;">
-            <div style="font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#64748b;margin-bottom:.5rem;">📄 Step 1 — The original test (screenshot)</div>
-            <div style="text-align:center;">
-              <img src="images/example-math-test.png" alt="Module 16 Math Test" style="max-width:100%;border-radius:10px;border:1px solid #e2e8f0;box-shadow:0 2px 10px rgba(0,0,0,.08);">
-              <div style="font-size:.75rem;color:var(--muted);margin-top:.4rem;">Module 16 • Form A — Grade 4 Math Test</div>
-            </div>
-          </div>
-
-          <!-- AFTER: what AI produced — expandable -->
-          <div style="background:#f8fafc;border:2px solid #cbd5e1;border-radius:14px;overflow:hidden;margin-top:.75rem;">
-            <button onclick="this.nextElementSibling.classList.toggle('hidden');this.querySelector('.expand-chevron').textContent=this.nextElementSibling.classList.contains('hidden')?'▼':'▲';"
-              style="width:100%;background:none;border:none;cursor:pointer;padding:.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between;font-family:inherit;gap:.5rem;text-align:left;">
-              <div style="display:flex;flex-direction:column;gap:.25rem;">
-                <div style="display:flex;align-items:center;gap:.5rem;">
-                  <span style="font-size:1rem;">✨</span>
-                  <span style="font-size:.8rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#1e40af;">We typed this prompt — tap to see what AI made</span>
-                </div>
-                <div style="font-size:.82rem;color:#475569;padding-left:1.6rem;font-style:italic;">"Make me 5 more questions exactly like question 1."</div>
-              </div>
-              <span class="expand-chevron" style="font-size:.85rem;color:#1e40af;font-weight:bold;flex-shrink:0;">▼</span>
-            </button>
-            <div class="hidden" style="padding:0 1.1rem 1rem;border-top:1px solid #e2e8f0;">
-              <p style="font-size:.82rem;color:#475569;margin:.75rem 0 .75rem;line-height:1.5;">The AI generated 6 brand-new questions in the exact same format — same wording, same layout, same difficulty. Ready to print.</p>
-
-              <!-- HTML rendered worksheet -->
-              <div style="background:#fff;border:1.5px solid #d1d5db;border-radius:10px;padding:1.1rem 1.25rem;font-family:Georgia,serif;font-size:.85rem;color:#1a1a1a;line-height:1.5;">
-                <div style="display:flex;gap:1.5rem;font-size:.75rem;margin-bottom:.5rem;flex-wrap:wrap;">
-                  <span>Name: <span style="border-bottom:1px solid #333;display:inline-block;width:120px;">&nbsp;</span></span>
-                  <span>Date: <span style="border-bottom:1px solid #333;display:inline-block;width:70px;">&nbsp;</span></span>
-                  <span>Score: ___/6</span>
-                </div>
-                <div style="text-align:center;font-weight:800;font-size:.95rem;font-family:sans-serif;margin-bottom:.35rem;">Multiplying Whole Numbers by Fractions</div>
-                <div style="font-size:.78rem;margin-bottom:.9rem;"><em><strong>Directions:</strong> Circle the letter of the correct answer for each problem.</em></div>
-
-                <!-- frac helper: inline flex column -->
-                <style>.ws-frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.82em;line-height:1.1;margin:0 1px;}.ws-frac span:first-child{border-bottom:1.5px solid currentColor;padding:0 3px;text-align:center;min-width:1em;}.ws-frac span:last-child{padding:0 3px;text-align:center;min-width:1em;}</style>
-
-                <!-- Q1 -->
-                <div style="margin-bottom:.85rem;">
-                  <div style="font-weight:700;margin-bottom:.3rem;">1.&nbsp; Which of these is the product of <strong>5 ×
-                    <span class="ws-frac"><span>2</span><span>5</span></span></strong> ?</div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
-                    <div><strong>(A)</strong> <span class="ws-frac"><span>2</span><span>25</span></span></div>
-                    <div><strong>(C)</strong> <span class="ws-frac"><span>10</span><span>25</span></span></div>
-                    <div><strong>(B)</strong> <span class="ws-frac"><span>2</span><span>10</span></span></div>
-                    <div><strong>(D)</strong> <span class="ws-frac"><span>10</span><span>5</span></span></div>
-                  </div>
-                </div>
-                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
-
-                <!-- Q2 -->
-                <div style="margin-bottom:.85rem;">
-                  <div style="font-weight:700;margin-bottom:.3rem;">2.&nbsp; Which of these is the product of <strong>3 ×
-                    <span class="ws-frac"><span>2</span><span>4</span></span></strong> ?</div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
-                    <div><strong>(A)</strong> <span class="ws-frac"><span>2</span><span>12</span></span></div>
-                    <div><strong>(C)</strong> <span class="ws-frac"><span>6</span><span>12</span></span></div>
-                    <div><strong>(B)</strong> <span class="ws-frac"><span>6</span><span>4</span></span></div>
-                    <div><strong>(D)</strong> <span class="ws-frac"><span>3</span><span>12</span></span></div>
-                  </div>
-                </div>
-                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
-
-                <!-- Q3 -->
-                <div style="margin-bottom:.85rem;">
-                  <div style="font-weight:700;margin-bottom:.3rem;">3.&nbsp; Which of these is the product of <strong>4 ×
-                    <span class="ws-frac"><span>3</span><span>8</span></span></strong> ?</div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
-                    <div><strong>(A)</strong> <span class="ws-frac"><span>4</span><span>8</span></span></div>
-                    <div><strong>(C)</strong> <span class="ws-frac"><span>4</span><span>32</span></span></div>
-                    <div><strong>(B)</strong> <span class="ws-frac"><span>12</span><span>32</span></span></div>
-                    <div><strong>(D)</strong> <span class="ws-frac"><span>12</span><span>8</span></span></div>
-                  </div>
-                </div>
-                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
-
-                <!-- Q4 -->
-                <div style="margin-bottom:.85rem;">
-                  <div style="font-weight:700;margin-bottom:.3rem;">4.&nbsp; Which of these is the product of <strong>6 ×
-                    <span class="ws-frac"><span>1</span><span>3</span></span></strong> ?</div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
-                    <div><strong>(A)</strong> <span class="ws-frac"><span>6</span><span>18</span></span></div>
-                    <div><strong>(C)</strong> <span class="ws-frac"><span>6</span><span>3</span></span></div>
-                    <div><strong>(B)</strong> <span class="ws-frac"><span>1</span><span>18</span></span></div>
-                    <div><strong>(D)</strong> <span class="ws-frac"><span>1</span><span>3</span></span></div>
-                  </div>
-                </div>
-                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
-
-                <!-- Q5 -->
-                <div style="margin-bottom:.85rem;">
-                  <div style="font-weight:700;margin-bottom:.3rem;">5.&nbsp; Which of these is the product of <strong>2 ×
-                    <span class="ws-frac"><span>5</span><span>6</span></span></strong> ?</div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
-                    <div><strong>(A)</strong> <span class="ws-frac"><span>5</span><span>12</span></span></div>
-                    <div><strong>(C)</strong> <span class="ws-frac"><span>10</span><span>12</span></span></div>
-                    <div><strong>(B)</strong> <span class="ws-frac"><span>10</span><span>6</span></span></div>
-                    <div><strong>(D)</strong> <span class="ws-frac"><span>2</span><span>6</span></span></div>
-                  </div>
-                </div>
-                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
-
-                <!-- Q6 -->
-                <div style="margin-bottom:.85rem;">
-                  <div style="font-weight:700;margin-bottom:.3rem;">6.&nbsp; Which of these is the product of <strong>7 ×
-                    <span class="ws-frac"><span>2</span><span>7</span></span></strong> ?</div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
-                    <div><strong>(A)</strong> <span class="ws-frac"><span>2</span><span>49</span></span></div>
-                    <div><strong>(C)</strong> <span class="ws-frac"><span>14</span><span>49</span></span></div>
-                    <div><strong>(B)</strong> <span class="ws-frac"><span>7</span><span>14</span></span></div>
-                    <div><strong>(D)</strong> <span class="ws-frac"><span>14</span><span>7</span></span></div>
-                  </div>
-                </div>
-                <div style="border-top:1px solid #e5e7eb;padding-top:.5rem;font-size:.75rem;color:#6b7280;">
-                  <strong>Answer Key:</strong> 1. D &nbsp; 2. B &nbsp; 3. D &nbsp; 4. C &nbsp; 5. B &nbsp; 6. D
-                </div>
-              </div>
-
-              <!-- Image version toggle -->
-              <div style="margin-top:.75rem;">
-                <button onclick="this.nextElementSibling.classList.toggle('hidden');this.textContent=this.nextElementSibling.classList.contains('hidden')?'📄 Also show as printable image ▼':'📄 Hide image ▲';"
-                  style="background:none;border:1.5px solid #cbd5e1;border-radius:8px;padding:.4rem .85rem;font-size:.75rem;font-weight:700;color:#475569;cursor:pointer;font-family:inherit;width:100%;text-align:center;">
-                  📄 Also show as printable image ▼
-                </button>
-                <div class="hidden" style="margin-top:.5rem;text-align:center;">
-                  <img loading="lazy" src="images/example-fractions-output.png" alt="AI-generated fraction questions printable" style="max-width:100%;border-radius:10px;border:1px solid #bbf7d0;box-shadow:0 2px 10px rgba(0,0,0,.06);">
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
       </div>
 
       <div class="step-nav step-nav-solo">
@@ -797,6 +656,153 @@
             <div style="font-size:1.6rem;margin-bottom:.4rem;">🌐</div>
             <div style="font-weight:800;color:#6b21a8;font-size:.9rem;margin-bottom:.3rem;">Website Style</div>
             <div style="font-size:.82rem;color:#7e22ce;line-height:1.5;">"Build a site that looks like this" — screenshot a review game or site you love and AI copies the style.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="lesson-section">
+        <h2>📌 See It in Action — A Real Classroom Example</h2>
+        <p>Here's what this looks like start to finish. A teacher snipped one question from a math test and typed a single sentence. Here's what happened:</p>
+
+        <div class="callout info">
+          <strong>📌 Real example from your classroom:</strong> Instead of spending three sentences trying to describe a specific question format, you snap a quick screenshot of a math test and type: <em>"Make me 5 more questions exactly like question 1."</em> The AI reads the format, the fractions, the answer choice layout — and generates brand-new questions in seconds.
+        </div>
+
+        <!-- Before/After expandable example -->
+        <div style="margin-top:1rem;">
+
+          <!-- BEFORE: the original test -->
+          <div style="background:#fff;border:2px solid #e2e8f0;border-radius:14px;padding:1rem 1.1rem;">
+            <div style="font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#64748b;margin-bottom:.5rem;">📄 Step 1 — The original test (screenshot)</div>
+            <div style="text-align:center;">
+              <img src="images/example-math-test.png" alt="Module 16 Math Test" style="max-width:100%;border-radius:10px;border:1px solid #e2e8f0;box-shadow:0 2px 10px rgba(0,0,0,.08);">
+              <div style="font-size:.75rem;color:var(--muted);margin-top:.4rem;">Module 16 • Form A — Grade 4 Math Test</div>
+            </div>
+          </div>
+
+          <!-- AFTER: what AI produced — expandable -->
+          <div style="background:#f8fafc;border:2px solid #cbd5e1;border-radius:14px;overflow:hidden;margin-top:.75rem;">
+            <button onclick="this.nextElementSibling.classList.toggle('hidden');this.querySelector('.expand-chevron').textContent=this.nextElementSibling.classList.contains('hidden')?'▼':'▲';"
+              style="width:100%;background:none;border:none;cursor:pointer;padding:.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between;font-family:inherit;gap:.5rem;text-align:left;">
+              <div style="display:flex;flex-direction:column;gap:.25rem;">
+                <div style="display:flex;align-items:center;gap:.5rem;">
+                  <span style="font-size:1rem;">✨</span>
+                  <span style="font-size:.8rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#1e40af;">We typed this prompt — tap to see what AI made</span>
+                </div>
+                <div style="font-size:.82rem;color:#475569;padding-left:1.6rem;font-style:italic;">"Make me 5 more questions exactly like question 1."</div>
+              </div>
+              <span class="expand-chevron" style="font-size:.85rem;color:#1e40af;font-weight:bold;flex-shrink:0;">▼</span>
+            </button>
+            <div class="hidden" style="padding:0 1.1rem 1rem;border-top:1px solid #e2e8f0;">
+              <p style="font-size:.82rem;color:#475569;margin:.75rem 0 .75rem;line-height:1.5;">The AI generated 6 brand-new questions in the exact same format — same wording, same layout, same difficulty. Ready to print.</p>
+
+              <!-- HTML rendered worksheet -->
+              <div style="background:#fff;border:1.5px solid #d1d5db;border-radius:10px;padding:1.1rem 1.25rem;font-family:Georgia,serif;font-size:.85rem;color:#1a1a1a;line-height:1.5;">
+                <div style="display:flex;gap:1.5rem;font-size:.75rem;margin-bottom:.5rem;flex-wrap:wrap;">
+                  <span>Name: <span style="border-bottom:1px solid #333;display:inline-block;width:120px;">&nbsp;</span></span>
+                  <span>Date: <span style="border-bottom:1px solid #333;display:inline-block;width:70px;">&nbsp;</span></span>
+                  <span>Score: ___/6</span>
+                </div>
+                <div style="text-align:center;font-weight:800;font-size:.95rem;font-family:sans-serif;margin-bottom:.35rem;">Multiplying Whole Numbers by Fractions</div>
+                <div style="font-size:.78rem;margin-bottom:.9rem;"><em><strong>Directions:</strong> Circle the letter of the correct answer for each problem.</em></div>
+
+                <!-- frac helper: inline flex column -->
+                <style>.ws-frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.82em;line-height:1.1;margin:0 1px;}.ws-frac span:first-child{border-bottom:1.5px solid currentColor;padding:0 3px;text-align:center;min-width:1em;}.ws-frac span:last-child{padding:0 3px;text-align:center;min-width:1em;}</style>
+
+                <!-- Q1 -->
+                <div style="margin-bottom:.85rem;">
+                  <div style="font-weight:700;margin-bottom:.3rem;">1.&nbsp; Which of these is the product of <strong>5 ×
+                    <span class="ws-frac"><span>2</span><span>5</span></span></strong> ?</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
+                    <div><strong>(A)</strong> <span class="ws-frac"><span>2</span><span>25</span></span></div>
+                    <div><strong>(C)</strong> <span class="ws-frac"><span>10</span><span>25</span></span></div>
+                    <div><strong>(B)</strong> <span class="ws-frac"><span>2</span><span>10</span></span></div>
+                    <div><strong>(D)</strong> <span class="ws-frac"><span>10</span><span>5</span></span></div>
+                  </div>
+                </div>
+                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
+
+                <!-- Q2 -->
+                <div style="margin-bottom:.85rem;">
+                  <div style="font-weight:700;margin-bottom:.3rem;">2.&nbsp; Which of these is the product of <strong>3 ×
+                    <span class="ws-frac"><span>2</span><span>4</span></span></strong> ?</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
+                    <div><strong>(A)</strong> <span class="ws-frac"><span>2</span><span>12</span></span></div>
+                    <div><strong>(C)</strong> <span class="ws-frac"><span>6</span><span>12</span></span></div>
+                    <div><strong>(B)</strong> <span class="ws-frac"><span>6</span><span>4</span></span></div>
+                    <div><strong>(D)</strong> <span class="ws-frac"><span>3</span><span>12</span></span></div>
+                  </div>
+                </div>
+                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
+
+                <!-- Q3 -->
+                <div style="margin-bottom:.85rem;">
+                  <div style="font-weight:700;margin-bottom:.3rem;">3.&nbsp; Which of these is the product of <strong>4 ×
+                    <span class="ws-frac"><span>3</span><span>8</span></span></strong> ?</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
+                    <div><strong>(A)</strong> <span class="ws-frac"><span>4</span><span>8</span></span></div>
+                    <div><strong>(C)</strong> <span class="ws-frac"><span>4</span><span>32</span></span></div>
+                    <div><strong>(B)</strong> <span class="ws-frac"><span>12</span><span>32</span></span></div>
+                    <div><strong>(D)</strong> <span class="ws-frac"><span>12</span><span>8</span></span></div>
+                  </div>
+                </div>
+                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
+
+                <!-- Q4 -->
+                <div style="margin-bottom:.85rem;">
+                  <div style="font-weight:700;margin-bottom:.3rem;">4.&nbsp; Which of these is the product of <strong>6 ×
+                    <span class="ws-frac"><span>1</span><span>3</span></span></strong> ?</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
+                    <div><strong>(A)</strong> <span class="ws-frac"><span>6</span><span>18</span></span></div>
+                    <div><strong>(C)</strong> <span class="ws-frac"><span>6</span><span>3</span></span></div>
+                    <div><strong>(B)</strong> <span class="ws-frac"><span>1</span><span>18</span></span></div>
+                    <div><strong>(D)</strong> <span class="ws-frac"><span>1</span><span>3</span></span></div>
+                  </div>
+                </div>
+                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
+
+                <!-- Q5 -->
+                <div style="margin-bottom:.85rem;">
+                  <div style="font-weight:700;margin-bottom:.3rem;">5.&nbsp; Which of these is the product of <strong>2 ×
+                    <span class="ws-frac"><span>5</span><span>6</span></span></strong> ?</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
+                    <div><strong>(A)</strong> <span class="ws-frac"><span>5</span><span>12</span></span></div>
+                    <div><strong>(C)</strong> <span class="ws-frac"><span>10</span><span>12</span></span></div>
+                    <div><strong>(B)</strong> <span class="ws-frac"><span>10</span><span>6</span></span></div>
+                    <div><strong>(D)</strong> <span class="ws-frac"><span>2</span><span>6</span></span></div>
+                  </div>
+                </div>
+                <div style="border-top:1px solid #e5e7eb;margin-bottom:.85rem;"></div>
+
+                <!-- Q6 -->
+                <div style="margin-bottom:.85rem;">
+                  <div style="font-weight:700;margin-bottom:.3rem;">6.&nbsp; Which of these is the product of <strong>7 ×
+                    <span class="ws-frac"><span>2</span><span>7</span></span></strong> ?</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.15rem .5rem;padding-left:.75rem;font-size:.85rem;">
+                    <div><strong>(A)</strong> <span class="ws-frac"><span>2</span><span>49</span></span></div>
+                    <div><strong>(C)</strong> <span class="ws-frac"><span>14</span><span>49</span></span></div>
+                    <div><strong>(B)</strong> <span class="ws-frac"><span>7</span><span>14</span></span></div>
+                    <div><strong>(D)</strong> <span class="ws-frac"><span>14</span><span>7</span></span></div>
+                  </div>
+                </div>
+                <div style="border-top:1px solid #e5e7eb;padding-top:.5rem;font-size:.75rem;color:#6b7280;">
+                  <strong>Answer Key:</strong> 1. D &nbsp; 2. B &nbsp; 3. D &nbsp; 4. C &nbsp; 5. B &nbsp; 6. D
+                </div>
+              </div>
+
+              <!-- Image version toggle -->
+              <div style="margin-top:.75rem;">
+                <button onclick="this.nextElementSibling.classList.toggle('hidden');this.textContent=this.nextElementSibling.classList.contains('hidden')?'📄 Also show as printable image ▼':'📄 Hide image ▲';"
+                  style="background:none;border:1.5px solid #cbd5e1;border-radius:8px;padding:.4rem .85rem;font-size:.75rem;font-weight:700;color:#475569;cursor:pointer;font-family:inherit;width:100%;text-align:center;">
+                  📄 Also show as printable image ▼
+                </button>
+                <div class="hidden" style="margin-top:.5rem;text-align:center;">
+                  <img loading="lazy" src="images/example-fractions-output.png" alt="AI-generated fraction questions printable" style="max-width:100%;border-radius:10px;border:1px solid #bbf7d0;box-shadow:0 2px 10px rgba(0,0,0,.06);">
+                </div>
+              </div>
+
+            </div>
           </div>
 
         </div>
