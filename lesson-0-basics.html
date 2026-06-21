@@ -645,7 +645,7 @@ function goToStep(n) {
 // Jump to a specific step via URL hash e.g. lesson-0-basics.html#step-3
 document.addEventListener('DOMContentLoaded', function () {
   var m = window.location.hash.match(/^#step-(\d+)$/);
-  if (m) goToStep(parseInt(m[1], 10));
+  if (m) setTimeout(function () { goToStep(parseInt(m[1], 10)); }, 120);
 });
 
 function checkPractice() {
