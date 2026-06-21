@@ -114,8 +114,8 @@
         <div style="background:#f0fdf4;border:1px solid #a8e8c6;border-radius:12px;padding:1rem 1.1rem;display:flex;gap:.75rem;align-items:flex-start;">
           <div style="background:#1a9e55;border-radius:10px;width:2.2rem;height:2.2rem;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📖</div>
           <div>
-            <div style="font-weight:800;font-size:.9rem;color:#14532d;margin-bottom:.2rem;">Reading Passages</div>
-            <div style="font-size:.82rem;color:#166534;line-height:1.45;">Any topic, any grade level, ready to hand out</div>
+            <div style="font-weight:800;font-size:.9rem;color:#14532d;margin-bottom:.2rem;">Reading Passages & Question Sets</div>
+            <div style="font-size:.82rem;color:#166534;line-height:1.45;">Any topic, any grade — with comprehension questions or targeted skill practice</div>
           </div>
         </div>
 
@@ -222,35 +222,64 @@
 
   <!-- ===== STEP 3 ===== -->
   <div class="lesson-step" id="step-3">
-    <div class="step-label">Step 3 of 9 — Writing Reading Passages</div>
+    <div class="step-label">Step 3 of 9 — Reading Passages &amp; Question Sets</div>
 
     <div class="lesson-section">
-      <h2>📖 Part 2 — Writing Reading Passages</h2>
-      <p>Need a text about a specific science or social studies topic? AI can write one matched to your exact grade level and length. This is one of the biggest time-savers for teachers.</p>
+      <h2>📖 Reading Passages &amp; Question Sets</h2>
+      <p>AI can write a passage on any topic at any grade level — and pair it with questions that target exactly the skill you're working on. Great for ELA, science, and social studies.</p>
       <ol style="font-size:.93rem;line-height:1.85;padding-left:1.4rem;margin:0 0 1rem;">
         <li>Pick a prompt below and left-click <strong>Copy</strong>.</li>
         <li>Open your AI tool in a new tab, right-click in the chat box, and choose <strong>Paste</strong>.</li>
         <li>Replace anything in <strong>[brackets]</strong> with your subject, grade, topic, or length.</li>
-        <li>Hit Enter — your passage is ready to copy into a Word doc or Google Doc.</li>
+        <li>Hit Enter — copy the result into a Word doc or Google Doc to print or share.</li>
       </ol>
+
+      <h3>📄 Passages</h3>
 
       <div class="prompt-card">
         <div class="pc-label">📋 Informational Passage &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
-        <code>Write an informational reading passage about [TOPIC] for [GRADE] students. The passage should be approximately [LENGTH] words. Use clear, engaging language appropriate for this grade level. Include a title and 3–5 comprehension questions at the end.</code>
+        <code>Write an informational reading passage about [TOPIC] for [GRADE] students. The passage should be approximately [LENGTH, e.g. 300] words. Use clear, engaging language appropriate for this grade level. Include a title.</code>
       </div>
 
       <div class="prompt-card">
         <div class="pc-label">📋 Narrative / Story &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
-        <code>Write a short fictional story for [GRADE] students that teaches the concept of [TOPIC/THEME]. The story should be about [LENGTH] words and include relatable characters. Add 3 discussion questions at the end.</code>
+        <code>Write a short fictional story for [GRADE] students that teaches the concept of [TOPIC/THEME]. The story should be about [LENGTH] words and include relatable characters and a clear resolution.</code>
       </div>
 
       <div class="prompt-card">
         <div class="pc-label">📋 Two-Sided Debate Passage &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
-        <code>Write a two-sided informational passage about [TOPIC] for [GRADE] students. Present one paragraph arguing for one side and one paragraph for the other side. Then add 2 questions asking students to choose a side and support it with evidence from the text.</code>
+        <code>Write a two-sided informational passage about [TOPIC] for [GRADE] students. Present one paragraph arguing for one side and one paragraph for the other. Use balanced, factual language — do not take a position.</code>
+      </div>
+
+      <h3>❓ Question Sets — add these after any passage</h3>
+
+      <div class="prompt-card">
+        <div class="pc-label">📋 Overall Comprehension Questions &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+        <code>Using the passage above, write 6 comprehension questions for [GRADE] students. Include a mix of: 2 literal questions (directly stated in the text), 2 inferential questions (requires reading between the lines), and 2 evaluative questions (opinion or judgment supported by evidence). Label each type.</code>
+      </div>
+
+      <div class="prompt-card">
+        <div class="pc-label">📋 Main Idea &amp; Supporting Details &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+        <code>Using the passage above, write 4 questions that focus specifically on main idea and supporting details. Include: 1 question asking students to identify the main idea, 2 questions asking them to identify a key supporting detail, and 1 question asking them to explain how a detail supports the main idea. Write for [GRADE] students.</code>
+      </div>
+
+      <div class="prompt-card">
+        <div class="pc-label">📋 Text Evidence Practice &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+        <code>Using the passage above, write 4 questions that require students to cite text evidence in their answers. Each question should include the instruction "Use evidence from the text to support your answer." Make the questions open-ended and appropriate for [GRADE] students.</code>
+      </div>
+
+      <div class="prompt-card">
+        <div class="pc-label">📋 Author's Purpose &amp; Point of View &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+        <code>Using the passage above, write 4 questions focused on author's purpose and point of view for [GRADE] students. Include questions about: why the author wrote this, what perspective they are writing from, word choices that reveal the author's attitude, and how a different point of view might change the passage.</code>
+      </div>
+
+      <div class="prompt-card">
+        <div class="pc-label">📋 Vocabulary in Context &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
+        <code>Using the passage above, identify 5 vocabulary words that are important for [GRADE] students to understand. For each word: quote the sentence it appears in, write a student-friendly definition, and write one question asking students to use context clues to figure out its meaning.</code>
       </div>
 
       <div class="callout tip">
-        <strong>✅ Pro tip — reading levels:</strong> You can ask AI to match a specific reading level. The simplest way: just say <em>"beginner," "on grade level,"</em> or <em>"advanced"</em> and AI will adjust automatically. If your school uses Lexile scores (a numbered system for measuring reading difficulty — for example, 600L is roughly 4th grade level and 970L is roughly 7th grade level), you can be even more precise: "Write this at approximately a 600L Lexile level." Either way works.
+        <strong>✅ Pro tip — reading levels:</strong> You can ask AI to match a specific reading level. Just say <em>"beginner," "on grade level,"</em> or <em>"advanced"</em> — or if your school uses Lexile scores, be precise: <em>"Write this at approximately a 600L Lexile level."</em> (600L ≈ 4th grade, 970L ≈ 7th grade.)
       </div>
     </div>
 
