@@ -103,6 +103,15 @@
     .share-card .s-icon { font-size: 1.8rem; flex-shrink: 0; }
     .share-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: .2rem; }
     .share-card p { font-size: .86rem; color: var(--muted); margin: 0; }
+    /* Share card color variants */
+    .share-card.sc-green  { border-left: 6px solid #22c55e; background: linear-gradient(to right, #f0fdf4 0%, var(--card) 80px); }
+    .share-card.sc-green  h3 { color: #15803d; }
+    .share-card.sc-blue   { border-left: 6px solid #3b82f6; background: linear-gradient(to right, #eff6ff 0%, var(--card) 80px); }
+    .share-card.sc-blue   h3 { color: #1d4ed8; }
+    .share-card.sc-purple { border-left: 6px solid #a855f7; background: linear-gradient(to right, #faf5ff 0%, var(--card) 80px); }
+    .share-card.sc-purple h3 { color: #7e22ce; }
+    .share-card.sc-orange { border-left: 6px solid #f97316; background: linear-gradient(to right, #fff7ed 0%, var(--card) 80px); }
+    .share-card.sc-orange h3 { color: #c2410c; }
 
   </style>
 </head>
@@ -420,7 +429,7 @@ Put everything in one HTML file.</code>
           <li>Now choose one of the options below to share it with students.</li>
         </ol>
 
-        <div class="share-card" style="flex-direction:column;gap:.75rem;">
+        <div class="share-card sc-green" style="flex-direction:column;gap:.75rem;">
           <div style="display:flex;align-items:center;gap:.75rem;">
             <div class="s-icon">📺</div>
             <h3 style="margin:0;">Option 1 — Project it on the Board <span style="font-weight:400;color:#666;font-size:.82rem;">(simplest — no sharing, no accounts)</span></h3>
@@ -435,7 +444,7 @@ Put everything in one HTML file.</code>
           </div>
         </div>
 
-        <div class="share-card" style="flex-direction:column;gap:.75rem;margin-top:.75rem;">
+        <div class="share-card sc-blue" style="flex-direction:column;gap:.75rem;margin-top:.75rem;">
           <div style="display:flex;align-items:center;gap:.75rem;">
             <div class="s-icon">📁</div>
             <h3 style="margin:0;">Option 2 — Google Drive <span style="font-weight:400;color:#666;font-size:.82rem;">(great for Google schools)</span></h3>
@@ -453,7 +462,7 @@ Put everything in one HTML file.</code>
           </div>
         </div>
 
-        <div class="share-card" style="flex-direction:column;gap:.75rem;margin-top:.75rem;">
+        <div class="share-card sc-purple" style="flex-direction:column;gap:.75rem;margin-top:.75rem;">
           <div style="display:flex;align-items:center;gap:.75rem;">
             <div class="s-icon">💼</div>
             <h3 style="margin:0;">Option 3 — Microsoft Teams <span style="font-weight:400;color:#666;font-size:.82rem;">(great for Microsoft schools)</span></h3>
@@ -471,7 +480,7 @@ Put everything in one HTML file.</code>
           </div>
         </div>
 
-        <div class="share-card" style="flex-direction:column;gap:.75rem;margin-top:.75rem;">
+        <div class="share-card sc-orange" style="flex-direction:column;gap:.75rem;margin-top:.75rem;">
           <div style="display:flex;align-items:center;gap:.75rem;">
             <div class="s-icon">🌐</div>
             <h3 style="margin:0;">Option 4 — Put it Online <span style="font-weight:400;color:#666;font-size:.82rem;">(permanent link, free — takes ~10 minutes to set up the first time)</span></h3>
