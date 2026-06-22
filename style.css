@@ -685,8 +685,10 @@ footer {
 }
 .step-pip {
   width: 10px; height: 10px; border-radius: 50%;
-  background: var(--border); transition: background .2s;
+  background: var(--border); transition: background .2s, transform .15s;
+  cursor: pointer;
 }
+.step-pip:hover { transform: scale(1.4); }
 .step-pip.done   { background: var(--green); }
 .step-pip.active { background: var(--grad-a, var(--brand)); }
 .step-nav {
