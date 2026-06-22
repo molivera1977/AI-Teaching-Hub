@@ -373,6 +373,13 @@ function goToStep(n) {
   const top = document.getElementById('lesson-steps').getBoundingClientRect().top + window.scrollY - navOffset;
   window.scrollTo({ top, behavior: 'smooth' });
 }
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.step-pip').forEach((p, i) => {
+    p.title = 'Jump to Step ' + (i + 1);
+    p.addEventListener('click', () => goToStep(i + 1));
+  });
+});
+
 
 function buildAndCopy() {
   const role     = document.getElementById('role').value.trim();
