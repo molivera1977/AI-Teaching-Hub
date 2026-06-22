@@ -459,8 +459,32 @@
           <div style="margin-left:2.3rem;display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.25rem;">
             <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:.6rem .8rem;font-size:.82rem;color:#166534;line-height:1.5;"><strong>Claude:</strong> The page appears in a panel on the right (called an <em>Artifact</em>). Left-click the <strong>Copy</strong> button at the top → choose <strong>Download as HTML</strong>.</div>
             <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:.6rem .8rem;font-size:.82rem;color:#166534;line-height:1.5;"><strong>ChatGPT:</strong> A download link appears in the chat — looks like a blue filename (<em>worksheet.html</em>). Left-click to download.</div>
-            <div style="background:#fff7ed;border:1px solid #fdba74;border-radius:8px;padding:.6rem .8rem;font-size:.82rem;color:#9a3412;line-height:1.5;"><strong>Gemini, Copilot, or Perplexity:</strong> You'll see code in the chat instead of a download link. Left-click <strong>Copy code</strong>, open Notepad (Windows) or TextEdit (Mac, set to plain text), paste, and save the file as <em>worksheet.html</em>.</div>
+            <div style="background:#fff7ed;border:1px solid #fdba74;border-radius:8px;padding:.6rem .8rem;font-size:.82rem;color:#9a3412;line-height:1.5;"><strong>Gemini, Copilot, or Perplexity:</strong> You'll see code in the chat instead of a download link — you'll need to save the file yourself (steps below).</div>
             <div style="background:#fff7ed;border:1px solid #fdba74;border-radius:8px;padding:.6rem .8rem;font-size:.82rem;color:#9a3412;line-height:1.5;"><strong>Tip:</strong> You can also ask any AI <em>"Can you give me a download link for that?"</em> — it works in ChatGPT and Claude, but Gemini, Copilot, and Perplexity may just give you the code again.</div>
+          </div>
+
+          <div style="margin-left:2.3rem;background:#fef3c7;border:1.5px solid #f59e0b;border-radius:10px;padding:.85rem 1rem;margin-bottom:.5rem;">
+            <div style="font-weight:800;font-size:.85rem;color:#7c2d12;margin-bottom:.4rem;">🛠️ When AI shows you code instead of a download link</div>
+            <div style="font-size:.82rem;color:#7c2d12;line-height:1.55;margin-bottom:.6rem;"><strong>You'll need to do this when using Gemini, Copilot, or Perplexity</strong> — those tools display the HTML in the chat but don't create a downloadable file for you. You can save it yourself in under 60 seconds:</div>
+            <ol style="font-size:.85rem;color:#7c2d12;line-height:1.65;padding-left:1.3rem;margin:0;">
+              <li>At the top of the code block in the chat, left-click the <strong>Copy code</strong> button (sometimes labeled <strong>📋</strong>). This copies the entire HTML to your clipboard.</li>
+              <li>Open a plain-text editor:
+                <ul style="margin:.2rem 0;padding-left:1.1rem;">
+                  <li><strong>Windows:</strong> press the Windows key, type <em>Notepad</em>, and hit Enter.</li>
+                  <li><strong>Mac:</strong> press <kbd>Cmd</kbd>+<kbd>Space</kbd>, type <em>TextEdit</em>, and hit Enter. Once it opens, go to <strong>Format → Make Plain Text</strong> (very important — rich text won't work).</li>
+                </ul>
+              </li>
+              <li>Left-click inside the empty document, then right-click and choose <strong>Paste</strong> (or press <kbd>Ctrl</kbd>+<kbd>V</kbd> / <kbd>Cmd</kbd>+<kbd>V</kbd>). You'll see a wall of HTML code appear — that's expected.</li>
+              <li>Save the file:
+                <ul style="margin:.2rem 0;padding-left:1.1rem;">
+                  <li>Press <kbd>Ctrl</kbd>+<kbd>S</kbd> (Windows) or <kbd>Cmd</kbd>+<kbd>S</kbd> (Mac).</li>
+                  <li>In the filename box, type a name ending in <strong>.html</strong> — for example, <em>worksheet.html</em>.</li>
+                  <li><strong>Windows Notepad:</strong> change "Save as type" to <strong>All Files</strong> so it doesn't add <em>.txt</em> on the end.</li>
+                  <li><strong>Mac TextEdit:</strong> uncheck <strong>"If no extension is provided, use .txt"</strong> in the save dialog.</li>
+                </ul>
+              </li>
+              <li>Choose where to save it (Desktop or Downloads works great) and left-click <strong>Save</strong>. Your file is ready — continue to Step 3 below.</li>
+            </ol>
           </div>
           <p style="margin:0;font-size:.92rem;line-height:1.7;color:#3b4160;"><span style="display:inline-flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;background:var(--brand);border-radius:50%;color:white;font-weight:700;font-size:.82rem;margin-right:.6rem;vertical-align:middle;flex-shrink:0;">3</span>Double-click the file — it opens automatically in your browser (Chrome, Safari, or Edge).</p>
           <p style="margin:0;font-size:.92rem;line-height:1.7;color:#3b4160;"><span style="display:inline-flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;background:var(--brand);border-radius:50%;color:white;font-weight:700;font-size:.82rem;margin-right:.6rem;vertical-align:middle;flex-shrink:0;">4</span>Press <kbd>Ctrl</kbd>+<kbd>P</kbd> (Windows) or <kbd>Cmd</kbd>+<kbd>P</kbd> (Mac) to open the print dialog.</p>
