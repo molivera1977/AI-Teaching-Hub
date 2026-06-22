@@ -57,6 +57,7 @@
     .prompt-card {
       background: #f8f9ff;
       border: 1px solid #dde2ff;
+      border-left: 5px solid var(--brand);
       border-radius: 10px;
       padding: 1rem 1.2rem;
       margin: .75rem 0;
@@ -70,6 +71,25 @@
       line-height:1.7; display:block; white-space:pre-wrap;
     }
     .copy-small { font-size:.72rem; font-weight:700; color:var(--brand); background:#eef1ff; border:none; border-radius:6px; padding:.2rem .55rem; cursor:pointer; }
+    /* Color variants */
+    .prompt-card.pc-green   { background:#f0fdf4; border-color:#bbf7d0; border-left-color:#22c55e; }
+    .prompt-card.pc-green   .pc-label, .prompt-card.pc-green   .copy-small { color:#15803d; }
+    .prompt-card.pc-green   .copy-small { background:#dcfce7; }
+    .prompt-card.pc-orange  { background:#fff7ed; border-color:#fed7aa; border-left-color:#f97316; }
+    .prompt-card.pc-orange  .pc-label, .prompt-card.pc-orange  .copy-small { color:#c2410c; }
+    .prompt-card.pc-orange  .copy-small { background:#ffedd5; }
+    .prompt-card.pc-blue    { background:#eff6ff; border-color:#bfdbfe; border-left-color:#3b82f6; }
+    .prompt-card.pc-blue    .pc-label, .prompt-card.pc-blue    .copy-small { color:#1d4ed8; }
+    .prompt-card.pc-blue    .copy-small { background:#dbeafe; }
+    .prompt-card.pc-pink    { background:#fdf2f8; border-color:#fbcfe8; border-left-color:#ec4899; }
+    .prompt-card.pc-pink    .pc-label, .prompt-card.pc-pink    .copy-small { color:#be185d; }
+    .prompt-card.pc-pink    .copy-small { background:#fce7f3; }
+    .prompt-card.pc-purple  { background:#faf5ff; border-color:#e9d5ff; border-left-color:#a855f7; }
+    .prompt-card.pc-purple  .pc-label, .prompt-card.pc-purple  .copy-small { color:#7e22ce; }
+    .prompt-card.pc-purple  .copy-small { background:#f3e8ff; }
+    .prompt-card.pc-teal    { background:#f0fdfa; border-color:#99f6e4; border-left-color:#14b8a6; }
+    .prompt-card.pc-teal    .pc-label, .prompt-card.pc-teal    .copy-small { color:#0f766e; }
+    .prompt-card.pc-teal    .copy-small { background:#ccfbf1; }
     .share-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -284,17 +304,17 @@
           <li>Hit <strong>Enter</strong>. AI will build the full website for you in seconds.</li>
         </ol>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-green">
           <div class="pc-label">Reading Review Site <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Build me a single-page reading review website for 4th grade students. Include a short summary of the story "Stone Fox" with 5 comprehension questions and a fun fact section at the bottom. Make it colorful and easy to read, with big text and a clean layout. Put everything in one HTML file.</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-blue">
           <div class="pc-label">Math Practice Site <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Build me a single-page math practice website for 3rd grade students reviewing multiplication facts from 1 to 10. Include 10 practice problems with a "Show Answer" button for each one, a motivational message at the top, and a colorful number chart at the bottom. Put everything in one HTML file.</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-pink">
           <div class="pc-label">Science Study Guide Site <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Build me a single-page science study guide website for 5th grade students about the water cycle. Include labeled sections for evaporation, condensation, precipitation, and collection. Add a simple diagram description, a vocabulary list with definitions, and 5 review questions at the bottom. Put everything in one HTML file.</code>
         </div>
@@ -323,7 +343,7 @@
           <li>When it's done, AI will give you an <strong>HTML file to download</strong> — or show you the code in the chat with a <strong>Copy code</strong> button. Either way, scroll down to the next section to save and share it with students.</li>
         </ol>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-purple">
           <div class="pc-label">Quiz Review Site <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Build a single-page quiz website for [GRADE] students reviewing [TOPIC].
 
@@ -339,7 +359,7 @@ Include:
 Put everything in one HTML file.</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-orange">
           <div class="pc-label">Vocabulary Flashcard Game <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Create a flashcard website for [GRADE] students studying [SUBJECT] vocabulary.
 
@@ -358,7 +378,7 @@ The site should:
 Put everything in one HTML file.</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-teal">
           <div class="pc-label">Class Portal / Homepage <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Build a class homepage for [YOUR NAME]'s [GRADE] class.
 
