@@ -774,6 +774,13 @@ document.addEventListener('DOMContentLoaded', () => {
     p.title = 'Jump to Step ' + (i + 1);
     p.addEventListener('click', () => goToStep(i + 1));
   });
+  const lessonUrls = ['lesson-1-prompting.html','lesson-2-assignments.html','lesson-3-screenshots.html','lesson-4-images.html','lesson-5-print-save.html','lesson-6-websites.html'];
+  document.querySelectorAll('.progress-dots .dot').forEach((d, i) => {
+    if (i < lessonUrls.length) {
+      d.title = 'Go to Lesson ' + (i + 1);
+      d.addEventListener('click', () => { window.location.href = lessonUrls[i]; });
+    }
+  });
 });
 
 </script>
