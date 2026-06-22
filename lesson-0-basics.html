@@ -654,6 +654,17 @@ document.addEventListener('DOMContentLoaded', () => {
       d.style.opacity = '0.35';
     }
   });
+  // Always start at Step 1 when a lesson page loads
+  if (typeof goToStep === 'function') {
+    document.querySelectorAll('.lesson-step').forEach(s => s.classList.remove('active'));
+    const first = document.getElementById('step-1');
+    if (first) first.classList.add('active');
+    document.querySelectorAll('.progress-dots .dot').forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i === 0) d.classList.add('active');
+    });
+    window.scrollTo(0, 0);
+  }
 });
 
 
