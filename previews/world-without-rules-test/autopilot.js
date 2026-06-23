@@ -159,18 +159,24 @@
     });
   }
 
-  /* ---- swap each section to a 10-question sample ---- */
+  /* ---- swap each section to a 10-question sample ----
+     startSession() renders Q1 (which starts a read-timer → answerCurrent
+     chain). We suppress that first chain, swap in the sample, then render
+     ONCE ourselves — otherwise two answer chains run in parallel and two
+     answers get selected per question. */
   function patchStartSession() {
     const orig = app.startSession.bind(app);
     app.startSession = function (section) {
-      orig(section);
+      const savedTimer = app.startReadTimer;
+      app.startReadTimer = function () {};   // suppress the chain from orig's render
+      try { orig(section); } finally { app.startReadTimer = savedTimer; }
       if (section === 'vocab' || section === 'comp' || section === 'cloze') {
         app.currentBank  = sampleBank(section);
         app.maxScore     = computeMaxScore(app.currentBank);
         app.currentIndex = 0;
         app.score        = 0;
-        app.renderQuestion();
       }
+      app.renderQuestion();                  // single chain on the sample
     };
   }
 
@@ -215,35 +221,64 @@
     return correct;
   }
 
+  /* Tap the question's 🔊 button and show the read-aloud feature:
+     attempt real audio (plays if the browser allows it) AND manually
+     walk-highlight each word so the highlighting is visible even when
+     autoplay audio is blocked. */
+  async function demoReadAloud() {
+    const sb = $('speak-q-btn');
+    const qtEl = $('question-text');
+    if (!sb || !qtEl) return;
+    await cursorToEl(sb, 800);
+    glow(sb, true); await wait(250); clickPulse(sb); glow(sb, false);
+    const words = Array.from(qtEl.querySelectorAll('.wrd'));
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(words.map(w => w.textContent).join(' ') || qtEl.textContent);
+      u.lang = 'en-US'; u.rate = 0.9;
+      window.speechSynthesis.speak(u);                 // best-effort audio
+    } catch (e) {}
+    sb.textContent = '⏹';
+    for (let i = 0; i < words.length; i++) {            // visible word-by-word highlight
+      words.forEach(w => w.classList.remove('hl'));
+      words[i].classList.add('hl');
+      try { words[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
+      await wait(200);
+    }
+    words.forEach(w => w.classList.remove('hl'));
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+    sb.textContent = '🔊';
+    await wait(450);
+  }
+
   async function answerCurrent() {
     const q = app.currentBank[app.currentIndex];
     if (!q) return;
     const picks = chooseAnswer(q);
     const btns = document.querySelectorAll('.answer-btn');
 
-    // 0) READ-ALOUD demo — on the first two questions, tap the 🔊 button
-    //    to show the text-to-speech feature, listen, then tap again to stop
+    // 0) READ-ALOUD demo — on the first two questions
     if (readAloudDemos < 2) {
       readAloudDemos++;
-      const sb = $('speak-q-btn');
-      if (sb) {
-        await cursorToEl(sb, 800);
-        glow(sb, true); await wait(280); clickPulse(sb); glow(sb, false);
-        sb.click();                       // → speakQuestion() (button shows ⏹, words highlight)
-        await wait(2800);                 // pause as if listening
-        if (sb.textContent === '⏹') sb.click();   // tap again to stop
-        try { window.speechSynthesis.cancel(); } catch (e) {}
-        await wait(500);
-      }
+      await demoReadAloud();
     }
 
-    // 1) SELECT — move to the chosen answer, highlight, click it
+    // 1) SELECT — clear any prior state, then move to the chosen answer,
+    //    highlight, and select exactly the pick(s)
+    btns.forEach(b => { b.classList.remove('selected'); glow(b, false); });
+    app.selectedIndices = new Set();
     const target = btns[picks[0]];
     await cursorToEl(target, 850);
     glow(target, true);
     await wait(300);
     clickPulse(target);
-    picks.forEach(i => { app.selectedIndices.add(i); if (btns[i]) btns[i].classList.add('selected'); });
+    const isMulti = Array.isArray(q.answer);
+    if (isMulti) {
+      picks.forEach(i => { app.selectedIndices.add(i); if (btns[i]) btns[i].classList.add('selected'); });
+    } else {
+      app.selectedIndices = new Set([picks[0]]);
+      if (btns[picks[0]]) btns[picks[0]].classList.add('selected');
+    }
     await wait(T.qSelect);
 
     // 2) SUBMIT — move to "That's My Answer!", highlight, click
