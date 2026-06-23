@@ -39,6 +39,35 @@
       overflow: hidden;
     }
     .possibility-card:hover { transform: translateY(-3px); }
+    .possibility-card.live-preview {
+      cursor: pointer;
+      border: 3px solid #fbbf24;
+      box-shadow: 0 6px 20px rgba(251,191,36,.35), 0 0 0 0 rgba(251,191,36,.5);
+      animation: preview-glow 2.4s ease-in-out infinite;
+    }
+    .possibility-card.live-preview:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 28px rgba(251,191,36,.5);
+      animation-play-state: paused;
+    }
+    .possibility-card.live-preview .preview-badge {
+      position: absolute;
+      top: .55rem;
+      right: .55rem;
+      background: #fbbf24;
+      color: #78350f;
+      font-size: .68rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      padding: .25rem .55rem;
+      border-radius: 999px;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    @keyframes preview-glow {
+      0%, 100% { box-shadow: 0 6px 20px rgba(251,191,36,.35), 0 0 0 0 rgba(251,191,36,.55); }
+      50%      { box-shadow: 0 8px 24px rgba(251,191,36,.5),  0 0 0 12px rgba(251,191,36,0); }
+    }
     .possibility-card .pc-img {
       width: 100%; height: 120px;
       object-fit: cover; object-position: center top;
@@ -214,14 +243,22 @@
 
       <div class="lesson-section">
         <h2>🏫 What Kinds of Sites Can Teachers Make?</h2>
-        <p>Real teachers are using AI right now to build sites like these — without any coding knowledge:</p>
+        <p>Real teachers are using AI right now to build sites like these — without any coding knowledge.</p>
+
+        <div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;border-radius:14px;padding:1rem 1.25rem;margin:1rem 0 1.25rem;display:flex;align-items:center;gap:.85rem;box-shadow:0 4px 14px rgba(245,158,11,.18);">
+          <div style="font-size:2rem;line-height:1;flex-shrink:0;animation:pulse-cta 1.8s ease-in-out infinite;">👇</div>
+          <div>
+            <div style="font-weight:900;color:#78350f;font-size:1rem;margin-bottom:.15rem;">Click any card with a 🔗 to see the real LIVE site teachers built with AI!</div>
+            <div style="font-size:.85rem;color:#92400e;">Tour through the actual classroom resources — opens in a new tab.</div>
+          </div>
+        </div>
 
         <div class="possibility-grid">
-          <div class="possibility-card pc-1"><img class="pc-img" src="images/site-quiz.png" alt="Reading Challenge site"><div class="pc-label-bar">📝 Story Unit Tests</div></div>
-          <div class="possibility-card pc-2"><img class="pc-img" src="images/site-flashcard.png" alt="Answer Architects site"><div class="pc-label-bar">📊 Math Review Sites</div></div>
+          <a href="https://mroteacher.com/A-World-Without-Rules-Test/" target="_blank" class="possibility-card pc-1 live-preview" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;"><span class="preview-badge">🔗 Live Preview</span><img class="pc-img" src="images/site-quiz.png" alt="Reading Challenge site"><div class="pc-label-bar">📝 Story Unit Tests</div></a>
+          <a href="https://mroteacher.com/math-module-16-test/" target="_blank" class="possibility-card pc-2 live-preview" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;"><span class="preview-badge">🔗 Live Preview</span><img class="pc-img" src="images/site-flashcard.png" alt="Answer Architects site"><div class="pc-label-bar">📊 Math Review Sites</div></a>
           <div class="possibility-card pc-3"><img class="pc-img" src="images/site-portal.png" alt="Class Portal"><div class="pc-label-bar">🏠 Class Portals</div></div>
           <div class="possibility-card pc-4"><img class="pc-img" src="images/site-vocab.png" alt="Vocabulary site"><div class="pc-label-bar">📖 Vocabulary Activities</div></div>
-          <div class="possibility-card pc-5"><img class="pc-img" src="images/site-studyguide.png" alt="Study guide site"><div class="pc-label-bar">🗺️ Study Guides</div></div>
+          <a href="https://mroteacher.com/SBAC-Reading-Review-Inferences-Set-2/" target="_blank" class="possibility-card pc-5 live-preview" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;"><span class="preview-badge">🔗 Live Preview</span><img class="pc-img" src="images/site-studyguide.png" alt="Study guide site"><div class="pc-label-bar">🗺️ Study Guides</div></a>
           <div class="possibility-card pc-6"><img class="pc-img" src="images/site-game.png" alt="Math Monsters game"><div class="pc-label-bar">🎮 Learning Games</div></div>
           <div class="possibility-card pc-7"><img class="pc-img" src="images/site-schedule.png" alt="Messenger site"><div class="pc-label-bar">💬 Student Communication</div></div>
           <div class="possibility-card pc-8"><img class="pc-img" src="images/site-links.png" alt="General Knowledge Hub"><div class="pc-label-bar">🔗 Resource Link Pages</div></div>
