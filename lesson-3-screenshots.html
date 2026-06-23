@@ -15,10 +15,13 @@
     .prompt-card {
       background: #f8f9ff;
       border: 1px solid #dde2ff;
+      border-left: 5px solid var(--brand);
       border-radius: 10px;
       padding: 1rem 1.2rem;
       margin: .75rem 0;
+      transition: transform .12s, box-shadow .12s;
     }
+    .prompt-card:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.06); }
     .prompt-card .pc-label {
       font-size:.7rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
       color:var(--brand); margin-bottom:.3rem; display:flex; justify-content:space-between; align-items:center;
@@ -28,6 +31,25 @@
       line-height:1.7; display:block; white-space:pre-wrap;
     }
     .copy-small { font-size:.72rem; font-weight:700; color:var(--brand); background:#eef1ff; border:none; border-radius:6px; padding:.2rem .55rem; cursor:pointer; }
+    /* Color variants */
+    .prompt-card.pc-green   { background:#f0fdf4; border-color:#bbf7d0; border-left-color:#22c55e; }
+    .prompt-card.pc-green   .pc-label, .prompt-card.pc-green   .copy-small { color:#15803d; }
+    .prompt-card.pc-green   .copy-small { background:#dcfce7; }
+    .prompt-card.pc-orange  { background:#fff7ed; border-color:#fed7aa; border-left-color:#f97316; }
+    .prompt-card.pc-orange  .pc-label, .prompt-card.pc-orange  .copy-small { color:#c2410c; }
+    .prompt-card.pc-orange  .copy-small { background:#ffedd5; }
+    .prompt-card.pc-blue    { background:#eff6ff; border-color:#bfdbfe; border-left-color:#3b82f6; }
+    .prompt-card.pc-blue    .pc-label, .prompt-card.pc-blue    .copy-small { color:#1d4ed8; }
+    .prompt-card.pc-blue    .copy-small { background:#dbeafe; }
+    .prompt-card.pc-pink    { background:#fdf2f8; border-color:#fbcfe8; border-left-color:#ec4899; }
+    .prompt-card.pc-pink    .pc-label, .prompt-card.pc-pink    .copy-small { color:#be185d; }
+    .prompt-card.pc-pink    .copy-small { background:#fce7f3; }
+    .prompt-card.pc-purple  { background:#faf5ff; border-color:#e9d5ff; border-left-color:#a855f7; }
+    .prompt-card.pc-purple  .pc-label, .prompt-card.pc-purple  .copy-small { color:#7e22ce; }
+    .prompt-card.pc-purple  .copy-small { background:#f3e8ff; }
+    .prompt-card.pc-teal    { background:#f0fdfa; border-color:#99f6e4; border-left-color:#14b8a6; }
+    .prompt-card.pc-teal    .pc-label, .prompt-card.pc-teal    .copy-small { color:#0f766e; }
+    .prompt-card.pc-teal    .copy-small { background:#ccfbf1; }
     .mock-screenshot {
       border: 2px dashed #c5c9ff;
       border-radius: 12px;
@@ -868,12 +890,12 @@
           <li>Replace anything in <strong>[brackets]</strong> with your specifics, then hit Enter.</li>
         </ol>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-green">
           <div class="pc-label">Copy a question format <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>I've attached a screenshot of a question I like. Please write 10 more questions about [TOPIC] for [GRADE] students using the exact same format — same question style, same number of answer choices, same labeling (A, B, C, D), and same overall structure.</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-blue">
           <div class="pc-label">Generate questions from a reading passage <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>I've attached a screenshot of a reading passage. Please:
 1. Write 5 multiple choice comprehension questions based on this text
@@ -881,17 +903,17 @@
 3. Identify 5 vocabulary words from the passage that [GRADE] students might find challenging and write student-friendly definitions for each</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-pink">
           <div class="pc-label">Recreate a rubric structure <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>I've attached a screenshot of a rubric I like. Please create a new rubric for [ASSIGNMENT TYPE] for [GRADE] students using the exact same table structure, scoring scale, and category format shown in the image. Replace the categories with ones appropriate for [ASSIGNMENT TYPE].</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-purple">
           <div class="pc-label">Match a worksheet layout <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>I've attached a screenshot of a worksheet I like. Please create a new worksheet about [TOPIC] for [GRADE] that uses the same general layout — same column structure, same section organization, and same type of activities — but with completely new content about [TOPIC].</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-orange">
           <div class="pc-label">Feedback on student work <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>I've attached a photo of a student's [essay / math work / graphic organizer]. This student is in [GRADE]. Please:
 1. Identify 2–3 specific strengths in their work
@@ -900,7 +922,7 @@
 Keep the feedback kind, specific, and actionable.</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-teal">
           <div class="pc-label">Explain a test question <button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>I've attached a screenshot of a test question. The correct answer is [ANSWER]. Please explain in simple terms why that answer is correct, why each wrong answer is incorrect, and what concept a student needs to understand to get this type of question right. Write the explanation for a [GRADE] student.</code>
         </div>
@@ -1030,17 +1052,17 @@ Keep the feedback kind, specific, and actionable.</code>
           <li>Hit Enter and review the result. Ask AI to adjust anything that doesn't fit your class.</li>
         </ol>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-green">
           <div class="pc-label">📋 Simplify for Struggling Readers &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Here is a [GRADE] assignment: [PASTE YOUR ASSIGNMENT]. Rewrite it at a lower reading level (approximately 2 grades below). Keep all the same content and questions, but use shorter sentences, simpler vocabulary, and add visual cues like bold key words.</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-blue">
           <div class="pc-label">📋 Extend for Advanced Students &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Here is a [GRADE] assignment: [PASTE YOUR ASSIGNMENT]. Create an extended version for advanced students. Add 2–3 higher-order thinking questions that require analysis, evaluation, or creative application of the concepts.</code>
         </div>
 
-        <div class="prompt-card">
+        <div class="prompt-card pc-pink">
           <div class="pc-label">📋 Adapt for English Learners &nbsp;<button class="copy-small" onclick="copyCard(this)">Copy</button></div>
           <code>Here is a [GRADE] assignment: [PASTE YOUR ASSIGNMENT]. Adapt it for English Language Learners. Simplify sentence structures, define key vocabulary words in parentheses, and add sentence frames or word banks where helpful.</code>
         </div>
