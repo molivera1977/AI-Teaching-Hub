@@ -13,7 +13,7 @@
     welcome: 2500, readAloud: 3000, directions: 6200,
     nameSelect: 1400, pinType: 1700, sectionStart: 1700,
     qRead: 1500, qSelect: 850, qFeedback: 1400, qSoak: 1200,
-    writtenType: 750, writtenSubmit: 1900, endLinger: 1600
+    writtenRead: 5200, writtenSubmit: 3000, endLinger: 1600
   };
 
   const $ = id => document.getElementById(id);
@@ -112,10 +112,16 @@
     await wait(900);
     for (const id of ['W1', 'W2']) {
       const ta = $('textarea-' + id);
-      if (ta) { ta.value = WRITTEN[id]; app._updateWordCount(id, ta); ta.dispatchEvent(new Event('input', { bubbles: true })); }
-      await wait(T.writtenType);
+      if (ta) {
+        ta.scrollIntoView({ behavior: 'smooth', block: 'center' });   // scroll prompt into view
+        await wait(700);
+        ta.value = WRITTEN[id]; app._updateWordCount(id, ta); ta.dispatchEvent(new Event('input', { bubbles: true }));
+        await wait(T.writtenRead);                                     // linger so viewers can read
+      }
     }
-    await wait(T.writtenSubmit);
+    await wait(600);
+    const submit = $('submit-written-btn');
+    if (submit) { submit.scrollIntoView({ behavior: 'smooth', block: 'center' }); await wait(700); }
     app.submitWrittenResponses();
     await wait(T.writtenSubmit);
     const panel = $('written-success-panel');

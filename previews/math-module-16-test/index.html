@@ -1332,6 +1332,6 @@ function startConfetti(){
 function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.s,0,Math.PI*2); ctx.fill(); p.y+=p.d; if(p.y>canvas.height)p.y=-10; }); animId=requestAnimationFrame(animate); }
 function stopConfetti(){ if(animId){cancelAnimationFrame(animId);animId=null;} ctx.clearRect(0,0,canvas.width,canvas.height); }
 </script>
-<script src="autopilot.js?v=3"></script>
+<script src="autopilot.js?v=6"></script>
 </body>
 </html>

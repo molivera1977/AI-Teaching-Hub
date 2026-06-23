@@ -23,12 +23,12 @@
     nameSelect:   1400,
     pinType:      1700,
     sectionStart: 1900,
-    qRead:        1800,   // "reading" pause per question
-    qSelect:      1000,
-    qConfirm:     1100,
+    qRead:        1400,   // "reading" pause per question
+    qSelect:      650,
+    qConfirm:     750,
     endScreen:    4200,   // linger on each end-screen (confetti)
-    writtenType:  750,    // pause between typed written answers
-    writtenSubmit:2000,
+    writtenRead:  5200,   // linger on each typed written answer so people can read
+    writtenSubmit:3000,
     finale:       1600
   };
 
@@ -72,6 +72,62 @@
     if (c) c.style.marginTop = '40px';
     $('demo-pause').onclick = () => setPaused(!_paused);
     $('demo-replay').onclick = () => { try { localStorage.clear(); } catch (e) {} location.reload(); };
+  }
+
+  /* ---- animated demo cursor (highlights select → submit → next) ---- */
+  let cursorEl, cursorInner;
+  function makeCursor() {
+    cursorEl = document.createElement('div');
+    cursorEl.id = 'demo-cursor';
+    cursorEl.style.cssText = 'position:fixed;left:0;top:0;z-index:99998;pointer-events:none;'
+      + 'transition:transform .9s cubic-bezier(.45,.05,.25,1),opacity .4s;will-change:transform;'
+      + 'transform:translate(' + Math.round(window.innerWidth / 2) + 'px,' + Math.round(window.innerHeight * 0.6) + 'px);';
+    cursorInner = document.createElement('div');
+    cursorInner.style.cssText = 'transition:transform .12s;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.45));';
+    cursorInner.innerHTML = '<svg width="26" height="30" viewBox="0 0 16 20">'
+      + '<path d="M1,1 L1,16 L5,12 L8,18.5 L10.2,17.4 L7.2,11.2 L13,11 Z" fill="#fff" stroke="#222" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+    cursorEl.appendChild(cursorInner);
+    document.body.appendChild(cursorEl);
+  }
+  function cursorTo(x, y, dur) {
+    if (!cursorEl) return wait(0);
+    cursorEl.style.opacity = '1';
+    cursorEl.style.transitionDuration = (dur / 1000) + 's,.4s';
+    cursorEl.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)';
+    return wait(dur);
+  }
+  function cursorToEl(el, dur) {
+    if (!el) return wait(0);
+    const r = el.getBoundingClientRect();
+    return cursorTo(r.left + r.width * 0.5, r.top + r.height * 0.5, dur || 850);
+  }
+  function glow(el, on) {
+    if (!el) return;
+    el.style.transition = 'box-shadow .2s,transform .2s';
+    el.style.boxShadow = on ? '0 0 0 3px #fff,0 0 16px 4px rgba(108,92,231,.75)' : '';
+    el.style.transform = on ? 'scale(1.04)' : '';
+  }
+  function clickPulse(el) {
+    if (cursorInner) { cursorInner.style.transform = 'scale(.75)'; setTimeout(() => { cursorInner.style.transform = ''; }, 150); }
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const rip = document.createElement('div');
+    rip.style.cssText = 'position:fixed;left:' + (r.left + r.width / 2) + 'px;top:' + (r.top + r.height / 2)
+      + 'px;width:14px;height:14px;border-radius:50%;background:rgba(108,92,231,.45);'
+      + 'transform:translate(-50%,-50%) scale(1);z-index:99997;pointer-events:none;transition:transform .55s ease-out,opacity .55s ease-out;';
+    document.body.appendChild(rip);
+    requestAnimationFrame(() => { rip.style.transform = 'translate(-50%,-50%) scale(7)'; rip.style.opacity = '0'; });
+    setTimeout(() => rip.remove(), 600);
+  }
+  /* move to a button, highlight it, click it (fires its real onclick) */
+  async function cursorClick(el, dur, hold) {
+    if (!el) return;
+    await cursorToEl(el, dur || 800);
+    glow(el, true);
+    await wait(hold || 320);
+    clickPulse(el);
+    glow(el, false);
+    if (typeof el.click === 'function') el.click();
   }
 
   /* ---- random sample of N questions, kept in original order ----
@@ -163,14 +219,39 @@
     if (!q) return;
     const picks = chooseAnswer(q);
     const btns = document.querySelectorAll('.answer-btn');
-    await wait(T.qSelect);
+
+    // 1) SELECT — move to the chosen answer, highlight, click it
+    const target = btns[picks[0]];
+    await cursorToEl(target, 850);
+    glow(target, true);
+    await wait(300);
+    clickPulse(target);
     picks.forEach(i => { app.selectedIndices.add(i); if (btns[i]) btns[i].classList.add('selected'); });
-    $('confirm-btn').classList.remove('hidden');
-    await wait(T.qConfirm);
+    await wait(T.qSelect);
+
+    // 2) SUBMIT — move to "That's My Answer!", highlight, click
+    const cb = $('confirm-btn');
+    cb.classList.remove('hidden');
+    await wait(250);
+    await cursorToEl(cb, 750);
+    glow(cb, true);
+    await wait(300);
+    clickPulse(cb);
+    glow(cb, false);
+    picks.forEach(i => { if (btns[i]) glow(btns[i], false); });
     app.confirmAnswer();
     await wait(T.qConfirm);
+
+    // 3) NEXT — move to the Next button, highlight, click
     const nb = $('next-btn');
-    if (nb && !nb.classList.contains('hidden')) app.nextQuestion();
+    if (nb && !nb.classList.contains('hidden')) {
+      await cursorToEl(nb, 750);
+      glow(nb, true);
+      await wait(300);
+      clickPulse(nb);
+      glow(nb, false);
+      app.nextQuestion();
+    }
   }
 
   /* ---- after each part's end-screen, linger then continue ---- */
@@ -186,10 +267,10 @@
         this.maxScore = total;                 // denominator = real question count
       }
       orig();                                  // end-screen + confetti if high score
-      setTimeout(() => {
+      setTimeout(async () => {
         const cb = $('continue-btn');
         const wrap = $('continue-btn-wrap');
-        if (cb && wrap && !wrap.classList.contains('hidden')) cb.click();
+        if (cb && wrap && !wrap.classList.contains('hidden')) await cursorClick(cb, 850, 350);
       }, T.endScreen);
     };
   }
@@ -214,21 +295,30 @@
     for (const id of ['W1', 'W2', 'W3']) {
       const ta = $('textarea-' + id);
       if (ta) {
+        ta.scrollIntoView({ behavior: 'smooth', block: 'center' });  // scroll the prompt into view
+        await wait(700);
+        await cursorToEl(ta, 800);              // cursor moves to each prompt
+        glow(ta, true);
         ta.focus();
         ta.value = SAMPLE_WRITTEN[id];
         app._updateWordCount(id, ta);
         ta.dispatchEvent(new Event('input', { bubbles: true }));
+        await wait(T.writtenRead);              // linger so viewers can read the answer
+        glow(ta, false);
       }
-      await wait(T.writtenType);
     }
-    await wait(T.writtenSubmit);
-    app.submitWrittenResponses();                 // shows success panel
+    await wait(600);
+    const submit = $('submit-written-btn');
+    if (submit) { submit.scrollIntoView({ behavior: 'smooth', block: 'center' }); await wait(700); }
+    await cursorClick(submit, 850, 350);        // → submitWrittenResponses
     await wait(T.writtenSubmit);
     // success panel "Continue to Cloze →"
     const panel = $('written-success-panel');
     if (panel && !panel.classList.contains('hidden')) {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      await wait(600);
       const btn = panel.querySelector('button');
-      if (btn) btn.click();
+      await cursorClick(btn, 850, 350);
     }
   }
 
@@ -243,19 +333,39 @@
   /* ---- the movie ---- */
   async function run() {
     try { localStorage.removeItem('wwrt_session_v1'); } catch (e) {}
+    makeCursor();
     await wait(T.welcome);   app.showReadAloudIntro();
     await wait(T.readAloud); app.showDirections();
     await wait(T.directions); app.showLogin();
     await wait(600);
-    $('name-select').value = 'Mr. O (Teacher)';
+
+    // LOGIN — cursor picks "Mr. O", types the PIN, clicks Sign In
+    const sel = $('name-select');
+    await cursorToEl(sel, 900);
+    glow(sel, true); await wait(350);
+    sel.value = 'Mr. O (Teacher)';
     app.onNameSelect();
+    glow(sel, false);
     await wait(T.nameSelect);
-    const pin = $('student-pin'); pin.value = '';
-    for (const ch of '1234') { pin.value += ch; await wait(120); }
+
+    const pin = $('student-pin');
+    await cursorToEl(pin, 750);
+    glow(pin, true);
+    pin.value = '';
+    for (const ch of '1234') { pin.value += ch; await wait(140); }
+    glow(pin, false);
     await wait(T.pinType);
-    app.attemptLogin();
+
+    await cursorClick(document.querySelector('.sign-in-btn'), 800, 350);  // → attemptLogin
     await wait(T.sectionStart);
-    app.startNextSection();   // → vocab; everything else auto-chains
+
+    // START — cursor clicks the "Start" button for the first section
+    const startBtn = $('btn-start-next');
+    if (startBtn && !startBtn.classList.contains('hidden')) {
+      await cursorClick(startBtn, 850, 350);          // → startNextSection
+    } else {
+      app.startNextSection();
+    }
   }
 
   function boot() {
