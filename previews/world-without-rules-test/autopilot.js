@@ -177,6 +177,15 @@
   function patchFinish() {
     const orig = app._finishSession.bind(app);
     app._finishSession = function () {
+      // Score out of the ORIGINAL number of questions (e.g. 24), not the
+      // 10-question sample or the raw point count. Comprehension has
+      // multi-answer items worth >1 point, which produced "11 / 10".
+      const sampleMax = this.maxScore || (this.currentBank ? this.currentBank.length : 0);
+      const total = this._previewTotal || sampleMax;
+      if (sampleMax > 0 && total > 0) {
+        this.score = Math.min(total, Math.round((this.score / sampleMax) * total));
+        this.maxScore = total;                 // denominator = real question count
+      }
       orig();                                  // end-screen + confetti if high score
       setTimeout(() => {
         const cb = $('continue-btn');
