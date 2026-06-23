@@ -63,7 +63,7 @@
   function addBanner() {
     const b = document.createElement('div');
     b.id = 'demo-banner';
-    b.innerHTML = '👀 <strong>PREVIEW</strong> — auto-playing a sample. Showing 10 questions per part. '
+    b.innerHTML = '👀 <strong>PREVIEW</strong> — auto-playing a quick sample of each part. '
       + '<span id="demo-pause" style="display:inline-block;background:rgba(255,255,255,.22);border-radius:6px;padding:2px 10px;cursor:pointer;margin-left:8px;font-weight:700;">⏸ Pause</span>'
       + '<span id="demo-replay" style="text-decoration:underline;cursor:pointer;margin-left:10px;">↻ Replay</span>';
     b.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:linear-gradient(90deg,#6c5ce7,#e056a0);color:#fff;text-align:center;font:600 13px/1.3 system-ui,sans-serif;padding:9px 12px;box-shadow:0 2px 10px rgba(0,0,0,.25);';
@@ -74,19 +74,32 @@
     $('demo-replay').onclick = () => { try { localStorage.clear(); } catch (e) {} location.reload(); };
   }
 
-  /* ---- random sample of N questions, kept in original order ---- */
+  /* ---- random sample of N questions, kept in original order ----
+     Always include the first and last question so the badge reads as a
+     genuine skim across the whole test (e.g. "Question 1 of 24" …
+     "Question 24 of 24"). Each kept question carries its ORIGINAL number
+     so viewers see it's sampled from the full bank, not a 10-question test. */
   function sampleBank(section) {
     const raw = section === 'vocab' ? window.VOCAB_BANK
               : section === 'comp'  ? window.COMP_BANK
               :                       window.CLOZE_BANK;
-    const idx = raw.map((_, i) => i);
-    // Fisher–Yates partial shuffle
-    for (let i = idx.length - 1; i > 0; i--) {
+    const n = raw.length;
+    app._previewTotal = n;                       // real total shown on the badge
+    const want = Math.min(SAMPLE, n);
+    const middle = [];
+    for (let i = 1; i < n - 1; i++) middle.push(i);
+    for (let i = middle.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [idx[i], idx[j]] = [idx[j], idx[i]];
+      [middle[i], middle[j]] = [middle[j], middle[i]];
     }
-    const pick = idx.slice(0, Math.min(SAMPLE, raw.length)).sort((a, b) => a - b);
-    return pick.map(i => raw[i]);  // original choice order → answer index stays valid
+    const chosen = new Set([0, n - 1]);          // always first + last
+    for (let k = 0; chosen.size < want && k < middle.length; k++) chosen.add(middle[k]);
+    const idxs = [...chosen].sort((a, b) => a - b);
+    return idxs.map(i => {
+      const q = Object.assign({}, raw[i]);       // clone so the real bank isn't mutated
+      q._previewNum = i + 1;                      // original 1-based number
+      return q;
+    });
   }
 
   /* ---- swap each section to a 10-question sample ---- */
@@ -105,6 +118,21 @@
   }
 
   /* ---- fast read-lock + auto-answer correctly ---- */
+  /* show which part (Vocabulary / Comprehension / Cloze) on the quiz badge */
+  function patchSectionLabel() {
+    const orig = app.renderQuestion.bind(app);
+    app.renderQuestion = function () {
+      orig();
+      const pt = $('progress-text');
+      if (!pt) return;
+      const label = (typeof SECTION_LABELS !== 'undefined' && SECTION_LABELS[app.currentSection]) || '';
+      const q = app.currentBank && app.currentBank[app.currentIndex];
+      const num = (q && q._previewNum) ? q._previewNum : (app.currentIndex + 1);
+      const total = app._previewTotal || (app.currentBank ? app.currentBank.length : '');
+      pt.textContent = (label ? label + ' • ' : '') + 'Question ' + num + ' of ' + total;
+    };
+  }
+
   function patchReadTimer() {
     app.startReadTimer = function () {
       const bar = $('reading-timer-bar');
@@ -227,6 +255,7 @@
     blockNetwork();
     addBanner();
     patchStartSession();
+    patchSectionLabel();
     patchReadTimer();
     patchFinish();
     patchWritten();
