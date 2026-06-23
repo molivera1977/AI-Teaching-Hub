@@ -52,6 +52,50 @@
     document.getElementById('demo-replay').onclick = () => { try { localStorage.clear(); } catch (e) {} location.reload(); };
   }
 
+  /* ---- animated demo cursor (so viewers see the menu choices) ---- */
+  let cursorEl, cursorInner;
+  function makeCursor() {
+    cursorEl = document.createElement('div');
+    cursorEl.id = 'demo-cursor';
+    cursorEl.style.cssText = 'position:fixed;left:0;top:0;z-index:99998;pointer-events:none;'
+      + 'transition:transform .9s cubic-bezier(.45,.05,.25,1),opacity .4s;will-change:transform;'
+      + 'transform:translate(' + Math.round(window.innerWidth / 2) + 'px,' + Math.round(window.innerHeight * 0.62) + 'px);';
+    cursorInner = document.createElement('div');
+    cursorInner.style.cssText = 'transition:transform .12s;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.45));';
+    cursorInner.innerHTML = '<svg width="26" height="30" viewBox="0 0 16 20">'
+      + '<path d="M1,1 L1,16 L5,12 L8,18.5 L10.2,17.4 L7.2,11.2 L13,11 Z" fill="#fff" stroke="#222" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+    cursorEl.appendChild(cursorInner);
+    document.body.appendChild(cursorEl);
+  }
+  function cursorTo(x, y, dur) {
+    if (!cursorEl) return wait(0);
+    cursorEl.style.transitionDuration = (dur / 1000) + 's,.4s';
+    cursorEl.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)';
+    return wait(dur);
+  }
+  function cursorToEl(el, dur) {
+    const r = el.getBoundingClientRect();
+    return cursorTo(r.left + r.width * 0.5, r.top + r.height * 0.45, dur || 900);
+  }
+  function glow(el, on) {
+    el.style.transition = 'box-shadow .2s,transform .2s';
+    el.style.boxShadow = on ? '0 0 0 3px #fff,0 0 16px 4px rgba(108,92,231,.75)' : '';
+    el.style.transform = on ? 'scale(1.05)' : '';
+    if (on) el.style.position = el.style.position || 'relative';
+  }
+  function clickPulse(el) {
+    if (cursorInner) { cursorInner.style.transform = 'scale(.75)'; setTimeout(() => { cursorInner.style.transform = ''; }, 150); }
+    const r = el.getBoundingClientRect();
+    const rip = document.createElement('div');
+    rip.style.cssText = 'position:fixed;left:' + (r.left + r.width / 2) + 'px;top:' + (r.top + r.height / 2)
+      + 'px;width:14px;height:14px;border-radius:50%;background:rgba(108,92,231,.45);'
+      + 'transform:translate(-50%,-50%) scale(1);z-index:99997;pointer-events:none;transition:transform .55s ease-out,opacity .55s ease-out;';
+    document.body.appendChild(rip);
+    requestAnimationFrame(() => { rip.style.transform = 'translate(-50%,-50%) scale(7)'; rip.style.opacity = '0'; });
+    setTimeout(() => rip.remove(), 600);
+  }
+  function hideCursor() { if (cursorEl) cursorEl.style.opacity = '0'; }
+
   /* answer one fact — ~20% of the time miss once, then correct */
   async function answerOne() {
     const correct = state.answer;
@@ -69,9 +113,38 @@
   }
 
   async function run() {
-    await wait(T.welcome);
-    initSelection('multiplication');     // → selection screen
+    makeCursor();
+    await wait(T.welcome);               // welcome screen (Multiplication / Division)
+
+    // 1) pick the Multiplication mode so viewers see the two entry choices
+    const multCard = document.querySelector('.mode-card.mult');
+    if (multCard) {
+      await cursorToEl(multCard, 1100);
+      glow(multCard, true); await wait(650);
+      clickPulse(multCard); glow(multCard, false); await wait(250);
+    }
+    initSelection('multiplication');     // → level-selection screen
     await wait(T.modePause);
+
+    // 2) drift slowly across the level choices so the menu is clear
+    const tour = [
+      document.querySelector('#mixed-grid .mixed-btn'),          // "Mixed 2-4"
+      document.querySelectorAll('#number-grid .num-btn')[2],     // an individual number
+      document.querySelectorAll('#number-grid .num-btn')[6]      // another number
+    ].filter(Boolean);
+    for (const el of tour) {
+      await cursorToEl(el, 850);
+      glow(el, true); await wait(600); glow(el, false);
+    }
+
+    // 3) land on "Mixed All (2-12)" and click it
+    const allBtn = document.querySelector('.mixed-btn.mixed-all') || document.querySelector('#mixed-grid .mixed-btn');
+    if (allBtn) {
+      await cursorToEl(allBtn, 950);
+      glow(allBtn, true); await wait(650);
+      clickPulse(allBtn); glow(allBtn, false); await wait(250);
+    }
+    hideCursor();                        // answering is auto-typed; tuck the cursor away
     startPractice(2, 12);                // Mixed All multiplication; score reset to 0
     await wait(T.levelPause);
 
