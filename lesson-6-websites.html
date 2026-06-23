@@ -715,6 +715,35 @@ Put everything in one HTML file.</textarea>
         </div>
       </div>
 
+      <!-- 🏁 FINAL CELEBRATION — for teachers who finished even the optional bonus -->
+      <div style="text-align:center;padding:3.5rem 1.5rem 3rem;background:linear-gradient(135deg,#fef3c7,#fde68a,#fbbf24,#fed7aa);border:3px solid #f59e0b;border-radius:22px;margin:3rem 0 1.5rem;box-shadow:0 10px 40px rgba(245,158,11,.3);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:1rem;left:1rem;font-size:2rem;opacity:.5;">✨</div>
+        <div style="position:absolute;top:1rem;right:1rem;font-size:2rem;opacity:.5;">✨</div>
+        <div style="position:absolute;bottom:1rem;left:1rem;font-size:2rem;opacity:.5;">⭐</div>
+        <div style="position:absolute;bottom:1rem;right:1rem;font-size:2rem;opacity:.5;">⭐</div>
+        <div style="font-size:5rem;line-height:1;margin-bottom:.3rem;">🏁</div>
+        <div style="font-size:2rem;line-height:1;margin-bottom:.5rem;">🎉 🏆 🎊 🥇 🎯 🚀</div>
+        <h2 style="margin:0 0 .5rem;font-size:2.5rem;color:#78350f;font-family:'Nunito',sans-serif;font-weight:900;line-height:1.1;">Now you've truly seen it all!</h2>
+        <p style="margin:.5rem auto 0;max-width:600px;color:#7c2d12;font-size:1.1rem;font-weight:700;line-height:1.55;">You explored every lesson <em>and</em> the optional bonus. You're not just ready to use AI in your classroom — you understand the full picture, from quick wins to the cutting edge.</p>
+
+        <div style="background:rgba(255,255,255,.7);border:2px solid #f59e0b;border-radius:14px;padding:1.1rem 1.3rem;margin:1.5rem auto 0;max-width:560px;">
+          <p style="margin:0 0 .5rem;font-size:1rem;color:#78350f;font-weight:800;">🌟 You're now part of a special group of teachers who:</p>
+          <ul style="font-size:.9rem;color:#7c2d12;margin:.4rem 0 0;padding-left:1.2rem;line-height:1.7;text-align:left;">
+            <li>Know how to talk to AI like a power user</li>
+            <li>Can create assignments, images, and full websites with confidence</li>
+            <li>Understand which AI tool to reach for in any situation</li>
+            <li>Know what's coming next in AI for education</li>
+          </ul>
+        </div>
+
+        <p style="margin:1.75rem auto 0;max-width:480px;color:#78350f;font-size:1.05rem;font-weight:800;font-style:italic;">Now go build something amazing for your students. 🚀</p>
+      </div>
+
+      <div style="text-align:center;margin:1.5rem 0 1rem;">
+        <a href="index.html" style="display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;border-radius:12px;padding:.85rem 2rem;font-size:1rem;font-weight:800;text-decoration:none;margin:.25rem;box-shadow:0 4px 16px rgba(245,158,11,.4);">🏠 Back to Home</a>
+        <a href="lesson-1-prompting.html" style="display:inline-block;background:#fff;color:#78350f;border:2px solid #f59e0b;border-radius:12px;padding:.7rem 1.5rem;font-size:.95rem;font-weight:700;text-decoration:none;margin:.25rem;">🔄 Start Again with Lesson 1</a>
+      </div>
+
       <div class="step-nav">
         <button class="btn-back" onclick="goToStep(7)">← Back</button>
         <a href="index.html" class="btn-next" style="text-decoration:none;">🏠 Back to Home</a>
@@ -747,7 +776,7 @@ function goToStep(n) {
   const navOffset = nav && window.getComputedStyle(nav).position === 'sticky' ? nav.offsetHeight + 16 : 16;
   const top = document.getElementById('lesson-steps').getBoundingClientRect().top + window.scrollY - navOffset;
   window.scrollTo({ top, behavior: 'smooth' });
-  if (n === 7) startConfetti(); else stopConfetti();
+  if (n === 7 || n === 8) startConfetti(); else stopConfetti();
 }
 document.addEventListener('DOMContentLoaded', () => {
   const stepCount = document.querySelectorAll('.lesson-step').length;
