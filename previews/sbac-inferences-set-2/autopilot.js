@@ -14,9 +14,9 @@
   'use strict';
 
   const T = {
-    cover: 1600, name: 1500, startPause: 1100,
-    passageRead: 1300, perQuestion: 560, betweenPart: 480,
-    passageGap: 900, finale: 1200
+    cover: 2000, name: 1900, startPause: 1400,
+    passageRead: 2200, perQuestion: 950, betweenPart: 800,
+    passageGap: 1300, finale: 1600
   };
   /* ---- pause / resume control ---- */
   let _paused = false;

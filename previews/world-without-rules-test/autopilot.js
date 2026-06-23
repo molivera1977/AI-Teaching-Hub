@@ -17,19 +17,19 @@
   const SAMPLE = 10;   // questions shown per multiple-choice part
 
   const T = {
-    welcome:      2200,
-    readAloud:    2600,
-    directions:   5200,
-    nameSelect:   1000,
-    pinType:      1200,
-    sectionStart: 1500,
-    qRead:        1000,   // "reading" pause per question
-    qSelect:      600,
-    qConfirm:     700,
-    endScreen:    3600,   // linger on each end-screen (confetti)
-    writtenType:  450,    // pause between typed written answers
-    writtenSubmit:1600,
-    finale:       1200
+    welcome:      2600,
+    readAloud:    3200,
+    directions:   6500,
+    nameSelect:   1400,
+    pinType:      1700,
+    sectionStart: 1900,
+    qRead:        1800,   // "reading" pause per question
+    qSelect:      1000,
+    qConfirm:     1100,
+    endScreen:    4200,   // linger on each end-screen (confetti)
+    writtenType:  750,    // pause between typed written answers
+    writtenSubmit:2000,
+    finale:       1600
   };
 
   const $ = id => document.getElementById(id);

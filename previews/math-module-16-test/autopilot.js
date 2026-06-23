@@ -10,10 +10,10 @@
   'use strict';
 
   const T = {
-    welcome: 2000, readAloud: 2400, directions: 5000,
-    nameSelect: 1000, pinType: 1200, sectionStart: 1300,
-    qRead: 850, qSelect: 550, qFeedback: 1000, qSoak: 800,
-    writtenType: 450, writtenSubmit: 1500, endLinger: 1200
+    welcome: 2500, readAloud: 3000, directions: 6200,
+    nameSelect: 1400, pinType: 1700, sectionStart: 1700,
+    qRead: 1500, qSelect: 850, qFeedback: 1400, qSoak: 1200,
+    writtenType: 750, writtenSubmit: 1900, endLinger: 1600
   };
 
   const $ = id => document.getElementById(id);

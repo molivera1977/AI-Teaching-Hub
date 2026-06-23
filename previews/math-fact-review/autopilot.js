@@ -12,9 +12,9 @@
   'use strict';
 
   const T = {
-    welcome: 1800, modePause: 1200, levelPause: 1300,
-    type: 350, afterCorrect: 1000, afterWrong: 750,
-    switchPause: 1400, finale: 1300
+    welcome: 2200, modePause: 1600, levelPause: 1700,
+    type: 350, afterCorrect: 1500, afterWrong: 1050,
+    switchPause: 1800, finale: 1700
   };
   /* ---- pause / resume control ---- */
   let _paused = false;
