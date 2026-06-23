@@ -76,6 +76,7 @@
 
   /* ---- animated demo cursor (highlights select → submit → next) ---- */
   let cursorEl, cursorInner;
+  let readAloudDemos = 0;   // show off the 🔊 read-aloud on the first 2 questions
   function makeCursor() {
     cursorEl = document.createElement('div');
     cursorEl.id = 'demo-cursor';
@@ -219,6 +220,22 @@
     if (!q) return;
     const picks = chooseAnswer(q);
     const btns = document.querySelectorAll('.answer-btn');
+
+    // 0) READ-ALOUD demo — on the first two questions, tap the 🔊 button
+    //    to show the text-to-speech feature, listen, then tap again to stop
+    if (readAloudDemos < 2) {
+      readAloudDemos++;
+      const sb = $('speak-q-btn');
+      if (sb) {
+        await cursorToEl(sb, 800);
+        glow(sb, true); await wait(280); clickPulse(sb); glow(sb, false);
+        sb.click();                       // → speakQuestion() (button shows ⏹, words highlight)
+        await wait(2800);                 // pause as if listening
+        if (sb.textContent === '⏹') sb.click();   // tap again to stop
+        try { window.speechSynthesis.cancel(); } catch (e) {}
+        await wait(500);
+      }
+    }
 
     // 1) SELECT — move to the chosen answer, highlight, click it
     const target = btns[picks[0]];
