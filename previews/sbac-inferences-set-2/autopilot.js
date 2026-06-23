@@ -15,8 +15,8 @@
 
   const T = {
     cover: 2000, name: 1900, startPause: 1400,
-    passageRead: 2200, perQuestion: 950, betweenPart: 800,
-    passageGap: 1300, finale: 1600
+    passageRead: 2400, perQuestion: 550, betweenPart: 600,
+    passageGap: 1200, finale: 1600
   };
   /* ---- pause / resume control ---- */
   let _paused = false;
@@ -54,6 +54,70 @@
     document.getElementById('demo-replay').onclick = () => { try { localStorage.clear(); } catch (e) {} location.reload(); };
   }
 
+  /* ---- animated demo cursor ---- */
+  let cursorEl, cursorInner;
+  function makeCursor() {
+    cursorEl = document.createElement('div');
+    cursorEl.id = 'demo-cursor';
+    cursorEl.style.cssText = 'position:fixed;left:0;top:0;z-index:99998;pointer-events:none;'
+      + 'transition:transform .9s cubic-bezier(.45,.05,.25,1),opacity .4s;will-change:transform;'
+      + 'transform:translate(' + Math.round(window.innerWidth / 2) + 'px,' + Math.round(window.innerHeight * 0.6) + 'px);';
+    cursorInner = document.createElement('div');
+    cursorInner.style.cssText = 'transition:transform .12s;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.45));';
+    cursorInner.innerHTML = '<svg width="26" height="30" viewBox="0 0 16 20">'
+      + '<path d="M1,1 L1,16 L5,12 L8,18.5 L10.2,17.4 L7.2,11.2 L13,11 Z" fill="#fff" stroke="#222" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+    cursorEl.appendChild(cursorInner);
+    document.body.appendChild(cursorEl);
+  }
+  function cursorTo(x, y, dur) {
+    if (!cursorEl) return wait(0);
+    cursorEl.style.opacity = '1';
+    cursorEl.style.transitionDuration = (dur / 1000) + 's,.4s';
+    cursorEl.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)';
+    return wait(dur);
+  }
+  function cursorToEl(el, dur) {
+    if (!el) return wait(0);
+    const r = el.getBoundingClientRect();
+    return cursorTo(r.left + r.width * 0.5, r.top + r.height * 0.5, dur || 850);
+  }
+  function glow(el, on) {
+    if (!el) return;
+    el.style.transition = 'box-shadow .2s,transform .2s';
+    el.style.boxShadow = on ? '0 0 0 3px #fff,0 0 16px 4px rgba(108,92,231,.75)' : '';
+    el.style.transform = on ? 'scale(1.03)' : '';
+  }
+  function clickPulse(el) {
+    if (cursorInner) { cursorInner.style.transform = 'scale(.75)'; setTimeout(() => { cursorInner.style.transform = ''; }, 150); }
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const rip = document.createElement('div');
+    rip.style.cssText = 'position:fixed;left:' + (r.left + r.width / 2) + 'px;top:' + (r.top + r.height / 2)
+      + 'px;width:14px;height:14px;border-radius:50%;background:rgba(108,92,231,.45);'
+      + 'transform:translate(-50%,-50%) scale(1);z-index:99997;pointer-events:none;transition:transform .55s ease-out,opacity .55s ease-out;';
+    document.body.appendChild(rip);
+    requestAnimationFrame(() => { rip.style.transform = 'translate(-50%,-50%) scale(7)'; rip.style.opacity = '0'; });
+    setTimeout(() => rip.remove(), 600);
+  }
+  async function cursorClick(el, dur, hold) {
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    await wait(450);
+    await cursorToEl(el, dur || 800);
+    glow(el, true);
+    await wait(hold || 300);
+    clickPulse(el);
+    glow(el, false);
+    if (typeof el.click === 'function') el.click();
+  }
+  /* move to a specific answer choice and click it (fires its onclick → answer()) */
+  async function clickChoice(p, qi, part, idx) {
+    const btn = document.getElementById('cb-' + p + '-' + qi + '-' + part + '-' + idx);
+    if (!btn) return false;
+    await cursorClick(btn, 800, 300);
+    return true;
+  }
+
   /* skip text-to-speech and the speech-gated locking */
   function patchSpeechAndLocks() {
     if (typeof window.speakText === 'function') window.speakText = function (t, onDone) { if (typeof onDone === 'function') onDone(); };
@@ -81,32 +145,56 @@
       for (let qi = 0; qi < qs.length; qi++) {
         const q = qs[qi];
         if (q.partA) {
-          answer(p, qi, 'a', pick(q.partA), q.partA.correct);
+          // two-part question — cursor clicks Part A then Part B
+          if (!(await clickChoice(p, qi, 'a', pick(q.partA)))) answer(p, qi, 'a', pick(q.partA), q.partA.correct);
           await wait(T.betweenPart);
-          answer(p, qi, 'b', pick(q.partB), q.partB.correct);
+          if (!(await clickChoice(p, qi, 'b', pick(q.partB)))) answer(p, qi, 'b', pick(q.partB), q.partB.correct);
           await wait(T.perQuestion);
         } else {
-          answer(p, qi, '', pick(q), q.correct);
+          if (!(await clickChoice(p, qi, '', pick(q)))) answer(p, qi, '', pick(q), q.correct);
           await wait(T.perQuestion);
         }
       }
       await wait(T.passageGap);
     }
-    // everything answered → finish
+    // everything answered → cursor clicks Finish
     await wait(T.finale);
     const fb = document.getElementById('finishBtn');
-    if (fb) { fb.disabled = false; fb.classList.add('finish-btn-ready'); fb.click(); }
-    else if (typeof tryFinish === 'function') tryFinish();
+    if (fb) {
+      fb.disabled = false;
+      fb.classList.add('finish-btn-ready');
+      await cursorClick(fb, 850, 350);
+    } else if (typeof tryFinish === 'function') {
+      tryFinish();
+    }
   }
 
   async function run() {
+    makeCursor();
     await wait(T.cover);
-    if (typeof showNameScreen === 'function') showNameScreen();
+
+    // COVER — cursor clicks "Start"
+    const coverBtn = document.querySelector('.cover-btn');
+    if (coverBtn) await cursorClick(coverBtn, 850, 350);          // → showNameScreen
+    else if (typeof showNameScreen === 'function') showNameScreen();
     await wait(T.name);
+
+    // NAME — cursor into the box, types "Mr. O"
     const inp = document.getElementById('nameInput');
-    if (inp) { inp.value = ''; for (const ch of 'Mr. O') { inp.value += ch; await wait(110); } }
+    if (inp) {
+      await cursorToEl(inp, 800);
+      glow(inp, true);
+      inp.focus();
+      inp.value = '';
+      for (const ch of 'Mr. O') { inp.value += ch; await wait(120); }
+      glow(inp, false);
+    }
     await wait(T.startPause);
-    if (typeof startReview === 'function') startReview();   // → launchReview → passage 0
+
+    // BEGIN — cursor clicks "Begin Review →"
+    const beginBtn = document.querySelector('.name-btn');
+    if (beginBtn) await cursorClick(beginBtn, 850, 350);          // → startReview
+    else if (typeof startReview === 'function') startReview();
     await wait(900);
     driveReview();
   }
