@@ -56,6 +56,7 @@
 
   /* ---- animated demo cursor ---- */
   let cursorEl, cursorInner;
+  let readAloudDemos = 0;   // show off the 🔊 read-aloud on the first 2 questions
   function makeCursor() {
     cursorEl = document.createElement('div');
     cursorEl.id = 'demo-cursor';
@@ -117,6 +118,21 @@
     await cursorClick(btn, 800, 300);
     return true;
   }
+  /* on the first two questions, tap the question's 🔊 button to show
+     read-aloud (reads the question + highlights words), then stop */
+  async function maybeReadAloud(p, qi) {
+    if (readAloudDemos >= 2) return;
+    const card = document.getElementById('qcard-' + p + '-' + qi);
+    if (!card) return;
+    const rb = card.querySelector('.q-read-btn');
+    if (!rb) return;
+    readAloudDemos++;
+    await cursorClick(rb, 800, 320);     // → readQuestionCard → speakWithHighlight
+    await wait(3200);                    // listen / show word highlighting
+    try { if (typeof stopReading === 'function') stopReading(); } catch (e) {}
+    try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) {}
+    await wait(450);
+  }
 
   /* skip text-to-speech and the speech-gated locking */
   function patchSpeechAndLocks() {
@@ -144,6 +160,7 @@
       const qs = passages[p].questions || [];
       for (let qi = 0; qi < qs.length; qi++) {
         const q = qs[qi];
+        await maybeReadAloud(p, qi);   // demo read-aloud on the first two questions
         if (q.partA) {
           // two-part question — cursor clicks Part A then Part B
           if (!(await clickChoice(p, qi, 'a', pick(q.partA)))) answer(p, qi, 'a', pick(q.partA), q.partA.correct);
