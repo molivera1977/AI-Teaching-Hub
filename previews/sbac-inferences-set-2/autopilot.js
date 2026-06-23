@@ -127,8 +127,17 @@
     const rb = card.querySelector('.q-read-btn');
     if (!rb) return;
     readAloudDemos++;
-    await cursorClick(rb, 800, 320);     // → readQuestionCard → speakWithHighlight
-    await wait(3200);                    // listen / show word highlighting
+    await cursorClick(rb, 800, 320);     // → readQuestionCard → speakWithHighlight (wraps .tts-word, attempts audio)
+    await wait(180);
+    // manually walk-highlight the words so it shows even if autoplay audio is blocked
+    const words = Array.from(card.querySelectorAll('.tts-word')).slice(0, 18);
+    for (let i = 0; i < words.length; i++) {
+      words.forEach(w => w.classList.remove('speaking'));
+      words[i].classList.add('speaking');
+      try { words[i].scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
+      await wait(190);
+    }
+    words.forEach(w => w.classList.remove('speaking'));
     try { if (typeof stopReading === 'function') stopReading(); } catch (e) {}
     try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) {}
     await wait(450);

@@ -138,6 +138,29 @@
     };
   }
 
+  /* Tap the question's 🔊 button: clicking it (speakQuestion) wraps the
+     words in .wrd spans and attempts audio; we then manually walk-highlight
+     each word so the highlighting shows even when autoplay audio is blocked. */
+  async function demoReadAloud() {
+    const sb = $('speak-q-btn');
+    const qtEl = $('question-text');
+    if (!sb || !qtEl) return;
+    await cursorToEl(sb, 800);
+    glow(sb, true); await wait(250); clickPulse(sb); glow(sb, false);
+    try { sb.click(); } catch (e) {}          // speakQuestion: wraps words, ⏹, best-effort audio
+    await wait(180);
+    const words = Array.from(qtEl.querySelectorAll('.wrd'));
+    for (let i = 0; i < words.length; i++) {
+      words.forEach(w => w.classList.remove('hl'));
+      words[i].classList.add('hl');
+      await wait(200);
+    }
+    words.forEach(w => w.classList.remove('hl'));
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+    sb.textContent = '🔊';
+    await wait(450);
+  }
+
   async function answerCurrent() {
     const q = app.currentTest[app.currentIndex];
     if (!q) return;
@@ -145,16 +168,7 @@
     // 0) READ-ALOUD demo on the first two questions
     if (readAloudDemos < 2) {
       readAloudDemos++;
-      const sb = $('speak-q-btn');
-      if (sb) {
-        await cursorToEl(sb, 800);
-        glow(sb, true); await wait(280); clickPulse(sb); glow(sb, false);
-        sb.click();                       // → speakQuestion() (button shows ⏹, words highlight)
-        await wait(2800);                 // pause as if listening
-        if (sb.textContent === '⏹') sb.click();   // tap again to stop
-        try { window.speechSynthesis.cancel(); } catch (e) {}
-        await wait(500);
-      }
+      await demoReadAloud();
     }
 
     const pick = chooseAnswer(q);
