@@ -731,7 +731,7 @@ footer {
 
 /* ---- MR. AI WIDGET ---- */
 .mr-ai-widget { position: fixed; bottom: 22px; right: 22px; z-index: 9999; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-.mr-ai-toggle { background: linear-gradient(135deg, #4f6ef7, #5ea7e8); color: #fff; border: none; border-radius: 50px; padding: .7rem 1.3rem; font-size: .9rem; font-weight: 700; box-shadow: 0 6px 22px rgba(79,110,247,.38); cursor: pointer; transition: transform .15s, box-shadow .15s; white-space: nowrap; }
+.mr-ai-toggle { background: linear-gradient(135deg, #4f6ef7, #5ea7e8); color: #fff; border: 1px solid transparent; border-radius: 30px; padding: .62rem 1.05rem; font-size: .82rem; font-weight: 700; box-shadow: 0 4px 16px rgba(79,110,247,.32); cursor: pointer; transition: transform .15s, box-shadow .15s; white-space: nowrap; }
 .mr-ai-toggle:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(79,110,247,.45); }
 .mr-ai-panel { display: none; position: absolute; bottom: 58px; right: 0; width: 340px; max-width: calc(100vw - 44px); background: #fff; border: 1px solid #dde3f5; border-radius: 18px; box-shadow: 0 20px 60px rgba(30,40,90,.16); overflow: hidden; flex-direction: column; }
 .mr-ai-panel.open { display: flex; }
