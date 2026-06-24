@@ -752,4 +752,4 @@ footer {
 .mr-ai-send-btn { background: #4f6ef7; color: #fff; border: none; border-radius: 10px; padding: .5rem .85rem; font-weight: 700; font-size: .83rem; cursor: pointer; white-space: nowrap; transition: background .15s; }
 .mr-ai-send-btn:hover:not(:disabled) { background: #3a58d6; }
 .mr-ai-send-btn:disabled { background: #b0badd; cursor: default; }
-@media (max-width: 420px) { .mr-ai-widget { left: auto; right: 14px; bottom: 14px; } .mr-ai-panel { width: calc(100vw - 28px); right: 0; } }
+@media (max-width: 420px) { .mr-ai-widget { left: auto; right: 22px; bottom: 22px; } .mr-ai-panel { width: calc(100vw - 44px); right: 0; } }
